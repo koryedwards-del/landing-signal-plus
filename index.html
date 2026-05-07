@@ -31,6 +31,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -186,166 +190,180 @@
 
     /* ── SECTION SHARED ── */
     .section-eyebrow {
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-      font-size: 13px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--cyan);
-      margin-bottom: 12px;
+      opacity: 0.75;
+      margin-bottom: 16px;
     }
     .section-title {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      font-size: clamp(24px, 4vw, 44px);
+      font-size: clamp(28px, 4vw, 48px);
       line-height: 1.1;
-      margin-bottom: 16px;
+      margin-bottom: 40px;
     }
 
     /* ── WHO IT'S FOR ── */
-    .for-section { padding: 28px 20px 36px; background: var(--dark); }
-    .for-inner { max-width: 960px; margin: 0 auto; }
-    .for-text { margin-bottom: 24px; }
-    .for-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .for-section { padding: 64px 20px; background: var(--dark2); }
+    .for-inner { max-width: 1000px; margin: 0 auto; }
+    .for-text { text-align: center; margin-bottom: 40px; }
+    .for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .for-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 2px solid var(--cyan);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 28px 24px;
-      box-shadow: 0 0 20px var(--glow), inset 0 1px 0 rgba(0,200,232,0.05);
-      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .for-card:hover { border-color: rgba(0,200,232,0.25); box-shadow: 0 0 36px rgba(0,200,232,0.11); }
-    .for-card h4 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 10px; color: var(--text); }
-    .for-card p { font-size: 14px; color: #7A8A9A; line-height: 1.75; }
+    .for-card h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .for-card p { font-size: 15px; line-height: 1.7; color: var(--muted); }
 
     /* ── SCIENCE ── */
-    .science { padding: 28px 20px 36px; background: var(--dark); }
-    .science-inner { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
-    .science-body { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
-    .science-badges { display: flex; gap: 10px; margin-top: 20px; justify-content: center; }
+    .science { padding: 64px 20px; background: var(--dark); }
+    .science-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .science-body { font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 24px; }
+    .science-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
     .science-badge {
-      display: inline-block;
-      border: 1px solid rgba(0,200,232,0.3);
-      color: var(--cyan);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 20px;
+      color: var(--cyan);
+      border: 1px solid rgba(0,200,232,0.3);
+      border-radius: 4px;
+      padding: 4px 10px;
     }
-    .pubmed-note { margin-top: 14px; font-size: 12px; color: #4A5A6A; line-height: 1.6; max-width: 380px; font-style: italic; text-align: center; margin-left: auto; margin-right: auto; }
-    .citation-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .pubmed-note { font-size: 13px; color: var(--muted); line-height: 1.6; opacity: 0.7; }
+    .citation-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .citation-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 2px solid var(--cyan);
       border-radius: 10px;
-      padding: 20px 20px 16px;
-      box-shadow: 0 0 18px var(--glow), inset 0 1px 0 rgba(0,200,232,0.06);
-      transition: box-shadow 0.25s, border-color 0.25s;
+      padding: 20px;
     }
-    .citation-card:hover { box-shadow: 0 0 32px rgba(0,200,232,0.12); border-color: rgba(0,200,232,0.25); }
-    .citation-card p { font-size: 13px; color: #9AAAB8; line-height: 1.75; margin-bottom: 10px; }
-    .cite-meaning { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.6; margin-bottom: 14px; }
-    .citation-card .cite-science { font-size: 12px; color: #5A6A7A; line-height: 1.7; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px; }
-    .cite-ref { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan); opacity: 0.6; letter-spacing: 0.08em; }
+    .cite-meaning { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+    .cite-science { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; font-style: italic; }
+    .cite-ref { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--cyan); opacity: 0.7; }
 
     /* ── OUTCOMES ── */
-    .outcomes-section { padding: 48px 20px; background: var(--dark); text-align: center; }
-    .outcomes-inner { max-width: 960px; margin: 0 auto; }
-    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+    .outcomes-section { padding: 64px 20px; background: var(--dark2); text-align: center; }
+    .outcomes-inner { max-width: 900px; margin: 0 auto; }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
     .outcome-item {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 2px solid var(--cyan);
-      border-radius: 10px;
-      padding: 32px 20px;
-      box-shadow: 0 0 20px var(--glow);
+      border-radius: 12px;
+      padding: 32px 24px;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
     }
-    .outcome-item p { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 18px; color: var(--text); line-height: 1.3; }
 
     /* ── PRICING ── */
-    .pricing { padding: 20px 20px 36px; background: var(--dark); text-align: center; }
-    .pricing-inner { max-width: 552px; margin: 0 auto; }
+    .pricing { padding: 64px 20px; background: var(--dark); text-align: center; }
+    .pricing-inner { max-width: 560px; margin: 0 auto; }
     .pricing-card {
       background: var(--surface);
-      border: 1px solid var(--cyan);
-      border-radius: 14px;
-      padding: 56px 60px;
-      position: relative;
-      overflow: hidden;
+      border: 1px solid rgba(0,200,232,0.2);
+      border-radius: 16px;
+      padding: 48px 40px;
+      box-shadow: 0 0 40px rgba(0,200,232,0.06);
     }
-    .pricing-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,200,232,0.08) 0%, transparent 70%);
-      pointer-events: none;
+    .pricing-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: 8px;
     }
-    .pricing-price { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 76px; line-height: 1; color: var(--cyan); margin-bottom: 8px; }
-    .pricing-label { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
-    .pricing-tag { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); }
-    .email-capture { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; align-items: center; position: relative; z-index: 1; }
-    .email-capture input[type="email"] {
+    .pricing-label { font-size: 16px; color: var(--muted); margin-bottom: 16px; }
+    .pricing-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      opacity: 0.7;
+      margin-bottom: 32px;
+    }
+    .email-capture { display: flex; flex-direction: column; gap: 12px; }
+    .email-capture input {
       width: 100%;
-      max-width: 360px;
-      padding: 14px 20px;
+      padding: 14px 18px;
       background: var(--dark);
-      border: 1px solid rgba(0,200,232,0.3);
-      border-radius: 50px;
+      border: 1px solid rgba(0,200,232,0.2);
+      border-radius: 8px;
       color: var(--text);
+      font-size: 15px;
       font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
       outline: none;
       transition: border-color 0.2s;
     }
-    .email-capture input[type="email"]::placeholder { color: #4A5A6A; }
-    .email-capture input[type="email"]:focus { border-color: var(--cyan); }
+    .email-capture input:focus { border-color: rgba(0,200,232,0.5); }
     .btn-notify {
-      display: inline-block;
-      border: 1px solid var(--cyan);
-      color: var(--cyan);
+      width: 100%;
+      padding: 15px;
       background: transparent;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
+      border: 1px solid var(--cyan);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-family: 'Space Mono', monospace;
       font-size: 13px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 14px 40px;
-      border-radius: 50px;
       cursor: pointer;
-      transition: background 0.22s, color 0.22s;
+      transition: background 0.2s, color 0.2s;
     }
-    .btn-notify:hover { background: var(--cyan); color: #050810; }
-    .email-confirm { display: none; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--cyan); letter-spacing: 0.1em; margin-top: 8px; }
+    .btn-notify:hover { background: rgba(0,200,232,0.08); }
+    .btn-notify:disabled { opacity: 0.5; cursor: not-allowed; }
+    .email-confirm { display: none; font-size: 14px; color: var(--cyan); margin-top: 4px; }
+    .email-error { display: none; font-size: 14px; color: #ff6b6b; margin-top: 4px; }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      padding: 36px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 28px 40px;
+      border-top: 1px solid var(--border);
+      background: var(--dark2);
       flex-wrap: wrap;
       gap: 16px;
     }
-    .footer-brand { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
-    .footer-brand sup { font-size: 10px; vertical-align: super; }
-    .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
-    .footer-links a { color: #4A5A6A; text-decoration: none; font-size: 13px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--cyan); }
-    .footer-copy { color: #3A4A5A; font-size: 12px; max-width: 560px; line-height: 1.6; }
+    .footer-brand {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 12px; color: var(--muted); opacity: 0.6; max-width: 400px; line-height: 1.5; }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── MOBILE ── */
-    @media (max-width: 680px) {
-      nav { padding: 0 18px; position: relative; }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
       .nav-toggle { display: flex; }
       .nav-links { display: none; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: rgba(8,12,18,0.98); padding: 20px 24px; gap: 18px; border-bottom: 1px solid var(--border); z-index: 200; }
       .nav-links.open { display: flex; }
@@ -358,6 +376,7 @@
       .pricing-price { font-size: 60px; }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
       .footer-links { justify-content: center; }
+      .science-inner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -374,7 +393,6 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="signal-privacy.html">Privacy Policy</a></li>
       <li><a href="signal-support.html">Support</a></li>
-      <li><a href="affiliates.html">Affiliates</a></li>
     </ul>
   </nav>
 
@@ -482,8 +500,9 @@
         <p class="pricing-tag">30 Days Free &nbsp;·&nbsp; No Credit Card &nbsp;·&nbsp; Cancel Anytime</p>
         <div class="email-capture">
           <input type="email" id="notifyEmail" placeholder="Your email address" />
-          <button class="btn-notify" onclick="handleNotify()">NOTIFY ME WHEN IT LAUNCHES</button>
-          <p class="email-confirm" id="emailConfirm">You're on the list. We'll be in touch.</p>
+          <button class="btn-notify" id="notifyBtn" onclick="handleSignup()">START FREE TRIAL</button>
+          <p class="email-confirm" id="emailConfirm">Check your email — your link is on the way.</p>
+          <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
         </div>
       </div>
     </div>
@@ -496,7 +515,6 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="signal-privacy.html">Privacy Policy</a></li>
       <li><a href="signal-support.html">Contact &amp; Support</a></li>
-      <li><a href="affiliates.html">Affiliates</a></li>
     </ul>
     <p class="footer-copy">© 2026 Signal+. Signal+ is not a medical device and does not provide medical advice. Always consult your physician before making changes to your diet or health routine.</p>
   </footer>
@@ -519,13 +537,39 @@
     }, { threshold: 0.08 });
     reveals.forEach(el => observer.observe(el));
 
-    function handleNotify() {
-      const email = document.getElementById('notifyEmail').value;
-      if (email && email.includes('@')) {
-        window.location.href = 'mailto:info@signalplushealth.com?subject=Notify Me When Signal+ Launches&body=Please notify me when Signal+ launches. My email is: ' + encodeURIComponent(email);
-        document.getElementById('emailConfirm').style.display = 'block';
+    const SUPABASE_URL = 'https://pzpzxpqgmgeuternttwh.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6cHp4cHFnbWdldXRlcm50dHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYzODM0MTMsImV4cCI6MjA2MTk1OTQxM30.nHDjEQHB0Nzb2zWKFSl-8Q6iEjLCzMdGJnPkH3cSBl0';
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function handleSignup() {
+      const email = document.getElementById('notifyEmail').value.trim();
+      const btn = document.getElementById('notifyBtn');
+      const confirm = document.getElementById('emailConfirm');
+      const error = document.getElementById('emailError');
+
+      if (!email || !email.includes('@')) return;
+
+      btn.disabled = true;
+      btn.textContent = 'SENDING...';
+      confirm.style.display = 'none';
+      error.style.display = 'none';
+
+      const { error: authError } = await client.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: 'https://signal-plus-v2.vercel.app/auth/confirm',
+        },
+      });
+
+      if (authError) {
+        console.error(authError);
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'START FREE TRIAL';
+      } else {
+        confirm.style.display = 'block';
         document.getElementById('notifyEmail').style.display = 'none';
-        document.querySelector('.btn-notify').style.display = 'none';
+        btn.style.display = 'none';
       }
     }
   </script>
