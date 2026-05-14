@@ -554,15 +554,10 @@
       confirm.style.display = 'none';
       error.style.display = 'none';
 
-      const refCode = new URLSearchParams(window.location.search).get('ref');
-      const redirectUrl = refCode
-        ? `https://signal-plus-v2.vercel.app/auth/confirm?ref=${refCode}`
-        : 'https://signal-plus-v2.vercel.app/auth/confirm';
-
       const { error: authError } = await client.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: redirectUrl,
+          emailRedirectTo: 'https://signal-plus-v2.vercel.app/auth/confirm',
         },
       });
 
