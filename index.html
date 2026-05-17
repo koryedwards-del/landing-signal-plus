@@ -537,41 +537,49 @@
     reveals.forEach(el => observer.observe(el));
 
     async function handleSignup() {
-      const email = document.getElementById('notifyEmail').value.trim();
+      const emailInput = document.getElementById('notifyEmail');
       const btn = document.getElementById('notifyBtn');
-      const confirm = document.getElementById('emailConfirm');
-      const error = document.getElementById('emailError');
+      const confirmEl = document.getElementById('emailConfirm');
+      const errorEl = document.getElementById('emailError');
 
-      if (!email || !email.includes('@')) return;
+      const email = emailInput.value.trim();
+      if (!email || !email.includes('@')) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.style.display = 'block';
+        return;
+      }
 
       btn.disabled = true;
       btn.textContent = 'SENDING...';
-      confirm.style.display = 'none';
-      error.style.display = 'none';
-
-      const refCode = new URLSearchParams(window.location.search).get('ref');
+      confirmEl.style.display = 'none';
+      errorEl.style.display = 'none';
 
       try {
+        console.log('[signup] POST /api/auth/request', { email });
         const res = await fetch('https://pwa-signal-plus-v2.onrender.com/api/auth/request', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, referred_by_code: refCode || null }),
+          body: JSON.stringify({ email }),
         });
+        console.log('[signup] status:', res.status);
 
         if (!res.ok) {
-          console.error('Auth request failed:', res.status);
-          error.style.display = 'block';
+          const text = await res.text();
+          console.error('[signup] error body:', text);
+          errorEl.textContent = 'Server returned ' + res.status + '. Try again.';
+          errorEl.style.display = 'block';
           btn.disabled = false;
           btn.textContent = 'START FREE TRIAL';
           return;
         }
 
-        confirm.style.display = 'block';
-        document.getElementById('notifyEmail').style.display = 'none';
+        confirmEl.style.display = 'block';
+        emailInput.style.display = 'none';
         btn.style.display = 'none';
       } catch (err) {
-        console.error('Auth request error:', err);
-        error.style.display = 'block';
+        console.error('[signup] network error:', err);
+        errorEl.textContent = 'Network error: ' + err.message;
+        errorEl.style.display = 'block';
         btn.disabled = false;
         btn.textContent = 'START FREE TRIAL';
       }
