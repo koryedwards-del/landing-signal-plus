@@ -519,6 +519,14 @@
   </footer>
 
   <script>
+    // Capture and persist referral code from URL
+    (function() {
+      const refCode = new URLSearchParams(window.location.search).get('ref');
+      if (refCode) {
+        try { localStorage.setItem('signalplus_ref', refCode); } catch(e) {}
+      }
+    })();
+
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         document.querySelector('.nav-links').classList.remove('open');
@@ -537,6 +545,11 @@
     reveals.forEach(el => observer.observe(el));
 
     async function handleSignup() {
+      let referredByCode = null;
+      try {
+        referredByCode = new URLSearchParams(window.location.search).get('ref')
+          || localStorage.getItem('signalplus_ref');
+      } catch (e) {}
       const emailInput = document.getElementById('notifyEmail');
       const btn = document.getElementById('notifyBtn');
       const confirmEl = document.getElementById('emailConfirm');
@@ -555,11 +568,11 @@
       errorEl.style.display = 'none';
 
       try {
-        console.log('[signup] POST /api/auth/request', { email });
+        console.log('[signup] POST /api/auth/request', { email, referredByCode });
         const res = await fetch('https://pwa-signal-plus-v2.onrender.com/api/auth/request', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email, referredByCode }),
         });
         console.log('[signup] status:', res.status);
 
