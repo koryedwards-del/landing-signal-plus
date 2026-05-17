@@ -33,7 +33,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -537,10 +536,6 @@
     }, { threshold: 0.08 });
     reveals.forEach(el => observer.observe(el));
 
-    const SUPABASE_URL = 'https://pzpzxpqgmgeuternttwh.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_3QyVs6KAT4-_xFN1FbFwMQ_f0KMTGGA';
-    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     async function handleSignup() {
       const email = document.getElementById('notifyEmail').value.trim();
       const btn = document.getElementById('notifyBtn');
@@ -555,26 +550,30 @@
       error.style.display = 'none';
 
       const refCode = new URLSearchParams(window.location.search).get('ref');
-      const redirectTo = refCode
-        ? 'https://signal-plus-v2.vercel.app/auth/confirm?ref=' + refCode
-        : 'https://signal-plus-v2.vercel.app/auth/confirm';
 
-      const { error: authError } = await client.auth.signInWithOtp({
-        email,
-        options: {
-          emailRedirectTo: redirectTo,
-        },
-      });
+      try {
+        const res = await fetch('https://pwa-signal-plus-v2.onrender.com/api/auth/request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, referred_by_code: refCode || null }),
+        });
 
-      if (authError) {
-        console.error(authError);
-        error.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = 'START FREE TRIAL';
-      } else {
+        if (!res.ok) {
+          console.error('Auth request failed:', res.status);
+          error.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'START FREE TRIAL';
+          return;
+        }
+
         confirm.style.display = 'block';
         document.getElementById('notifyEmail').style.display = 'none';
         btn.style.display = 'none';
+      } catch (err) {
+        console.error('Auth request error:', err);
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'START FREE TRIAL';
       }
     }
   </script>
