@@ -567,17 +567,13 @@
       errorEl.style.display = 'none';
 
       try {
-        console.log('[signup] POST /api/auth/request', { email, referredByCode });
         const res = await fetch('https://pwa-signal-plus-v2.onrender.com/api/auth/request', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, referredByCode }),
         });
-        console.log('[signup] status:', res.status);
 
         if (!res.ok) {
-          const text = await res.text();
-          console.error('[signup] error body:', text);
           errorEl.textContent = 'Server returned ' + res.status + '. Try again.';
           errorEl.style.display = 'block';
           btn.disabled = false;
@@ -589,7 +585,6 @@
         emailInput.style.display = 'none';
         btn.style.display = 'none';
       } catch (err) {
-        console.error('[signup] network error:', err);
         errorEl.textContent = 'Network error: ' + err.message;
         errorEl.style.display = 'block';
         btn.disabled = false;
