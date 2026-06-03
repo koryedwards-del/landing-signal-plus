@@ -330,6 +330,119 @@
     .email-confirm { display: none; font-size: 14px; color: #00ff3b; margin-top: 4px; }
     .email-error { display: none; font-size: 14px; color: #ff6b6b; margin-top: 4px; }
 
+    /* ── STORY LANDING ── */
+    .top-cta {
+      width: 100%;
+      max-width: 440px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .story {
+      background: var(--dark);
+      padding: 54px 20px 36px;
+    }
+    .story-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .story-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      opacity: 0.78;
+      margin-bottom: 16px;
+    }
+    .story h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .story-block {
+      margin: 0 auto 36px;
+    }
+    .story-block p {
+      font-size: clamp(18px, 2.3vw, 22px);
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .story-block p.short {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(24px, 3.4vw, 36px);
+      line-height: 1.15;
+      color: var(--cyan);
+      margin: 32px 0;
+    }
+    .story-shot {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 34px;
+      align-items: center;
+      margin: 54px auto;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 0 34px var(--glow);
+    }
+    .story-shot.reverse {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+    .story-shot img {
+      width: 100%;
+      max-width: 230px;
+      justify-self: center;
+      border: 1px solid rgba(0,200,232,0.3);
+      border-radius: 28px;
+      box-shadow: 0 0 24px rgba(0,200,232,0.12);
+    }
+    .story-shot-copy p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .story-shot-copy strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      color: var(--cyan);
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .final-cta {
+      padding: 64px 20px;
+      background: var(--dark2);
+      text-align: center;
+    }
+    .final-cta-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .final-cta h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(28px, 4.4vw, 48px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
     /* ── FOOTER ── */
     footer {
       display: flex;
@@ -375,6 +488,10 @@
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
       .footer-links { justify-content: center; }
       .science-inner { grid-template-columns: 1fr; }
+      .story-shot,
+      .story-shot.reverse { grid-template-columns: 1fr; }
+      .story-shot.reverse img { order: 0; }
+      .story-shot { padding: 22px; }
     }
   </style>
 </head>
@@ -388,7 +505,8 @@
     </button>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#pricing">Start Free</a></li>
       <li><a href="signal-privacy.html">Privacy Policy</a></li>
       <li><a href="signal-support.html">Support</a></li>
     </ul>
@@ -397,114 +515,224 @@
   <!-- HERO -->
   <section class="hero">
     <img class="hero-logo" src="Images/cyansignal+logotransparent.png" alt="Signal+" />
-    <p class="hero-eyebrow">Created by a GLP-1 user. Backed by science.</p>
+    <p class="hero-eyebrow">Created by a GLP-1 user</p>
     <h1>
       <span class="line1">The scale is going down.</span>
       <span class="line2">That feels amazing.</span>
     </h1>
-    <p class="hero-sub">The scale is going down and that's great. But you're frustrated because that belly fat isn't going away. You don't look like you thought you would. And not only that — you're more tired now than you've ever been.</p>
-    <p class="hero-need">You need <span>Signal+</span></p>
-  </section>
-
-  <!-- PHONES -->
-  <section class="phones-section">
-    <div class="phones">
-      <div class="phone-wrap"><img src="Images/homeview.jpg" alt="Signal+ Home Screen" /></div>
-      <div class="phone-wrap"><img src="Images/proteinprompt.jpg" alt="Signal+ Protein Prompt" /></div>
-      <div class="phone-wrap"><img src="Images/mtorjournal.jpg" alt="Signal+ mTOR Journal" /></div>
+    <p class="hero-sub">But you're tired. Softer than you expected. And everyday things are still harder than they should be.</p>
+    <p class="hero-need">That was <span>me.</span></p>
+    <div class="email-capture top-cta">
+      <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
+      <button class="btn-notify" id="heroBtn" onclick="handleSignup('hero')">START YOUR FREE 30 DAY TRIAL</button>
+      <p class="email-confirm" id="heroConfirm">Your link is on the way — check your email.</p>
+      <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
+      <p class="cta-note">No card required.</p>
     </div>
   </section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="for-section">
-    <div class="for-inner">
-      <div class="for-text">
-        <p class="section-eyebrow">Who It's For</p>
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="story-inner">
+      <p class="story-kicker">Why I built Signal+</p>
+      <h2>I built Signal+ because I needed it.</h2>
+
+      <div class="story-block reveal">
+        <p>I had a cross-country flight coming up.</p>
+        <p>It was still a few months away, but I could already feel the pressure of it.</p>
+        <p>Not just the flight. The airport. The walking. The seat. The seatbelt.</p>
+        <p>In the past, I had been getting dangerously close to needing a seatbelt extender, and that idea mortified me.</p>
+        <p>Then my blood test came back.</p>
+        <p class="short">My resting blood glucose was 350.</p>
+        <p>I knew enough right then to know something had to change.</p>
       </div>
-      <div class="for-grid">
-        <div class="for-card reveal">
-          <h4>GLP-1 Users</h4>
-          <p>The scale is going down. You feel in control for the first time. But something isn't right. You're tired. That belly isn't budging. And you don't look the way you thought you would. You're not imagining it — and it's not the drug failing you.</p>
+
+      <div class="story-block reveal">
+        <p>When I was in high school, I weighed 150 pounds. I was lifting, eating, lifting, eating, and competing in bodybuilding. I built a big physique, and most of it was muscle.</p>
+        <p>Then I quit working out, got a real job, and started living a much more sedentary life.</p>
+        <p>The pounds came on fast.</p>
+        <p>The first year I gained 50 pounds.</p>
+        <p>And like a lot of people, I was tired. I was rundown. I could not even go to an amusement park and fit comfortably on most of the rides.</p>
+        <p>It was a pretty dismal existence.</p>
+        <p>Now, you might ask why I did not just change my eating habits.</p>
+        <p>I understand the question.</p>
+        <p>I will just say this.</p>
+        <p class="short">I do not like good food.</p>
+        <p>I would rather eat junk food.</p>
+        <p>Case closed.</p>
+      </div>
+
+      <div class="story-block reveal">
+        <p>So with a cross-country flight coming up and my blood sugar well over 300, I asked my doctor about GLP-1 medication.</p>
+        <p>He gave me a prescription for Ozempic.</p>
+        <p>And away I went.</p>
+        <p>My Ozempic prescription was the best and worst decision I made.</p>
+        <p>It was the best decision because it absolutely reduced my appetite. My sugar cravings dropped. I did not feel like eating anything, ever.</p>
+        <p>Frankly, I was grateful.</p>
+        <p>The scale was dropping like a rock.</p>
+        <p>Over five or six months, I lost 70 pounds.</p>
+        <p>I was ecstatic. I fit in the airplane seat comfortably.</p>
+        <p class="short">What I could not do comfortably was walk through the airport.</p>
+        <p>That was the downside of the journey.</p>
+        <p>I had lost so much muscle.</p>
+      </div>
+
+      <div class="story-shot reveal">
+        <img src="Images/homeview.jpg" alt="Signal+ Home Screen" />
+        <div class="story-shot-copy">
+          <strong>I needed something simple.</strong>
+          <p>Not a complicated program. Not another food lecture. Something on my phone that told me when to act.</p>
+          <p>That became the Signal+ home screen.</p>
         </div>
-        <div class="for-card reveal">
-          <h4>Older Adults</h4>
-          <p>You're drinking your shake every day. You're doing what you were told. But you're still getting weaker. Still less energy. And somewhere in the back of your mind is a fear you don't talk about — losing your independence. Signal+ was built for that fear.</p>
+      </div>
+
+      <div class="story-block reveal">
+        <p>I knew some muscle loss was part of fast weight loss. That is part of what makes weight loss fast. Some of it is body fat. Some of it is muscle.</p>
+        <p>But knowing that does not make it feel any better when strength and energy start leaving.</p>
+        <p>If you have ever done a fast weight-loss diet, from a book, a video, a program, whatever, you know the feeling.</p>
+        <p>At first, the fast weight loss feels amazing.</p>
+        <p>Then you start to wear down.</p>
+        <p>Strength goes down.</p>
+        <p>Energy goes down.</p>
+        <p>Everything gets harder.</p>
+        <p>And to pour a little more misery on it, you can end up skinny fat.</p>
+        <p>Now, I know some people will read that and say, "That did not happen to me."</p>
+        <p>I get it.</p>
+        <p>This is for the ones it did happen to.</p>
+        <p>And if you have gone through fast weight loss, you may also know this part.</p>
+        <p class="short">Gaining the fat back is a lot easier than getting the muscle back.</p>
+      </div>
+
+      <div class="story-block reveal">
+        <p>That was true for me.</p>
+        <p>And on top of that, I am in the older adult demographic now, which means holding on to muscle is harder just because of age.</p>
+        <p>So I am really speaking to two groups.</p>
+        <p>Older adults who are at risk of sarcopenia, which is age-related muscle loss.</p>
+        <p>And GLP-1 users, regardless of age, who may be risking muscle loss while losing weight.</p>
+        <p>I am in both groups.</p>
+        <p>And to be clear, I was not mad at the GLP-1 journey.</p>
+        <p>It did exactly what I hoped it would do.</p>
+        <p>I fit in the airplane seat.</p>
+        <p>My blood sugar returned to normal during that period.</p>
+        <p>It was worth it.</p>
+      </div>
+
+      <div class="story-block reveal">
+        <p>I eventually went off Ozempic, partly because of the cost.</p>
+        <p>But I knew full well what would happen.</p>
+        <p>My appetite would come back.</p>
+        <p>My food choices would still be junk food and sugar.</p>
+        <p>Some of the weight would come back too.</p>
+        <p>And most of what came back would be fat, not the muscle I had lost.</p>
+        <p>I still accepted that price because I wanted to fit in the airplane seat.</p>
+        <p>About a year later, another blood test showed my blood sugar was back over 300.</p>
+        <p>I had regained most of the weight.</p>
+        <p>And again, the question is, why did I not just change my eating habits?</p>
+        <p>So I will say it again.</p>
+        <p>The GLP-1 medication reduced my appetite.</p>
+        <p>It did not change the fact that I still had taste buds for sugar and junk food.</p>
+      </div>
+
+      <div class="story-block reveal">
+        <p>This time, I was more worried about my blood sugar than anything else.</p>
+        <p>Of all the health things that scare me, losing my eyesight, losing my kidneys, and losing my feet are at the top of the list.</p>
+        <p>I have seen those things happen to people I know.</p>
+        <p>So I tried another GLP-1 prescription. This time it was Mounjaro.</p>
+        <p>This time I paid more attention to protein and food intake because I wanted to keep more muscle.</p>
+        <p>But frankly, it was still difficult.</p>
+        <p>I still do not like good food.</p>
+        <p>My blood sugar returned to normal again.</p>
+        <p>I lost weight again.</p>
+        <p>I still lost some muscle. Some strength and energy went away too.</p>
+        <p>But overall it was a much better experience than my first Ozempic run. It was a smarter approach.</p>
+        <p>After four months, I got tired of the journey and stopped Mounjaro.</p>
+      </div>
+
+      <div class="story-shot reverse reveal">
+        <div class="story-shot-copy">
+          <strong>Timing was the missing piece.</strong>
+          <p>I needed a way to trigger mTOR through the day without guessing. Wait. Trigger again. Hydrate. Stay consistent.</p>
+          <p>The timer became the heart of Signal+.</p>
         </div>
-        <div class="for-card reveal">
-          <h4>Fitness Beginners</h4>
-          <p>You're showing up every day. Doing the work. But the body isn't changing the way you expected. You're not doing anything wrong — you're just missing one thing nobody told you about.</p>
+        <img src="Images/proteinprompt.jpg" alt="Signal+ mTOR Timing Prompt" />
+      </div>
+
+      <div class="story-block reveal">
+        <p>That is when I started researching everything I could find about how the body builds muscle, keeps muscle, and restores muscle.</p>
+        <p>Even though I had been a bodybuilder, and even though I thought I knew the answers, I found something that blew my mind.</p>
+        <p>It changed how I thought about the whole problem.</p>
+        <p>I discovered the biological process the body uses to restore muscle tissue.</p>
+        <p>It was first discovered in 1991, so it is not new.</p>
+        <p>It is just not talked about much.</p>
+        <p>That process is called mTOR.</p>
+        <p>It is not misspelled. It is the short name for the actual biological pathway.</p>
+        <p>After studying the mTOR research, I realized something.</p>
+        <p class="short">There is a muscle restoration system already inside us.</p>
+        <p>We are born with it.</p>
+        <p>We do not have to create it.</p>
+        <p>We just have to learn how to trigger it.</p>
+      </div>
+
+      <div class="story-block reveal">
+        <p>That was the missing piece for me.</p>
+        <p>Not another food lecture.</p>
+        <p>Not another motivational speech.</p>
+        <p>Not pretending I was going to become a different person overnight.</p>
+        <p class="short">Timing.</p>
+        <p>I needed something that would help me trigger mTOR throughout the day, as consistently as possible, so I could support muscle retention and restoration while my body was changing.</p>
+        <p>So I built an app for myself.</p>
+        <p>I built Signal+ because I needed it.</p>
+        <p>I needed reminders.</p>
+        <p>I needed timing.</p>
+        <p>I needed something simple enough that I would actually use it.</p>
+      </div>
+
+      <div class="story-shot reveal">
+        <img src="Images/mtorjournal.jpg" alt="Signal+ Success Coach" />
+        <div class="story-shot-copy">
+          <strong>Not food police.</strong>
+          <p>I wanted a coach that looked at what I was doing and helped me do it better.</p>
+          <p>Not a coach that yelled at me. Just useful nudges.</p>
         </div>
+      </div>
+
+      <div class="story-block reveal">
+        <p>And while I was building it, I also wanted a coach inside the app that looked at what I was doing and helped me do it better.</p>
+        <p>Not a coach that yelled at me.</p>
+        <p>Not a food police app.</p>
+        <p>Just useful nudges.</p>
+        <p>Do this now.</p>
+        <p>Wait.</p>
+        <p>Trigger again.</p>
+        <p>Hydrate.</p>
+        <p>Stay consistent.</p>
+        <p>That is Signal+.</p>
+        <p>It is my small offering to people going through what I went through.</p>
+        <p>People using GLP-1 medication.</p>
+        <p>People losing weight fast.</p>
+        <p>People getting older and trying to hold on to strength.</p>
+        <p>People who know something is changing in their body and do not want to lose themselves in the process.</p>
+        <p class="short">I am not a pitch man.</p>
+        <p>I built this because I needed it.</p>
+        <p>If any part of this story feels familiar, maybe Signal+ can help you too.</p>
       </div>
     </div>
   </section>
 
-  <!-- SCIENCE -->
-  <section class="science" id="science">
-    <div class="science-inner">
-      <div>
-        <p class="section-eyebrow">The Science</p>
-        <p class="science-body reveal">Signal+ isn't based on habit tracking or gut feeling. It's built on peer-reviewed research into how muscle is actually made and lost. Here's what that research says.</p>
-        <div class="science-badges reveal">
-          <span class="science-badge">Peer Reviewed</span>
-          <span class="science-badge">PubMed Cited</span>
-        </div>
-        <p class="pubmed-note reveal">PubMed is the U.S. National Library of Medicine's database of peer-reviewed biomedical research — the gold standard for verifiable science.</p>
-      </div>
-      <div class="citation-cards reveal">
-        <div class="citation-card">
-          <p class="cite-meaning">Every time you eat enough protein, your body gets the signal to repair and replace muscle. No signal, no replacement.</p>
-          <p class="cite-science">Muscle protein synthesis requires adequate leucine-containing protein to trigger mTOR activation — the primary anabolic signal in skeletal muscle.</p>
-          <span class="cite-ref">Norton &amp; Layman, J. Nutr. 2006</span>
-        </div>
-        <div class="citation-card">
-          <p class="cite-meaning">Your body doesn't replace muscle automatically. It needs to be triggered — and triggered again, and again.</p>
-          <p class="cite-science">The mTOR pathway enters a refractory state following activation, requiring 3–4 hour spacing between protein doses for maximal anabolic response.</p>
-          <span class="cite-ref">Churchward-Venne et al., 2012</span>
-        </div>
-        <div class="citation-card">
-          <p class="cite-meaning">In the words of one GLP-1 user — "You're starving to death and you don't know it."</p>
-          <p class="cite-science">GLP-1 receptor agonists significantly reduce appetite and caloric intake, increasing the risk of inadequate protein consumption and lean mass loss.</p>
-          <span class="cite-ref">Wilding et al., NEJM 2021</span>
-        </div>
-        <div class="citation-card">
-          <p class="cite-meaning">As you get older your appetite decreases. When you eat less, your body breaks down muscle.</p>
-          <p class="cite-science">Anorexia of aging and reduced dietary protein intake lead to suboptimal nutrient availability and anabolic resistance — a hallmark of aging muscle in which higher levels of protein are required to stimulate muscle protein synthesis effectively.</p>
-          <span class="cite-ref">Damanti et al., Frontiers in Aging 2025</span>
-        </div>
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="pricing">
+    <div class="final-cta-inner">
+      <h2>If this feels familiar, try Signal+ free for 30 days.</h2>
+      <p>No card required. We will send a secure sign-in link to your email.</p>
+      <div class="email-capture">
+        <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
+        <button class="btn-notify" id="notifyBtn" onclick="handleSignup('notify')">START YOUR FREE 30 DAY TRIAL</button>
+        <p class="email-confirm" id="emailConfirm">Your link is on the way — check your email.</p>
+        <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
       </div>
     </div>
   </section>
 
-  <!-- THIRTY DAYS -->
-  <section class="outcomes-section">
-    <div class="outcomes-inner">
-      <p class="section-eyebrow">Thirty Days From Now</p>
-      <h2 class="section-title">Here is what changes.</h2>
-      <div class="outcomes-grid">
-        <div class="outcome-item reveal"><p>The belly fat starts to disappear.</p></div>
-        <div class="outcome-item reveal"><p>Your energy comes back better than ever.</p></div>
-        <div class="outcome-item reveal"><p>From soft and tired to toned and energetic.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="pricing-inner">
-      <p class="section-eyebrow">Try It Free</p>
-      <div class="pricing-card">
-        <div class="pricing-price">$19.99</div>
-        <p class="pricing-label">per quarter — after your free trial</p>
-        <p class="pricing-tag">30 Days Free &nbsp;·&nbsp; No Credit Card &nbsp;·&nbsp; Cancel Anytime</p>
-        <div class="email-capture">
-          <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
-          <button class="btn-notify" id="notifyBtn" onclick="handleSignup()">START YOUR FREE 30 DAY TRIAL</button>
-          <p class="email-confirm" id="emailConfirm">Your link is on the way — check your email.</p>
-          <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -543,16 +771,19 @@
     }, { threshold: 0.08 });
     reveals.forEach(el => observer.observe(el));
 
-    async function handleSignup() {
+    async function handleSignup(formId = 'notify') {
       let referredByCode = null;
       try {
         referredByCode = new URLSearchParams(window.location.search).get('ref')
           || localStorage.getItem('signalplus_ref');
       } catch (e) {}
-      const emailInput = document.getElementById('notifyEmail');
-      const btn = document.getElementById('notifyBtn');
-      const confirmEl = document.getElementById('emailConfirm');
-      const errorEl = document.getElementById('emailError');
+      const ids = formId === 'hero'
+        ? { email: 'heroEmail', btn: 'heroBtn', confirm: 'heroConfirm', error: 'heroError' }
+        : { email: 'notifyEmail', btn: 'notifyBtn', confirm: 'emailConfirm', error: 'emailError' };
+      const emailInput = document.getElementById(ids.email);
+      const btn = document.getElementById(ids.btn);
+      const confirmEl = document.getElementById(ids.confirm);
+      const errorEl = document.getElementById(ids.error);
 
       const email = emailInput.value.trim();
       if (!email || !email.includes('@')) {
@@ -581,7 +812,7 @@
           errorEl.textContent = 'Server returned ' + res.status + '. Try again.';
           errorEl.style.display = 'block';
           btn.disabled = false;
-          btn.textContent = 'START FREE TRIAL';
+          btn.textContent = 'START YOUR FREE 30 DAY TRIAL';
           return;
         }
 
@@ -593,7 +824,7 @@
         errorEl.textContent = 'Network error: ' + err.message;
         errorEl.style.display = 'block';
         btn.disabled = false;
-        btn.textContent = 'START FREE TRIAL';
+        btn.textContent = 'START YOUR FREE 30 DAY TRIAL';
       }
     }
   </script>
