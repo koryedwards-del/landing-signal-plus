@@ -352,21 +352,6 @@
       max-width: 760px;
       margin: 0 auto;
     }
-    .story-kicker {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      opacity: 0.78;
-      margin-bottom: 16px;
-    }
-    .story h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1.08;
-      margin-bottom: 28px;
-    }
     .story-block {
       margin: 0 auto 36px;
     }
@@ -382,6 +367,14 @@
       line-height: 1.15;
       color: var(--cyan);
       margin: 32px 0;
+    }
+    .story-opening p:first-child::first-letter {
+      float: left;
+      font-family: 'Oswald', sans-serif;
+      font-size: 4.2em;
+      line-height: 0.82;
+      color: var(--cyan);
+      padding: 8px 10px 0 0;
     }
     .story-shot {
       display: flex;
@@ -530,10 +523,7 @@
   <!-- STORY -->
   <section class="story" id="story">
     <div class="story-inner">
-      <p class="story-kicker">Why I built Signal+</p>
-      <h2>I built Signal+ because I needed it.</h2>
-
-      <div class="story-block reveal">
+      <div class="story-block story-opening reveal">
         <p>I had a cross-country flight coming up.</p>
         <p>It was still a few months away, but I could already feel the pressure of it.</p>
         <p>Not just the flight. The airport. The walking. The seat. The seatbelt.</p>
