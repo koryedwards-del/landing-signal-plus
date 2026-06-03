@@ -384,10 +384,10 @@
       margin: 32px 0;
     }
     .story-shot {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 34px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 24px;
       margin: 54px auto;
       padding: 28px;
       background: var(--surface);
@@ -395,16 +395,15 @@
       border-radius: 18px;
       box-shadow: 0 0 34px var(--glow);
     }
-    .story-shot.reverse {
-      grid-template-columns: 1.2fr 0.8fr;
-    }
     .story-shot img {
       width: 100%;
-      max-width: 230px;
-      justify-self: center;
+      max-width: 260px;
       border: 1px solid rgba(0,200,232,0.3);
       border-radius: 28px;
       box-shadow: 0 0 24px rgba(0,200,232,0.12);
+    }
+    .story-shot-copy {
+      width: 100%;
     }
     .story-shot-copy p {
       font-size: 17px;
@@ -488,9 +487,6 @@
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
       .footer-links { justify-content: center; }
       .science-inner { grid-template-columns: 1fr; }
-      .story-shot,
-      .story-shot.reverse { grid-template-columns: 1fr; }
-      .story-shot.reverse img { order: 0; }
       .story-shot { padding: 22px; }
     }
   </style>
@@ -578,12 +574,12 @@
       </div>
 
       <div class="story-shot reveal">
-        <img src="Images/signal-home-current.png" alt="Signal+ Home Screen" />
         <div class="story-shot-copy">
           <strong>I needed something simple.</strong>
           <p>Not a complicated program. Not another food lecture. Something on my phone that told me when to act.</p>
           <p>That became the Signal+ home screen.</p>
         </div>
+        <img src="Images/signal-home-current.png" alt="Signal+ Home Screen" />
       </div>
 
       <div class="story-block reveal">
@@ -648,7 +644,7 @@
         <p>After four months, I got tired of the journey and stopped Mounjaro.</p>
       </div>
 
-      <div class="story-shot reverse reveal">
+      <div class="story-shot reveal">
         <div class="story-shot-copy">
           <strong>Timing was the missing piece.</strong>
           <p>I needed a way to trigger mTOR through the day without guessing. Wait. Trigger again. Hydrate. Stay consistent.</p>
@@ -688,12 +684,12 @@
       </div>
 
       <div class="story-shot reveal">
-        <img src="Images/signal-coach-current.png" alt="Signal+ Success Coach" />
         <div class="story-shot-copy">
           <strong>Not food police.</strong>
           <p>I wanted a coach that looked at what I was doing and helped me do it better.</p>
           <p>Not a coach that yelled at me. Just useful nudges.</p>
         </div>
+        <img src="Images/signal-coach-current.png" alt="Signal+ Success Coach" />
       </div>
 
       <div class="story-block reveal">
