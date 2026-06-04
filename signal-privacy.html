@@ -224,7 +224,7 @@
   <section class="hero">
     <p class="hero-eyebrow">Signal+</p>
     <h1>Privacy <span>Policy</span></h1>
-    <p class="hero-date">Effective Date: March 2026</p>
+    <p class="hero-date">Effective Date: June 2026</p>
   </section>
 
   <!-- CONTENT -->
@@ -236,32 +236,40 @@
     </div>
 
     <div class="policy-section">
-      <p class="policy-label">Data We Do Not Collect</p>
-      <p>Signal+ does not collect, transmit, or share any personal information with third parties. Specifically, we do not collect:</p>
+      <p class="policy-label">Information We Collect</p>
+      <p>Signal+ collects only what is needed to run your account and reminders:</p>
       <ul>
-        <li>Your name or any identifying information beyond your account email</li>
-        <li>Location data</li>
-        <li>Health or fitness data beyond what you log in the app</li>
-        <li>Device identifiers or advertising IDs</li>
-        <li>Usage analytics or behavioral data</li>
+        <li>Email address — for sign-in and account identification</li>
+        <li>Profile details you provide — preferred name, sex, and date of birth</li>
+        <li>Protein logs and timestamps — synced so reminders and history work across devices</li>
+        <li>Push notification subscription data — if you enable reminders</li>
+        <li>Subscription and billing status — handled through Stripe when you subscribe</li>
+        <li>Referral code — if someone referred you to Signal+</li>
       </ul>
+      <p>We do not sell your personal data. We do not use advertising networks or behavioral analytics SDKs.</p>
     </div>
 
     <div class="policy-section">
       <p class="policy-label">Data Stored in Your Account</p>
-      <p>All data you enter in Signal+ — your protein logs, timestamps, and settings — is stored securely in your account using Firebase, Google's cloud infrastructure. Data is tied to your account and is never shared or sold to any third party.</p>
-      <p>You may request deletion of your data at any time by contacting us at <a href="mailto:support@signalplushealth.com">support@signalplushealth.com</a>.</p>
+      <p>Account data is stored securely in a PostgreSQL database hosted on Render. Some app state — such as recent log timing — may also be stored locally on your device so the app stays fast and works offline.</p>
+      <p>Data is tied to your account and is used only to operate Signal+. You may request deletion of your data at any time by contacting us at <a href="mailto:support@signalplushealth.com">support@signalplushealth.com</a>.</p>
     </div>
 
     <div class="policy-section">
       <p class="policy-label">Notifications</p>
-      <p>Signal+ uses Android's native notification system to remind you to log protein and hydrate. Notifications are delivered through Firebase Cloud Messaging. No personal information is included in notification payloads.</p>
-      <p>All notifications can be managed in Settings inside the app.</p>
+      <p>Signal+ uses your browser or device's native push notification system to send mTOR timer and hydration reminders. Notification payloads do not include personal health details.</p>
+      <p>Reminders can be turned on or off in Settings inside the app.</p>
     </div>
 
     <div class="policy-section">
       <p class="policy-label">Third Parties</p>
-      <p>Signal+ uses Firebase by Google for account management and data storage, and Firebase Cloud Messaging for notifications. No advertising networks, analytics tools, or other third-party SDKs are included in the app.</p>
+      <p>Signal+ uses a small set of service providers to operate the app:</p>
+      <ul>
+        <li>Render — app hosting and database</li>
+        <li>Resend — transactional email for secure sign-in links</li>
+        <li>Stripe — subscription billing and payment processing</li>
+      </ul>
+      <p>These providers process data only as needed to deliver the service. We do not include advertising networks, analytics trackers, or other third-party SDKs in the app.</p>
     </div>
 
     <div class="policy-section">
