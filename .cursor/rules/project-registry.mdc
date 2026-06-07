@@ -1,0 +1,13 @@
+---
+description: Project map and hosting context
+alwaysApply: true
+---
+
+# Project context
+
+- Full map: `~/operatingmanual/PROJECTS.md`
+- This repo: Signal+ landing at **signalplushealth.com** (Render static site)
+- App backend: `~/code/PWA-signal-plus-v2` → pwa-signal-plus-v2.onrender.com
+- Signup form posts to `/api/auth/request` on the Render app
+
+Push to `main` deploys live.
