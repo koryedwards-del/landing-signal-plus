@@ -70,15 +70,6 @@
 
     .content { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
 
-    .week-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
     .feed-status {
       font-size: 15px;
       color: var(--muted);
@@ -219,8 +210,6 @@
   </section>
 
   <div class="content">
-    <p class="week-label" id="week-label">Loading…</p>
-
     <p class="feed-status" id="feed-status">Loading GLP-1 news…</p>
     <ul class="news-list" id="news-list" hidden></ul>
 
@@ -255,7 +244,6 @@
     }
 
     async function loadGlp1Feed() {
-      const weekLabel = document.getElementById('week-label');
       const feedStatus = document.getElementById('feed-status');
       const newsList = document.getElementById('news-list');
 
@@ -264,7 +252,6 @@
         if (!response.ok) throw new Error('Feed unavailable');
 
         const feed = await response.json();
-        weekLabel.textContent = feed.weekLabel || '';
 
         if (!feed.items || feed.items.length === 0) {
           feedStatus.textContent = 'No stories matched this week\u2019s top searches yet.';
@@ -292,7 +279,6 @@
           );
         }).join('');
       } catch (err) {
-        weekLabel.textContent = '';
         feedStatus.hidden = false;
         feedStatus.className = 'feed-status error';
         feedStatus.textContent = 'Could not load GLP-1 news right now. Try again in a few minutes.';
