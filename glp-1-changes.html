@@ -260,7 +260,7 @@
       const newsList = document.getElementById('news-list');
 
       try {
-        const response = await fetch(FEED_API);
+        const response = await fetch(FEED_API + '?limitPerTerm=3');
         if (!response.ok) throw new Error('Feed unavailable');
 
         const feed = await response.json();

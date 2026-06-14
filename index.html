@@ -221,6 +221,88 @@
       font-size: 13px;
       line-height: 1.5;
     }
+
+    /* ── GLP-1 NEWS TEASER ── */
+    .glp1-teaser {
+      display: none;
+      padding: 8px 20px 48px;
+      background: var(--dark);
+    }
+    .glp1-teaser.visible { display: block; }
+    .glp1-teaser-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .glp1-teaser-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .glp1-teaser-head a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none;
+      opacity: 0.85;
+    }
+    .glp1-teaser-head a:hover { opacity: 1; }
+    .glp1-teaser-cards {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .glp1-teaser-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--cyan);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .glp1-teaser-card:hover {
+      border-color: rgba(0,200,232,0.22);
+      box-shadow: 0 0 20px rgba(0,200,232,0.08);
+    }
+    .glp1-teaser-tag {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      background: rgba(0,200,232,0.05);
+      border: 1px solid rgba(0,200,232,0.22);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      overflow-wrap: anywhere;
+    }
+    .glp1-teaser-headline {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--text);
+    }
+    .glp1-teaser-foot {
+      margin-top: 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.75;
+    }
+
     .story {
       background: var(--dark);
       font-family: Georgia, 'Times New Roman', serif;
@@ -411,6 +493,18 @@
     </div>
   </section>
 
+  <!-- GLP-1 NEWS TEASER (hidden until feed loads) -->
+  <section class="glp1-teaser" id="glp1-teaser" aria-hidden="true">
+    <div class="glp1-teaser-inner reveal">
+      <div class="glp1-teaser-head">
+        <p class="section-eyebrow">GLP-1 in the news</p>
+        <a href="glp-1-changes.html">View all →</a>
+      </div>
+      <ul class="glp1-teaser-cards" id="glp1-teaser-cards"></ul>
+      <p class="glp1-teaser-foot">Updated every 6 hours</p>
+    </div>
+  </section>
+
   <!-- STORY -->
   <section class="story" id="story">
     <div class="story-inner">
@@ -504,6 +598,54 @@
   </footer>
 
   <script>
+    const GLP1_FEED_API = 'https://pwa-signal-plus-v2.onrender.com/api/glp1-feed?limitPerTerm=1';
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function truncateHeadline(text, maxLen) {
+      const trimmed = String(text || '').trim();
+      if (trimmed.length <= maxLen) return trimmed;
+      return trimmed.slice(0, maxLen - 1).trimEnd() + '\u2026';
+    }
+
+    async function loadGlp1Teaser() {
+      const section = document.getElementById('glp1-teaser');
+      const list = document.getElementById('glp1-teaser-cards');
+      if (!section || !list) return;
+
+      try {
+        const response = await fetch(GLP1_FEED_API);
+        if (!response.ok) return;
+
+        const feed = await response.json();
+        if (!feed.items || feed.items.length === 0) return;
+
+        list.innerHTML = feed.items.map(function (item) {
+          return (
+            '<li>' +
+              '<a class="glp1-teaser-card" href="glp-1-changes.html">' +
+                '<span class="glp1-teaser-tag">' + escapeHtml(item.searchTerm) + '</span>' +
+                '<span class="glp1-teaser-headline">' + escapeHtml(truncateHeadline(item.title, 120)) + '</span>' +
+              '</a>' +
+            '</li>'
+          );
+        }).join('');
+
+        section.classList.add('visible');
+        section.removeAttribute('aria-hidden');
+      } catch (err) {
+        // Fail silently — homepage stays clean if feed is unavailable.
+      }
+    }
+
+    loadGlp1Teaser();
+
     // Capture and persist referral code from URL
     (function() {
       const refCode = new URLSearchParams(window.location.search).get('ref');
