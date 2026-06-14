@@ -76,34 +76,7 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    .search-criteria { margin-bottom: 28px; }
-    .search-criteria-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .search-term-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .search-term-pill {
-      display: block;
-      padding: 12px 14px;
-      border: 1px solid rgba(0,200,232,0.22);
-      border-radius: 8px;
-      background: rgba(0,200,232,0.05);
-      font-size: 14px;
-      line-height: 1.4;
-      color: var(--text);
-    }
-    .search-criteria-note {
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.5;
+      margin-bottom: 24px;
     }
 
     .feed-status {
@@ -246,12 +219,6 @@
   <div class="content">
     <p class="week-label" id="week-label">Loading…</p>
 
-    <div class="search-criteria">
-      <p class="search-criteria-label">Top Google searches driving this feed</p>
-      <ul class="search-term-list" id="search-term-list"></ul>
-      <p class="search-criteria-note" id="search-criteria-note" hidden></p>
-    </div>
-
     <p class="feed-status" id="feed-status">Loading GLP-1 news…</p>
     <ul class="news-list" id="news-list" hidden></ul>
 
@@ -287,8 +254,6 @@
 
     async function loadGlp1Feed() {
       const weekLabel = document.getElementById('week-label');
-      const termList = document.getElementById('search-term-list');
-      const termNote = document.getElementById('search-criteria-note');
       const feedStatus = document.getElementById('feed-status');
       const newsList = document.getElementById('news-list');
 
@@ -298,17 +263,6 @@
 
         const feed = await response.json();
         weekLabel.textContent = feed.weekLabel || '';
-
-        termList.innerHTML = (feed.searchTerms || [])
-          .map(function (term) {
-            return '<li class="search-term-pill">' + escapeHtml(term) + '</li>';
-          })
-          .join('');
-
-        if (feed.searchTermsFromFallback) {
-          termNote.hidden = false;
-          termNote.textContent = 'Live Google Trends data was unavailable — showing default search terms.';
-        }
 
         if (!feed.items || feed.items.length === 0) {
           feedStatus.textContent = 'No stories matched this week\u2019s top searches yet.';
@@ -337,7 +291,6 @@
         }).join('');
       } catch (err) {
         weekLabel.textContent = '';
-        termList.innerHTML = '';
         feedStatus.hidden = false;
         feedStatus.className = 'feed-status error';
         feedStatus.textContent = 'Could not load GLP-1 news right now. Try again in a few minutes.';
