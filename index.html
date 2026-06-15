@@ -281,8 +281,13 @@
       grid-template-columns: 96px 1fr;
       gap: 8px 20px;
       align-items: baseline;
-      padding: 11px 0;
+      padding: 11px 0 11px 10px;
       border-bottom: 1px solid var(--border);
+      border-left: 2px solid transparent;
+      transition: border-left-color 0.2s;
+    }
+    .glp1-teaser-row:hover {
+      border-left-color: var(--cyan);
     }
     .glp1-teaser-date {
       font-family: 'Space Mono', monospace;
