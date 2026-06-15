@@ -623,6 +623,7 @@
     <p class="footer-copy">© 2026 Signal+. Signal+ is not a medical device and does not provide medical advice. Always consult your physician before making changes to your diet or health routine.</p>
   </footer>
 
+  <script src="scripts/external-news-link.js"></script>
   <script>
     const GLP1_FEED_API = 'https://pwa-signal-plus-v2.onrender.com/api/glp1-feed?limitPerTerm=3';
 
@@ -701,6 +702,7 @@
     }
 
     loadGlp1Teaser();
+    initExternalNewsLinks(document.getElementById('glp1-teaser-stack'));
 
     // Capture and persist referral code from URL
     (function() {
