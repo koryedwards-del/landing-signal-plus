@@ -112,6 +112,9 @@
       position: relative;
       overflow: hidden;
     }
+    .glp1-teaser.visible + .hero {
+      padding-top: 28px;
+    }
     .hero::before {
       content: '';
       position: absolute;
@@ -222,85 +225,82 @@
       line-height: 1.5;
     }
 
-    /* ── GLP-1 NEWS ── */
+    /* ── GLP-1 NEWS (credibility strip) ── */
     .glp1-teaser {
       display: none;
-      padding: 40px 20px 56px;
-      background: var(--dark2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      padding: 72px 20px 8px;
+      background: var(--dark);
     }
     .glp1-teaser.visible { display: block; }
     .glp1-teaser-inner {
-      max-width: 760px;
+      max-width: 680px;
       margin: 0 auto;
     }
     .glp1-teaser-head {
       display: flex;
-      align-items: flex-end;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 20px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
     .glp1-teaser-title {
       font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(34px, 6vw, 56px);
-      line-height: 1;
-      letter-spacing: 0.02em;
+      font-weight: 600;
+      font-size: clamp(18px, 3vw, 28px);
+      line-height: 1.1;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--text);
     }
     .glp1-teaser-title span { color: var(--cyan); }
     .glp1-teaser-more {
       font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
+      font-size: 10px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--cyan);
+      color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
-      padding-bottom: 6px;
     }
-    .glp1-teaser-more:hover { opacity: 0.85; }
+    .glp1-teaser-more:hover { color: var(--cyan); }
     .glp1-teaser-stack {
       list-style: none;
-      border-top: 2px solid rgba(0,200,232,0.35);
+      border-top: 1px solid var(--border);
     }
     .glp1-teaser-row {
       display: grid;
-      grid-template-columns: 108px 1fr;
-      gap: 12px 28px;
+      grid-template-columns: 96px 1fr;
+      gap: 8px 20px;
       align-items: baseline;
-      padding: 20px 0;
+      padding: 11px 0;
       border-bottom: 1px solid var(--border);
     }
     .glp1-teaser-date {
       font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.04em;
+      font-size: 11px;
+      letter-spacing: 0.03em;
       color: var(--muted);
       white-space: nowrap;
     }
     .glp1-teaser-headline {
       font-family: 'Open Sans', sans-serif;
-      font-size: clamp(16px, 2.2vw, 19px);
+      font-size: clamp(14px, 1.8vw, 15px);
       font-weight: 600;
-      line-height: 1.45;
+      line-height: 1.4;
       color: var(--text);
       text-decoration: none;
       transition: color 0.2s;
     }
     .glp1-teaser-headline:hover { color: var(--cyan); }
     .glp1-teaser-foot {
-      margin-top: 16px;
+      margin-top: 8px;
       font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
+      font-size: 9px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
-      opacity: 0.75;
+      opacity: 0.6;
     }
 
     .story {
@@ -454,8 +454,8 @@
       .story-shot { padding: 22px; }
       .glp1-teaser-row {
         grid-template-columns: 1fr;
-        gap: 6px;
-        padding: 18px 0;
+        gap: 4px;
+        padding: 10px 0;
       }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
       .footer-links { justify-content: center; }
@@ -480,6 +480,18 @@
     </ul>
   </nav>
 
+  <!-- GLP-1 NEWS — credibility strip (hidden until feed loads) -->
+  <section class="glp1-teaser" id="glp1-teaser" aria-hidden="true" aria-label="GLP-1 in the News">
+    <div class="glp1-teaser-inner">
+      <div class="glp1-teaser-head">
+        <h2 class="glp1-teaser-title">GLP-1 in the <span>News</span></h2>
+        <a class="glp1-teaser-more" href="glp-1-changes.html">View all</a>
+      </div>
+      <ul class="glp1-teaser-stack" id="glp1-teaser-stack"></ul>
+      <p class="glp1-teaser-foot">Updated every 6 hours</p>
+    </div>
+  </section>
+
   <!-- HERO -->
   <section class="hero">
     <img class="hero-logo" src="Images/cyansignal+logotransparent.png" alt="Signal+" />
@@ -495,18 +507,6 @@
       <p class="email-confirm" id="heroConfirm">Your link is on the way — check your email.</p>
       <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
       <p class="cta-note">No card required.</p>
-    </div>
-  </section>
-
-  <!-- GLP-1 NEWS (hidden until feed loads) -->
-  <section class="glp1-teaser" id="glp1-teaser" aria-hidden="true" aria-label="GLP-1 in the News">
-    <div class="glp1-teaser-inner reveal">
-      <div class="glp1-teaser-head">
-        <h2 class="glp1-teaser-title">GLP-1 in the <span>News</span></h2>
-        <a class="glp1-teaser-more" href="glp-1-changes.html">View all →</a>
-      </div>
-      <ul class="glp1-teaser-stack" id="glp1-teaser-stack"></ul>
-      <p class="glp1-teaser-foot">Updated every 6 hours</p>
     </div>
   </section>
 
