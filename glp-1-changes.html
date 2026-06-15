@@ -22,6 +22,7 @@
       --cyan:   #00C8E8;
       --dark:   #080C12;
       --dark2:  #0B0F18;
+      --news-panel: #0C121A;
       --surface:#111822;
       --text:   #F0EDE8;
       --muted:  #8A97A8;
@@ -76,6 +77,13 @@
     .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 520px; margin: 0 auto; position: relative; z-index: 1; }
 
     .content { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
+
+    .news-panel {
+      background: var(--news-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px 8px;
+    }
 
     .feed-status {
       font-size: 15px;
@@ -217,6 +225,7 @@
   </section>
 
   <div class="content">
+    <div class="news-panel">
     <p class="feed-status" id="feed-status" hidden>Loading GLP-1 news…</p>
     <ul class="news-list" id="news-list">
     <!-- GLP1_NEWS_PAGE_LIST_START -->
