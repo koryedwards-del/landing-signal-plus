@@ -222,79 +222,79 @@
       line-height: 1.5;
     }
 
-    /* ── GLP-1 NEWS TEASER ── */
+    /* ── GLP-1 NEWS ── */
     .glp1-teaser {
       display: none;
-      padding: 8px 20px 48px;
-      background: var(--dark);
+      padding: 40px 20px 56px;
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
     .glp1-teaser.visible { display: block; }
     .glp1-teaser-inner {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
     }
     .glp1-teaser-head {
       display: flex;
-      align-items: baseline;
+      align-items: flex-end;
       justify-content: space-between;
-      gap: 16px;
+      gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
-    .glp1-teaser-head a {
+    .glp1-teaser-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .glp1-teaser-title span { color: var(--cyan); }
+    .glp1-teaser-more {
       font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
+      font-size: 12px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--cyan);
       text-decoration: none;
-      opacity: 0.85;
+      white-space: nowrap;
+      padding-bottom: 6px;
     }
-    .glp1-teaser-head a:hover { opacity: 1; }
-    .glp1-teaser-cards {
+    .glp1-teaser-more:hover { opacity: 0.85; }
+    .glp1-teaser-stack {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      border-top: 2px solid rgba(0,200,232,0.35);
     }
-    .glp1-teaser-card {
-      display: block;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 2px solid var(--cyan);
-      border-radius: 10px;
-      padding: 16px 18px;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
+    .glp1-teaser-row {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 12px 28px;
+      align-items: baseline;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .glp1-teaser-card:hover {
-      border-color: rgba(0,200,232,0.22);
-      box-shadow: 0 0 20px rgba(0,200,232,0.08);
-    }
-    .glp1-teaser-tag {
-      display: block;
+    .glp1-teaser-date {
       font-family: 'Space Mono', monospace;
       font-size: 12px;
-      line-height: 1.4;
       letter-spacing: 0.04em;
-      color: var(--text);
-      background: rgba(0,200,232,0.05);
-      border: 1px solid rgba(0,200,232,0.22);
-      border-radius: 8px;
-      padding: 8px 10px;
-      margin-bottom: 10px;
-      overflow-wrap: anywhere;
+      color: var(--muted);
+      white-space: nowrap;
     }
     .glp1-teaser-headline {
       font-family: 'Open Sans', sans-serif;
-      font-size: 15px;
+      font-size: clamp(16px, 2.2vw, 19px);
       font-weight: 600;
       line-height: 1.45;
       color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
     }
+    .glp1-teaser-headline:hover { color: var(--cyan); }
     .glp1-teaser-foot {
-      margin-top: 14px;
+      margin-top: 16px;
       font-family: 'Space Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.14em;
@@ -452,6 +452,11 @@
       .nav-links.open { display: flex; }
       .nav-links li { list-style: none; }
       .story-shot { padding: 22px; }
+      .glp1-teaser-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 18px 0;
+      }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
       .footer-links { justify-content: center; }
     }
@@ -493,14 +498,14 @@
     </div>
   </section>
 
-  <!-- GLP-1 NEWS TEASER (hidden until feed loads) -->
-  <section class="glp1-teaser" id="glp1-teaser" aria-hidden="true">
+  <!-- GLP-1 NEWS (hidden until feed loads) -->
+  <section class="glp1-teaser" id="glp1-teaser" aria-hidden="true" aria-label="GLP-1 in the News">
     <div class="glp1-teaser-inner reveal">
       <div class="glp1-teaser-head">
-        <p class="section-eyebrow">GLP-1 in the news</p>
-        <a href="glp-1-changes.html">View all →</a>
+        <h2 class="glp1-teaser-title">GLP-1 in the <span>News</span></h2>
+        <a class="glp1-teaser-more" href="glp-1-changes.html">View all →</a>
       </div>
-      <ul class="glp1-teaser-cards" id="glp1-teaser-cards"></ul>
+      <ul class="glp1-teaser-stack" id="glp1-teaser-stack"></ul>
       <p class="glp1-teaser-foot">Updated every 6 hours</p>
     </div>
   </section>
@@ -616,7 +621,7 @@
 
     async function loadGlp1Teaser() {
       const section = document.getElementById('glp1-teaser');
-      const list = document.getElementById('glp1-teaser-cards');
+      const list = document.getElementById('glp1-teaser-stack');
       if (!section || !list) return;
 
       try {
@@ -627,11 +632,14 @@
         if (!feed.items || feed.items.length === 0) return;
 
         list.innerHTML = feed.items.map(function (item) {
+          const dateHtml = item.date
+            ? '<time class="glp1-teaser-date" datetime="' + escapeHtml(item.date) + '">' + escapeHtml(item.date) + '</time>'
+            : '<span class="glp1-teaser-date"></span>';
           return (
-            '<li>' +
-              '<a class="glp1-teaser-card" href="glp-1-changes.html">' +
-                '<span class="glp1-teaser-tag">' + escapeHtml(item.searchTerm) + '</span>' +
-                '<span class="glp1-teaser-headline">' + escapeHtml(truncateHeadline(item.title, 120)) + '</span>' +
+            '<li class="glp1-teaser-row">' +
+              dateHtml +
+              '<a class="glp1-teaser-headline" href="' + escapeHtml(item.href) + '" target="_blank" rel="noopener noreferrer">' +
+                escapeHtml(truncateHeadline(item.title, 120)) +
               '</a>' +
             '</li>'
           );
