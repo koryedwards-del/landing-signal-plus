@@ -7,7 +7,7 @@
     var style = document.createElement('style');
     style.id = 'external-news-link-styles';
     style.textContent =
-      '.leave-site-dialog{border:none;max-width:420px;width:calc(100% - 40px);background:#111822;border:1px solid rgba(0,200,232,0.22)!important;border-radius:12px;padding:24px 22px;box-shadow:0 0 40px rgba(0,200,232,0.12);color:#F0EDE8}' +
+      '.leave-site-dialog{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);margin:0;border:none;max-width:420px;width:calc(100% - 40px);background:#111822;border:1px solid rgba(0,200,232,0.22)!important;border-radius:12px;padding:24px 22px;box-shadow:0 0 40px rgba(0,200,232,0.12);color:#F0EDE8;inset:auto}' +
       '.leave-site-dialog::backdrop{background:rgba(0,0,0,0.72)}' +
       '.leave-site-dialog h3{font-family:Oswald,sans-serif;font-size:22px;font-weight:600;color:#F0EDE8;margin:0 0 10px;text-transform:uppercase;letter-spacing:0.04em}' +
       '.leave-site-dialog p{font-family:"Open Sans",sans-serif;font-size:15px;line-height:1.55;color:#8A97A8;margin:0 0 22px}' +
