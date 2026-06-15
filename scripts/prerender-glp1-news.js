@@ -30,6 +30,15 @@ function parseIsoDate(displayDate) {
   return parsed.toISOString().slice(0, 10);
 }
 
+function sortNewsItems(items) {
+  return items.slice().sort(function (a, b) {
+    const dateA = parseIsoDate(a.date) || '';
+    const dateB = parseIsoDate(b.date) || '';
+    if (dateA !== dateB) return dateB.localeCompare(dateA);
+    return String(a.title || '').localeCompare(String(b.title || ''));
+  });
+}
+
 function replaceBetween(content, startMarker, endMarker, insertion) {
   const start = content.indexOf(startMarker);
   const end = content.indexOf(endMarker);
@@ -194,68 +203,63 @@ async function fetchFeed(limitPerTerm) {
 }
 
 async function main() {
-  const [homeFeed, fullFeed] = await Promise.all([fetchFeed(1), fetchFeed(3)]);
+  const feed = await fetchFeed(3);
 
-  if (!homeFeed.items || homeFeed.items.length === 0) {
-    console.warn('No homepage feed items; skipping homepage news injection.');
-  }
-  if (!fullFeed.items || fullFeed.items.length === 0) {
-    console.warn('No full-page feed items; skipping news page injection.');
+  if (!feed.items || feed.items.length === 0) {
+    console.warn('No feed items returned; skipping prerender.');
+    return;
   }
 
-  if (homeFeed.items && homeFeed.items.length > 0) {
-    let indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-    indexHtml = replaceBetween(
-      indexHtml,
-      '<!-- GLP1_HOMEPAGE_NEWS_START -->',
-      '<!-- GLP1_HOMEPAGE_NEWS_END -->',
-      renderHomepageRows(homeFeed.items)
-    );
-    indexHtml = replaceBetween(
-      indexHtml,
-      '<!-- GLP1_HOMEPAGE_JSONLD_START -->',
-      '<!-- GLP1_HOMEPAGE_JSONLD_END -->',
-      '  <script type="application/ld+json">' +
-        JSON.stringify(buildHomepageSchema(homeFeed.items)) +
-        '</script>'
-    );
-    indexHtml = indexHtml.replace(
-      'class="glp1-teaser" id="glp1-teaser" aria-hidden="true"',
-      'class="glp1-teaser visible" id="glp1-teaser"'
-    );
-    fs.writeFileSync(path.join(ROOT, 'index.html'), indexHtml);
-    console.log('Updated index.html with ' + homeFeed.items.length + ' news rows.');
-  }
+  const sortedItems = sortNewsItems(feed.items);
+  const homeItems = sortedItems.slice(0, 3);
 
-  if (fullFeed.items && fullFeed.items.length > 0) {
-    let newsHtml = fs.readFileSync(path.join(ROOT, 'glp-1-changes.html'), 'utf8');
-    newsHtml = replaceBetween(
-      newsHtml,
-      '<!-- GLP1_NEWS_PAGE_LIST_START -->',
-      '<!-- GLP1_NEWS_PAGE_LIST_END -->',
-      renderNewsPageRows(fullFeed.items)
-    );
-    newsHtml = replaceBetween(
-      newsHtml,
-      '<!-- GLP1_NEWS_PAGE_JSONLD_START -->',
-      '<!-- GLP1_NEWS_PAGE_JSONLD_END -->',
-      '  <script type="application/ld+json">' +
-        JSON.stringify(
-          buildNewsPageSchema(fullFeed.items, fullFeed.searchTerms || [])
-        ) +
-        '</script>'
-    );
-    newsHtml = newsHtml.replace(
-      '<p class="feed-status" id="feed-status">Loading GLP-1 news…</p>',
-      '<p class="feed-status" id="feed-status" hidden>Loading GLP-1 news…</p>'
-    );
-    newsHtml = newsHtml.replace(
-      /<ul class="news-list" id="news-list"\s*hidden>/,
-      '<ul class="news-list" id="news-list">'
-    );
-    fs.writeFileSync(path.join(ROOT, 'glp-1-changes.html'), newsHtml);
-    console.log('Updated glp-1-changes.html with ' + fullFeed.items.length + ' news rows.');
-  }
+  let indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  indexHtml = replaceBetween(
+    indexHtml,
+    '<!-- GLP1_HOMEPAGE_NEWS_START -->',
+    '<!-- GLP1_HOMEPAGE_NEWS_END -->',
+    renderHomepageRows(homeItems)
+  );
+  indexHtml = replaceBetween(
+    indexHtml,
+    '<!-- GLP1_HOMEPAGE_JSONLD_START -->',
+    '<!-- GLP1_HOMEPAGE_JSONLD_END -->',
+    '  <script type="application/ld+json">' +
+      JSON.stringify(buildHomepageSchema(homeItems)) +
+      '</script>'
+  );
+  indexHtml = indexHtml.replace(
+    'class="glp1-teaser" id="glp1-teaser" aria-hidden="true"',
+    'class="glp1-teaser visible" id="glp1-teaser"'
+  );
+  fs.writeFileSync(path.join(ROOT, 'index.html'), indexHtml);
+  console.log('Updated index.html with ' + homeItems.length + ' news rows.');
+
+  let newsHtml = fs.readFileSync(path.join(ROOT, 'glp-1-changes.html'), 'utf8');
+  newsHtml = replaceBetween(
+    newsHtml,
+    '<!-- GLP1_NEWS_PAGE_LIST_START -->',
+    '<!-- GLP1_NEWS_PAGE_LIST_END -->',
+    renderNewsPageRows(sortedItems)
+  );
+  newsHtml = replaceBetween(
+    newsHtml,
+    '<!-- GLP1_NEWS_PAGE_JSONLD_START -->',
+    '<!-- GLP1_NEWS_PAGE_JSONLD_END -->',
+    '  <script type="application/ld+json">' +
+      JSON.stringify(buildNewsPageSchema(sortedItems, feed.searchTerms || [])) +
+      '</script>'
+  );
+  newsHtml = newsHtml.replace(
+    '<p class="feed-status" id="feed-status">Loading GLP-1 news…</p>',
+    '<p class="feed-status" id="feed-status" hidden>Loading GLP-1 news…</p>'
+  );
+  newsHtml = newsHtml.replace(
+    /<ul class="news-list" id="news-list"\s*hidden>/,
+    '<ul class="news-list" id="news-list">'
+  );
+  fs.writeFileSync(path.join(ROOT, 'glp-1-changes.html'), newsHtml);
+  console.log('Updated glp-1-changes.html with ' + sortedItems.length + ' news rows.');
 }
 
 main().catch(function (err) {
