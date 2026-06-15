@@ -1,0 +1,7 @@
+{
+  "name": "signalplushealthlandingpage",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/prerender-glp1-news.js"
+  }
+}
