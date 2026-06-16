@@ -8,6 +8,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const FEED_API = 'https://pwa-signal-plus-v2.onrender.com/api/glp1-feed';
+const FEED_MODE = 'demand';
 const SITE = 'https://www.signalplushealth.com';
 
 function escapeHtml(value) {
@@ -197,21 +198,28 @@ function buildNewsPageSchema(items, searchTerms) {
 }
 
 async function fetchFeed(limitPerTerm) {
-  const response = await fetch(FEED_API + '?limitPerTerm=' + limitPerTerm);
+  const url =
+    FEED_API + '?mode=' + FEED_MODE + '&limitPerTerm=' + encodeURIComponent(String(limitPerTerm));
+  const response = await fetch(url);
   if (!response.ok) throw new Error('Feed HTTP ' + response.status);
   return response.json();
 }
 
 async function main() {
-  const feed = await fetchFeed(3);
+  const [homeFeed, newsFeed] = await Promise.all([fetchFeed(1), fetchFeed(3)]);
 
-  if (!feed.items || feed.items.length === 0) {
-    console.warn('No feed items returned; skipping prerender.');
+  if (!homeFeed.items || homeFeed.items.length === 0) {
+    console.warn('No homepage feed items returned; skipping prerender.');
     return;
   }
 
-  const sortedItems = sortNewsItems(feed.items);
-  const homeItems = sortedItems.slice(0, 3);
+  if (!newsFeed.items || newsFeed.items.length === 0) {
+    console.warn('No news page feed items returned; skipping prerender.');
+    return;
+  }
+
+  const homeItems = sortNewsItems(homeFeed.items).slice(0, 3);
+  const sortedNewsItems = sortNewsItems(newsFeed.items);
 
   let indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   indexHtml = replaceBetween(
@@ -240,14 +248,14 @@ async function main() {
     newsHtml,
     '<!-- GLP1_NEWS_PAGE_LIST_START -->',
     '<!-- GLP1_NEWS_PAGE_LIST_END -->',
-    renderNewsPageRows(sortedItems)
+    renderNewsPageRows(sortedNewsItems)
   );
   newsHtml = replaceBetween(
     newsHtml,
     '<!-- GLP1_NEWS_PAGE_JSONLD_START -->',
     '<!-- GLP1_NEWS_PAGE_JSONLD_END -->',
     '  <script type="application/ld+json">' +
-      JSON.stringify(buildNewsPageSchema(sortedItems, feed.searchTerms || [])) +
+      JSON.stringify(buildNewsPageSchema(sortedNewsItems, newsFeed.searchTerms || [])) +
       '</script>'
   );
   newsHtml = newsHtml.replace(
@@ -259,7 +267,7 @@ async function main() {
     '<ul class="news-list" id="news-list">'
   );
   fs.writeFileSync(path.join(ROOT, 'glp-1-changes.html'), newsHtml);
-  console.log('Updated glp-1-changes.html with ' + sortedItems.length + ' news rows.');
+  console.log('Updated glp-1-changes.html with ' + sortedNewsItems.length + ' news rows.');
 }
 
 main().catch(function (err) {
