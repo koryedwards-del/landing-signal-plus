@@ -9,7 +9,7 @@
   var items = [
     { id: 'home', label: 'Home', href: base + 'index.html' },
     { id: 'subscribe', label: 'Subscribe', href: onHome ? '#subscribe' : base + 'index.html#subscribe' },
-    { id: 'app', label: 'App', href: base + 'signal-support.html' },
+    { id: 'app', label: 'The Signal+ App', href: base + 'signal-app.html' },
   ];
 
   var links = items.map(function (item) {
