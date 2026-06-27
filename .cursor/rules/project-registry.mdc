@@ -5,27 +5,41 @@ alwaysApply: true
 
 # Project context
 
-## Repositories
+## Signal+ (active)
 
-| Project | GitHub | Deploy |
-|---------|--------|--------|
-| **Landing** (this repo) | `koryedwards-del/signalplushealthlandingpage` | signalplushealth.com (Render static site) |
-| **App + CMS + newsletter** | `PWA-signal-plus-v2` — **not on GitHub under `koryedwards-del`** (local: `~/code/PWA-signal-plus-v2`) | pwa-signal-plus-v2.onrender.com |
-| **Retired** | `signalplus-admin` (archived) | do not use |
+| Repo | GitHub | Deploy | Notes |
+|------|--------|--------|-------|
+| **Landing** (this repo) | [signalplushealthlandingpage](https://github.com/koryedwards-del/signalplushealthlandingpage) | signalplushealth.com | Static site; push `main` deploys |
+| **App + CMS + newsletter** | [PWA-signal-plus-v2](https://github.com/koryedwards-del/PWA-signal-plus-v2) (private) | pwa-signal-plus-v2.onrender.com | Auth, CMS, weekly email compose, newsletter API |
+| **Ops docs** | [operatingmanual](https://github.com/koryedwards-del/operatingmanual) (private) | — | Full project map: `PROJECTS.md` |
+
+## Retired
+
+| Repo | Status |
+|------|--------|
+| **signalplus-admin** | Archived on GitHub — do not deploy; admin/CMS moved to PWA |
+
+## Other projects (separate products)
+
+| Repo | Purpose |
+|------|---------|
+| pwa-burn-and-build | Burn & Build diet PWA |
+| burnandbuildlandingpage | Burn & Build landing |
+| pwa-30ft | 30 For Time kettlebell PWA |
+| hardkordietlandingpage | Hardkor Diet landing |
 
 ## API wiring (landing → PWA)
 
-- Newsletter signup: `POST https://pwa-signal-plus-v2.onrender.com/api/newsletter/subscribe` with `{ email, source: "landing" }` — **404 today; implement in PWA repo**
-- App login link: `POST /api/auth/request` — **works**
+- Newsletter signup: `POST https://pwa-signal-plus-v2.onrender.com/api/newsletter/subscribe` with `{ email, source: "landing" }` — **implement in PWA repo**
+- App login link: `POST /api/auth/request` — works
 - GLP-1 news feed: `GET /api/glp1-feed` — used by landing build
 
 ## CMS (PWA only)
 
 - Weekly newsletter compose: `/cms/emails/weekly`
-- Contacts / CMS: `/cms`
+- Contacts: `/cms`
 
-## Agent access blocker
+## Cloud agent access
 
-Cloud agents can edit **this landing repo** only. The PWA repo must be **created or pushed to GitHub** and the agent granted access before backend work (newsletter subscribe API, CMS integration) can ship from here.
-
-Push to `main` on this repo deploys the landing site live.
+- Public repos (e.g. this landing repo): agent can push directly.
+- Private repos (`PWA-signal-plus-v2`, `operatingmanual`): open a Cloud Agent task from that repo or grant the Cursor GitHub App access to it.
