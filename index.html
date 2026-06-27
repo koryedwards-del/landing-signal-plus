@@ -119,11 +119,14 @@
     .section-inner.left { text-align: left; }
 
     .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 96px 20px 64px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 48px;
+      align-items: start;
+      text-align: left;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 40px 64px;
       position: relative;
     }
     .hero::before {
@@ -134,14 +137,16 @@
       background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,200,232,0.09) 0%, transparent 70%);
       pointer-events: none;
     }
+    .hero-main {
+      position: relative;
+      z-index: 1;
+    }
     .hero h1 {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
       font-size: clamp(34px, 6vw, 64px);
       line-height: 1.05;
       max-width: 720px;
-      position: relative;
-      z-index: 1;
     }
     .hero-lead {
       margin-top: 24px;
@@ -149,8 +154,17 @@
       line-height: 1.65;
       color: var(--muted);
       max-width: 560px;
+    }
+    .hero-archive {
       position: relative;
       z-index: 1;
+      width: 100%;
+    }
+    .hero-archive .section-eyebrow {
+      margin-bottom: 12px;
+    }
+    .hero-archive .newsletter-archive {
+      box-shadow: 0 0 32px rgba(0,200,232,0.08);
     }
 
     .email-capture { display: flex; flex-direction: column; gap: 12px; }
@@ -256,10 +270,34 @@
       color: var(--cyan);
     }
 
-    .archive-section .newsletter-archive {
+    .guide-credentials-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      opacity: 0.75;
+      margin: 24px 0 12px;
+    }
+    .guide-credentials {
+      list-style: none;
+      margin: 0 auto 24px;
       max-width: 360px;
+    }
+    .guide-credentials li {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+      padding: 6px 0;
+    }
+
+    .archive-section .newsletter-archive,
+    .subscribe-section .top-cta {
+      max-width: 440px;
       margin: 24px auto 0;
-      text-align: left;
+    }
+    .subscribe-section .section-inner {
+      text-align: center;
     }
 
     .final-lines {
@@ -312,6 +350,12 @@
         border-bottom: 1px solid var(--border);
       }
       .nav-links.open { display: flex; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 96px 20px 64px;
+        gap: 32px;
+      }
+      .hero-archive { order: -1; }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
     }
   </style>
@@ -322,17 +366,16 @@
   <script src="scripts/site-nav.js"></script>
 
   <!-- HERO -->
-  <section class="hero" id="subscribe">
-    <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
-    <h1>Health shouldn't be this confusing.</h1>
-    <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
-    <div class="email-capture top-cta">
-      <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
-      <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
-      <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
-      <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
-      <p class="cta-note">Free · Unsubscribe anytime</p>
+  <section class="hero" id="archive">
+    <div class="hero-main">
+      <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
+      <h1>Health shouldn't be this confusing.</h1>
+      <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
     </div>
+    <aside class="hero-archive">
+      <p class="section-eyebrow">Previous Issues</p>
+      <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
+    </aside>
   </section>
 
   <!-- THE PROBLEM -->
@@ -358,6 +401,11 @@
       <p class="section-eyebrow">Meet Your Guide</p>
       <h2 class="section-title">I've spent years helping people make sense of nutrition, strength, and aging.</h2>
       <p class="section-copy">Created by a GLP-1 user.</p>
+      <p class="guide-credentials-label">Credentials</p>
+      <ul class="guide-credentials">
+        <li>Certified Sports Nutrition Specialist (SNS)</li>
+        <li>Certified Kettlebell Coach (KBC)</li>
+      </ul>
       <p class="section-copy">My job isn't to give you more information.</p>
       <p class="section-copy">It's to help you understand what matters.</p>
     </div>
@@ -378,13 +426,19 @@
     </div>
   </section>
 
-  <!-- READ PREVIOUS ISSUES -->
-  <section class="page-section alt archive-section" id="archive">
-    <div class="section-inner wide">
-      <p class="section-eyebrow">Read Previous Issues</p>
-      <h2 class="section-title">Not ready to subscribe?</h2>
-      <p class="section-copy">Start with a few previous newsletters and see if Signal+ is right for you.</p>
-      <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
+  <!-- SUBSCRIBE -->
+  <section class="page-section alt subscribe-section" id="subscribe">
+    <div class="section-inner">
+      <p class="section-eyebrow">Subscribe</p>
+      <h2 class="section-title">Join Signal+ Weekly.</h2>
+      <p class="section-copy">One email. One idea. Every Friday.</p>
+      <div class="email-capture top-cta">
+        <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
+        <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
+        <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
+        <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
+        <p class="cta-note">Free · Unsubscribe anytime</p>
+      </div>
     </div>
   </section>
 
