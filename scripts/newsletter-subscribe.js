@@ -32,14 +32,15 @@ async function handleNewsletterSubscribe(formId) {
       body: JSON.stringify({ email: email, source: 'landing' }),
     });
 
-    if (!res.ok) {
-      var payload = null;
-      try {
-        payload = await res.json();
-      } catch (parseErr) {
-        payload = null;
-      }
-      errorEl.textContent = (payload && payload.error) || ('Server returned ' + res.status + '. Try again.');
+    var payload = null;
+    try {
+      payload = await res.json();
+    } catch (parseErr) {
+      payload = null;
+    }
+
+    if (!res.ok || !payload || payload.ok !== true) {
+      errorEl.textContent = (payload && payload.error) || ('Could not subscribe (server returned ' + res.status + '). Try again.');
       errorEl.style.display = 'block';
       btn.disabled = false;
       btn.textContent = NEWSLETTER_BUTTON_LABEL;

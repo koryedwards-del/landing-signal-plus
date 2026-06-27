@@ -29,7 +29,15 @@ function isValidEmail(email) {
   return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-async function addResendContact(email, source) {
+function resendErrorMessage(payload, status) {
+  if (!payload || typeof payload !== 'object') return 'Resend returned ' + status;
+  if (typeof payload.message === 'string') return payload.message;
+  if (payload.error && typeof payload.error.message === 'string') return payload.error.message;
+  if (typeof payload.error === 'string') return payload.error;
+  return 'Resend returned ' + status;
+}
+
+async function addResendContact(email) {
   const apiKey = process.env.RESEND_API_KEY;
 
   const response = await fetch('https://api.resend.com/contacts', {
@@ -41,31 +49,37 @@ async function addResendContact(email, source) {
     body: JSON.stringify({
       email,
       unsubscribed: false,
-      properties: {
-        source: source || 'landing',
-        list: 'signal-plus-weekly',
-      },
     }),
   });
 
   const payload = await response.json().catch(() => ({}));
 
   if (response.ok) {
-    return { ok: true, id: payload.id || null };
+    return {
+      ok: true,
+      id: payload.id || (payload.data && payload.data.id) || null,
+    };
   }
 
-  const message = String(payload.message || payload.error || response.status);
+  const message = resendErrorMessage(payload, response.status);
 
   if (/already exists|duplicate/i.test(message)) {
     return { ok: true, existing: true };
   }
 
-  return { ok: false, error: message || 'Could not add contact.' };
+  return { ok: false, error: message };
 }
+
+app.get('/api/health', (req, res) => {
+  res.json({
+    ok: true,
+    service: 'signalplushealthlandingpage',
+    resendConfigured: !!process.env.RESEND_API_KEY,
+  });
+});
 
 app.post('/api/newsletter/subscribe', async (req, res) => {
   const email = String(req.body?.email || '').trim().toLowerCase();
-  const source = String(req.body?.source || 'landing').trim().slice(0, 64);
 
   if (!isValidEmail(email)) {
     return res.status(400).json({ ok: false, error: 'Invalid email address.' });
@@ -80,12 +94,16 @@ app.post('/api/newsletter/subscribe', async (req, res) => {
   }
 
   try {
-    const result = await addResendContact(email, source);
+    const result = await addResendContact(email);
     if (!result.ok) {
       console.error('Resend error:', result.error);
       return res.status(502).json({ ok: false, error: 'Could not subscribe. Please try again.' });
     }
-    return res.json({ ok: true, id: result.id || null, existing: !!result.existing });
+    return res.status(200).json({
+      ok: true,
+      id: result.id || null,
+      existing: !!result.existing,
+    });
   } catch (err) {
     console.error('Newsletter subscribe error:', err);
     return res.status(500).json({ ok: false, error: 'Server error. Please try again.' });
