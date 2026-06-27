@@ -121,12 +121,12 @@
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
-      gap: 48px;
+      gap: 40px;
       align-items: start;
       text-align: left;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 96px 40px 64px;
+      padding: 88px 32px 48px;
       position: relative;
     }
     .hero::before {
@@ -159,6 +159,7 @@
       position: relative;
       z-index: 1;
       width: 100%;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 28px;
@@ -166,14 +167,26 @@
     .hero-aside .section-eyebrow {
       margin-bottom: 12px;
     }
+    .hero-aside-intro {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: -4px 0 12px;
+    }
     .hero-aside .newsletter-archive {
       box-shadow: 0 0 32px rgba(0,200,232,0.08);
     }
     .hero-aside .top-cta {
       margin-top: 0;
+      max-width: none;
     }
     .hero-aside .cta-note {
       text-align: center;
+      font-size: 12px;
+    }
+    .hero-aside .btn-notify {
+      font-size: 11px;
+      padding: 14px 12px;
     }
 
     .email-capture { display: flex; flex-direction: column; gap: 12px; }
@@ -371,10 +384,12 @@
       .nav-links.open { display: flex; }
       .hero {
         grid-template-columns: 1fr;
-        padding: 96px 20px 64px;
-        gap: 32px;
+        padding: 88px 20px 48px;
+        gap: 28px;
       }
-      .hero-aside { order: -1; }
+      .hero-aside .btn-notify {
+        font-size: 11px;
+      }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
     }
   </style>
@@ -392,16 +407,17 @@
       <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
     </div>
     <aside class="hero-aside">
-      <div id="archive">
-        <p class="section-eyebrow">Previous Issues</p>
-        <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
-      </div>
       <div class="email-capture top-cta">
         <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
         <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
         <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
         <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
         <p class="cta-note">Free · Unsubscribe anytime</p>
+      </div>
+      <div id="archive">
+        <p class="section-eyebrow">Previous Issues</p>
+        <p class="hero-aside-intro">Not ready to subscribe yet? Start with a previous issue.</p>
+        <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
       </div>
     </aside>
   </section>
