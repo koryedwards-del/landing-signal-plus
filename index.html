@@ -378,31 +378,6 @@
     }
     .final-lines .accent { color: var(--cyan); }
 
-    .hero-cta-link {
-      display: inline-block;
-      width: 100%;
-      max-width: 440px;
-      margin: 24px auto 0;
-      padding: 15px 18px;
-      background: transparent;
-      border: 1px solid var(--cyan);
-      border-radius: 8px;
-      color: var(--cyan);
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      text-align: center;
-      transition: background 0.2s;
-    }
-    .hero-cta-link:hover { background: rgba(0,200,232,0.08); }
-    .final-cta-note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
     footer {
       display: flex;
       align-items: center;
@@ -559,8 +534,13 @@
         <p class="accent">Join Signal+ Weekly.</p>
       </div>
       <p class="section-copy">One email.<br>One idea.<br>Every Friday.</p>
-      <a class="hero-cta-link" href="#subscribe">Subscribe to Signal+ Weekly</a>
-      <p class="final-cta-note">Free · Unsubscribe anytime</p>
+      <div class="email-capture top-cta">
+        <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
+        <button class="btn-notify" id="notifyBtn" onclick="handleNewsletterSubscribe('notify')">Subscribe to Signal+ Weekly</button>
+        <p class="email-confirm" id="emailConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
+        <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
+        <p class="cta-note">Free · Unsubscribe anytime</p>
+      </div>
     </div>
   </section>
 
