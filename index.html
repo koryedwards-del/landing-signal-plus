@@ -164,6 +164,12 @@
       color: var(--muted);
       margin: -4px 0 12px;
     }
+    .hero-aside-intro a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .hero-aside-intro a:hover { opacity: 0.85; }
     .hero-archive-block .section-eyebrow {
       margin-bottom: 12px;
     }
@@ -173,6 +179,10 @@
     .hero .top-cta {
       margin-top: 0;
       max-width: none;
+      scroll-margin-top: 72px;
+    }
+    .hero-archive-block {
+      scroll-margin-top: 72px;
     }
     .hero .cta-note {
       text-align: left;
@@ -369,6 +379,26 @@
     }
     .final-lines .accent { color: var(--cyan); }
 
+    .hero-cta-link {
+      display: inline-block;
+      width: 100%;
+      max-width: 440px;
+      margin: 24px auto 0;
+      padding: 15px 18px;
+      background: transparent;
+      border: 1px solid var(--cyan);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .hero-cta-link:hover { background: rgba(0,200,232,0.08); }
+
     footer {
       display: flex;
       align-items: center;
@@ -430,14 +460,14 @@
   <script src="scripts/site-nav.js"></script>
 
   <!-- HERO -->
-  <section class="hero" id="subscribe">
+  <section class="hero">
     <div class="hero-stack">
       <div class="hero-main">
         <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
         <h1>Health shouldn't be this confusing.</h1>
         <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
       </div>
-      <div class="email-capture top-cta">
+      <div class="email-capture top-cta" id="subscribe">
         <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
         <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
         <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
@@ -445,8 +475,8 @@
         <p class="cta-note">Free · Unsubscribe anytime</p>
       </div>
       <div class="hero-archive-block" id="archive">
-        <p class="section-eyebrow">Previous Issues</p>
-        <p class="hero-aside-intro">Not ready to subscribe yet? Browse previous issues.</p>
+        <p class="section-eyebrow">Past Issues</p>
+        <p class="hero-aside-intro">Not ready to subscribe yet?</p>
         <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
       </div>
     </div>
@@ -525,13 +555,8 @@
         <p class="accent">Join Signal+ Weekly.</p>
       </div>
       <p class="section-copy">One email.<br>One idea.<br>Every Friday.</p>
-      <div class="email-capture top-cta">
-        <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
-        <button class="btn-notify" id="notifyBtn" onclick="handleNewsletterSubscribe('notify')">Subscribe</button>
-        <p class="email-confirm" id="emailConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
-        <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
-        <p class="cta-note">Free · Unsubscribe anytime</p>
-      </div>
+      <a class="hero-cta-link" href="#subscribe">Subscribe to Signal+ Weekly</a>
+      <p class="cta-note" style="margin-top: 14px;">Free · Unsubscribe anytime</p>
     </div>
   </section>
 
