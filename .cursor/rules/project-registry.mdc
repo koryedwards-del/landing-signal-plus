@@ -28,11 +28,11 @@ alwaysApply: true
 | pwa-30ft | 30 For Time kettlebell PWA |
 | hardkordietlandingpage | Hardkor Diet landing |
 
-## API wiring (landing → PWA)
+## API wiring
 
-- Newsletter signup: `POST https://pwa-signal-plus-v2.onrender.com/api/newsletter/subscribe` with `{ email, source: "landing" }` — **implement in PWA repo**
-- App login link: `POST /api/auth/request` — works
-- GLP-1 news feed: `GET /api/glp1-feed` — used by landing build
+- Newsletter signup: `POST /api/newsletter/subscribe` on this site → Resend contacts (needs `RESEND_API_KEY` on Render)
+- App login link: `POST /api/auth/request` on PWA — works
+- GLP-1 news feed: `GET /api/glp1-feed` on PWA — used by landing build
 
 ## CMS (PWA only)
 

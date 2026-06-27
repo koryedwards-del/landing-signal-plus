@@ -1,4 +1,4 @@
-var NEWSLETTER_SUBSCRIBE_API = 'https://pwa-signal-plus-v2.onrender.com/api/newsletter/subscribe';
+var NEWSLETTER_SUBSCRIBE_API = '/api/newsletter/subscribe';
 var NEWSLETTER_BUTTON_LABEL = 'SUBSCRIBE';
 
 async function handleNewsletterSubscribe(formId) {
@@ -33,11 +33,13 @@ async function handleNewsletterSubscribe(formId) {
     });
 
     if (!res.ok) {
-      if (res.status === 404) {
-        errorEl.textContent = 'Newsletter signup is not live yet. Email support@signalplushealth.com to subscribe.';
-      } else {
-        errorEl.textContent = 'Server returned ' + res.status + '. Try again.';
+      var payload = null;
+      try {
+        payload = await res.json();
+      } catch (parseErr) {
+        payload = null;
       }
+      errorEl.textContent = (payload && payload.error) || ('Server returned ' + res.status + '. Try again.');
       errorEl.style.display = 'block';
       btn.disabled = false;
       btn.textContent = NEWSLETTER_BUTTON_LABEL;

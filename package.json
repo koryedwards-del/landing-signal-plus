@@ -2,6 +2,10 @@
   "name": "signalplushealthlandingpage",
   "private": true,
   "scripts": {
-    "build": "node scripts/prerender-glp1-news.js"
+    "build": "node scripts/prerender-glp1-news.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }

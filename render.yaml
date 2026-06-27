@@ -1,6 +1,11 @@
 services:
   - type: web
     name: signalplushealthlandingpage
-    runtime: static
-    buildCommand: npm run build
-    staticPublishPath: .
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_NEWSLETTER_SEGMENT_ID
+        sync: false
