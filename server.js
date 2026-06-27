@@ -119,6 +119,10 @@ app.post('/api/newsletter/subscribe', async (req, res) => {
   }
 });
 
+app.get('/newsletter.html', (req, res) => {
+  res.redirect(301, '/#archive');
+});
+
 app.use(express.static(path.join(__dirname), { index: 'index.html' }));
 
 app.listen(PORT, () => {
