@@ -119,15 +119,11 @@
     .section-inner.left { text-align: left; }
 
     .hero {
-      display: grid;
-      grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
-      gap: 40px;
-      align-items: start;
-      text-align: left;
-      max-width: 1100px;
+      max-width: 640px;
       margin: 0 auto;
       padding: 88px 32px 48px;
       position: relative;
+      text-align: left;
     }
     .hero::before {
       content: '';
@@ -446,11 +442,6 @@
 
   <!-- HERO -->
   <section class="hero" id="subscribe">
-    <div class="hero-main">
-      <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
-      <h1>Health shouldn't be this confusing.</h1>
-      <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
-    </div>
     <aside class="hero-aside">
       <div class="email-capture top-cta">
         <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
@@ -465,6 +456,11 @@
         <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
       </div>
     </aside>
+    <div class="hero-main">
+      <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
+      <h1>Health shouldn't be this confusing.</h1>
+      <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
+    </div>
   </section>
 
   <!-- THE PROBLEM -->
