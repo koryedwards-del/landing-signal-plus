@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signal+ | Ozempic &amp; Mounjaro | Still Tired. Still Soft.</title>
+  <title>Signal+ | Protect Your Strength on GLP-1</title>
 
   <!-- SEO -->
-  <meta name="description" content="Losing weight on GLP-1 but still tired and soft? Signal+ helps you trigger mTOR throughout the day — reminders, timing, and coaching. Latest GLP-1 news updated every 6 hours. Free 30-day trial.">
+  <meta name="description" content="Losing weight on GLP-1 but still tired and soft? Signal+ helps you trigger mTOR throughout the day — reminders, timing, and coaching. Free 30-day trial.">
   <meta name="keywords" content="GLP-1 news, GLP-1 muscle loss, Ozempic muscle loss, Mounjaro muscle loss, Ozempic fatigue, Mounjaro fatigue, lost weight still soft, GLP-1 tired, protein timing app, mTOR activation, sarcopenia prevention">
   <meta name="robots" content="index, follow">
 
@@ -15,7 +15,7 @@
       <!-- GLP1_HOMEPAGE_JSONLD_END -->
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Signal+ | Ozempic &amp; Mounjaro | Still Tired. Still Soft.">
+  <meta property="og:title" content="Signal+ | Protect Your Strength on GLP-1">
   <meta property="og:description" content="The scale is going down. That feels amazing. But you're tired, softer than expected, and everyday things are harder. Signal+ was built for that journey.">
   <meta property="og:image" content="https://www.signalplushealth.com/Images/cyansignal+logotransparent.png">
   <meta property="og:url" content="https://www.signalplushealth.com">
@@ -23,7 +23,7 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Signal+ | Ozempic &amp; Mounjaro | Still Tired. Still Soft.">
+  <meta name="twitter:title" content="Signal+ | Protect Your Strength on GLP-1">
   <meta name="twitter:description" content="Protect your strength while losing weight on GLP-1. Built by a GLP-1 user who needed it himself.">
   <meta name="twitter:image" content="https://www.signalplushealth.com/Images/cyansignal+logotransparent.png">
 
@@ -43,7 +43,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --cyan:   #00C8E8;
-      --cyan2:  #00A8C8;
       --dark:   #080C12;
       --dark2:  #0B0F18;
       --news-panel: #0C121A;
@@ -119,9 +118,6 @@
       position: relative;
       overflow: hidden;
     }
-    .glp1-teaser.visible + .hero {
-      padding-top: 28px;
-    }
     .hero::before {
       content: '';
       position: absolute;
@@ -137,7 +133,7 @@
       text-transform: uppercase;
       color: var(--cyan);
       opacity: 0.75;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
       position: relative; z-index: 1;
     }
     .hero h1 {
@@ -149,14 +145,6 @@
     }
     .hero h1 .line1 { color: var(--text); display: block; }
     .hero h1 .line2 { color: var(--cyan); display: block; }
-    .hero-sub {
-      margin-top: 14px;
-      font-size: clamp(15px, 2vw, 18px);
-      color: var(--muted);
-      max-width: 580px;
-      line-height: 1.8;
-      position: relative; z-index: 1;
-    }
     .hero-need {
       margin-top: 24px;
       font-family: 'Oswald', sans-serif;
@@ -166,12 +154,6 @@
       position: relative; z-index: 1;
     }
     .hero-need span { color: var(--cyan); }
-    .hero-logo {
-      width: min(180px, 38vw);
-      margin-bottom: 16px;
-      position: relative; z-index: 1;
-    }
-
     /* ── SECTION SHARED ── */
     .section-eyebrow {
       font-family: 'Space Mono', monospace;
@@ -235,8 +217,9 @@
     /* ── GLP-1 NEWS (credibility strip) ── */
     .glp1-teaser {
       display: none;
-      padding: 72px 20px 8px;
+      padding: 48px 20px 8px;
       background: var(--news-panel);
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
     .glp1-teaser.visible { display: block; }
@@ -484,51 +467,21 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="glp-1-changes.html">GLP-1 News</a></li>
       <li><a href="#story">Story</a></li>
+      <li><a href="glp-1-changes.html">GLP-1 News</a></li>
       <li><a href="#pricing">Start Free</a></li>
-      <li><a href="signal-privacy.html">Privacy Policy</a></li>
       <li><a href="signal-support.html">Support</a></li>
     </ul>
   </nav>
 
-  <!-- GLP-1 NEWS — crawlable credibility strip (refreshed at build + live) -->
-  <section class="glp1-teaser visible" id="glp1-teaser" aria-label="GLP-1 in the News">
-    <div class="glp1-teaser-inner">
-      <div class="glp1-teaser-head">
-        <h2 class="glp1-teaser-title">GLP-1 in the <span>News</span></h2>
-        <a class="glp1-teaser-more" href="glp-1-changes.html">View all</a>
-      </div>
-      <ul class="glp1-teaser-stack" id="glp1-teaser-stack">
-      <!-- GLP1_HOMEPAGE_NEWS_START -->
-        <li class="glp1-teaser-row">
-          <time class="glp1-teaser-date" datetime="2026-06-16">Jun 16, 2026</time>
-          <a class="glp1-teaser-headline" href="https://news.google.com/rss/articles/CBMirAFBVV95cUxORU9hNlZYb1RDSzhBRFpIaF9JMDJKQWc4UTlESC1IdF9xVUtrUEhFbkZyVVNsZGRSTXV0M0ZpNGxReFJMRUxjQ3FuREtTLXRQYWthNWtWdDU2Tnhfem5MSllaN2pzcVNUUTcwalFFbzdLV09DejBxWFZEXzFweTc0ZDlqUWV4b0JqVmUxQ09jTVFQTWpEWDRBUFdEc0xvalo0dUN6dXo0cEhJRG9V?oc=5" target="_blank" rel="noopener noreferrer">GLP-1 drugs linked to major drop in pancreatic, colorectal cancer risk</a>
-        </li>
-        <li class="glp1-teaser-row">
-          <time class="glp1-teaser-date" datetime="2026-06-15">Jun 15, 2026</time>
-          <a class="glp1-teaser-headline" href="https://news.google.com/rss/articles/CBMid0FVX3lxTFBZRDNGcDNjYXBuTGdXZU9XVXNTSGo2RS1oU205SThubGlwNmp4b3JnS2R6Y0JsTUtZRmE1dVlNMFJrb01Tdlo3Q01IQjFhWTYzb25SZDZGMU1VbjJDNGMxX0RWdE9ZQkFWbHhLYlBQNDJ3R2FqZEhn?oc=5" target="_blank" rel="noopener noreferrer">Medicare and Weight-Loss Drugs: Coverage Expansion in 2026</a>
-        </li>
-        <li class="glp1-teaser-row">
-          <time class="glp1-teaser-date" datetime="2026-06-04">Jun 4, 2026</time>
-          <a class="glp1-teaser-headline" href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOWE5EczkwQ05IeW9LRTcxbTNWY0tmYjF4amNQSjhsZTlHbnlmRUJrZHFnS05nWGFsTGpNUjBGOXl1MVp6eGhBTHVja0tMUVYxYnI5UGgzUVNXZDczY0hnZlEzN19BbTYwblZtWDlrWU1GZm1aWDRpajl3VGpMcGtpdXVLYjYtU3lQMHhoMENfTjFQdw?oc=5" target="_blank" rel="noopener noreferrer">The Supply Side: Grocery business responds to GLP-1 use</a>
-        </li>
-      <!-- GLP1_HOMEPAGE_NEWS_END -->
-      </ul>
-      <p class="glp1-teaser-foot">Updated every 6 hours</p>
-    </div>
-  </section>
-
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-logo" src="Images/cyansignal+logotransparent.png" alt="Signal+" />
     <p class="hero-eyebrow">Created by a GLP-1 user</p>
     <h1>
       <span class="line1">The scale is going down.</span>
       <span class="line2">That feels amazing.</span>
     </h1>
-    <p class="hero-need">But, it can come with a <span>price...</span></p>
+    <p class="hero-need">But it can come with a <span>price.</span></p>
     <div class="email-capture top-cta">
       <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
       <button class="btn-notify" id="heroBtn" onclick="handleSignup('hero')">START YOUR FREE 30 DAY TRIAL</button>
@@ -600,14 +553,40 @@
     </div>
   </section>
 
+  <!-- GLP-1 NEWS — crawlable credibility strip (refreshed at build + live) -->
+  <section class="glp1-teaser visible" id="glp1-teaser" aria-label="GLP-1 in the News">
+    <div class="glp1-teaser-inner">
+      <div class="glp1-teaser-head">
+        <h2 class="glp1-teaser-title">GLP-1 in the <span>News</span></h2>
+        <a class="glp1-teaser-more" href="glp-1-changes.html">View all</a>
+      </div>
+      <ul class="glp1-teaser-stack" id="glp1-teaser-stack">
+      <!-- GLP1_HOMEPAGE_NEWS_START -->
+        <li class="glp1-teaser-row">
+          <time class="glp1-teaser-date" datetime="2026-06-16">Jun 16, 2026</time>
+          <a class="glp1-teaser-headline" href="https://news.google.com/rss/articles/CBMirAFBVV95cUxORU9hNlZYb1RDSzhBRFpIaF9JMDJKQWc4UTlESC1IdF9xVUtrUEhFbkZyVVNsZGRSTXV0M0ZpNGxReFJMRUxjQ3FuREtTLXRQYWthNWtWdDU2Tnhfem5MSllaN2pzcVNUUTcwalFFbzdLV09DejBxWFZEXzFweTc0ZDlqUWV4b0JqVmUxQ09jTVFQTWpEWDRBUFdEc0xvalo0dUN6dXo0cEhJRG9V?oc=5" target="_blank" rel="noopener noreferrer">GLP-1 drugs linked to major drop in pancreatic, colorectal cancer risk</a>
+        </li>
+        <li class="glp1-teaser-row">
+          <time class="glp1-teaser-date" datetime="2026-06-15">Jun 15, 2026</time>
+          <a class="glp1-teaser-headline" href="https://news.google.com/rss/articles/CBMid0FVX3lxTFBZRDNGcDNjYXBuTGdXZU9XVXNTSGo2RS1oU205SThubGlwNmp4b3JnS2R6Y0JsTUtZRmE1dVlNMFJrb01Tdlo3Q01IQjFhWTYzb25SZDZGMU1VbjJDNGMxX0RWdE9ZQkFWbHhLYlBQNDJ3R2FqZEhn?oc=5" target="_blank" rel="noopener noreferrer">Medicare and Weight-Loss Drugs: Coverage Expansion in 2026</a>
+        </li>
+        <li class="glp1-teaser-row">
+          <time class="glp1-teaser-date" datetime="2026-06-04">Jun 4, 2026</time>
+          <a class="glp1-teaser-headline" href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOWE5EczkwQ05IeW9LRTcxbTNWY0tmYjF4amNQSjhsZTlHbnlmRUJrZHFnS05nWGFsTGpNUjBGOXl1MVp6eGhBTHVja0tMUVYxYnI5UGgzUVNXZDczY0hnZlEzN19BbTYwblZtWDlrWU1GZm1aWDRpajl3VGpMcGtpdXVLYjYtU3lQMHhoMENfTjFQdw?oc=5" target="_blank" rel="noopener noreferrer">The Supply Side: Grocery business responds to GLP-1 use</a>
+        </li>
+      <!-- GLP1_HOMEPAGE_NEWS_END -->
+      </ul>
+      <p class="glp1-teaser-foot">Updated every 6 hours</p>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="final-cta" id="pricing">
     <div class="final-cta-inner">
       <p class="section-eyebrow">Try It Free</p>
       <h2>Try Signal+ free for 30 days.</h2>
       <p class="pricing-note">Then <strong>$19.99</strong> per quarter — cancel anytime.</p>
-      <p class="pricing-tag">30 Days Free · No Credit Card · Cancel Anytime</p>
-      <p>Enter your email. We'll send a secure sign-in link — no card required.</p>
+      <p class="pricing-tag">No credit card required</p>
       <div class="email-capture">
         <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
         <button class="btn-notify" id="notifyBtn" onclick="handleSignup('notify')">START YOUR FREE 30 DAY TRIAL</button>
@@ -622,7 +601,6 @@
   <footer>
     <a class="footer-brand" href="index.html">SIGNAL<sup>+</sup></a>
     <ul class="footer-links">
-      <li><a href="index.html">Home</a></li>
       <li><a href="glp-1-changes.html">GLP-1 News</a></li>
       <li><a href="signal-privacy.html">Privacy Policy</a></li>
       <li><a href="signal-support.html">Contact &amp; Support</a></li>
@@ -763,17 +741,13 @@
       errorEl.style.display = 'none';
 
       try {
-        console.log('[signup] POST /api/auth/request', { email, referredByCode });
         const res = await fetch('https://pwa-signal-plus-v2.onrender.com/api/auth/request', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, referredByCode }),
         });
-        console.log('[signup] status:', res.status);
 
         if (!res.ok) {
-          const text = await res.text();
-          console.error('[signup] error body:', text);
           errorEl.textContent = 'Server returned ' + res.status + '. Try again.';
           errorEl.style.display = 'block';
           btn.disabled = false;
@@ -785,7 +759,6 @@
         emailInput.style.display = 'none';
         btn.style.display = 'none';
       } catch (err) {
-        console.error('[signup] network error:', err);
         errorEl.textContent = 'Network error: ' + err.message;
         errorEl.style.display = 'block';
         btn.disabled = false;
