@@ -31,20 +31,6 @@ function isValidEmail(email) {
 
 async function addResendContact(email, source) {
   const apiKey = process.env.RESEND_API_KEY;
-  const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID;
-
-  const body = {
-    email,
-    unsubscribed: false,
-    properties: {
-      source: source || 'landing',
-      list: 'signal-plus-weekly',
-    },
-  };
-
-  if (segmentId) {
-    body.segments = [{ id: segmentId }];
-  }
 
   const response = await fetch('https://api.resend.com/contacts', {
     method: 'POST',
@@ -52,7 +38,14 @@ async function addResendContact(email, source) {
       Authorization: 'Bearer ' + apiKey,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify({
+      email,
+      unsubscribed: false,
+      properties: {
+        source: source || 'landing',
+        list: 'signal-plus-weekly',
+      },
+    }),
   });
 
   const payload = await response.json().catch(() => ({}));
@@ -64,12 +57,6 @@ async function addResendContact(email, source) {
   const message = String(payload.message || payload.error || response.status);
 
   if (/already exists|duplicate/i.test(message)) {
-    if (segmentId) {
-      await fetch('https://api.resend.com/contacts/' + encodeURIComponent(email) + '/segments/' + segmentId, {
-        method: 'POST',
-        headers: { Authorization: 'Bearer ' + apiKey },
-      });
-    }
     return { ok: true, existing: true };
   }
 
