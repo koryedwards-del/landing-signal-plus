@@ -120,7 +120,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
       gap: 40px;
       align-items: start;
       text-align: left;
@@ -425,6 +425,16 @@
       .hero-aside .btn-notify {
         font-size: 11px;
       }
+      .guide-signature {
+        flex-direction: column;
+        text-align: center;
+      }
+      .guide-signature-details {
+        align-items: center;
+      }
+      .guide-signature-rule {
+        min-width: 180px;
+      }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
     }
   </style>
@@ -483,10 +493,15 @@
       <p class="section-copy">My job isn't to give you more information.</p>
       <p class="section-copy">It's to help you understand what matters.</p>
       <div class="guide-signature">
-        <img src="https://pwa-signal-plus-v2.onrender.com/images/newsletter/profiles/koryadidas.png" alt="Kory Edwards" width="88" height="88" />
-        <p class="guide-signature-name">Kory Edwards</p>
-        <p class="guide-signature-credential">Certified Sports Nutrition Specialist (SNS)</p>
-        <p class="guide-signature-credential">Certified Kettlebell Coach (KBC)</p>
+        <img src="https://pwa-signal-plus-v2.onrender.com/images/newsletter/profiles/koryadidas.png" alt="Kory Edwards" width="96" height="96" />
+        <div class="guide-signature-details">
+          <p class="guide-signature-name">Kory Edwards</p>
+          <hr class="guide-signature-rule" />
+          <ul class="guide-signature-credentials">
+            <li>Certified Sports Nutrition Specialist (SNS)</li>
+            <li>Certified Kettlebell Coach (KBC)</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
