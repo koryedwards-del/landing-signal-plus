@@ -155,16 +155,25 @@
       color: var(--muted);
       max-width: 560px;
     }
-    .hero-archive {
+    .hero-aside {
       position: relative;
       z-index: 1;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
     }
-    .hero-archive .section-eyebrow {
+    .hero-aside .section-eyebrow {
       margin-bottom: 12px;
     }
-    .hero-archive .newsletter-archive {
+    .hero-aside .newsletter-archive {
       box-shadow: 0 0 32px rgba(0,200,232,0.08);
+    }
+    .hero-aside .top-cta {
+      margin-top: 0;
+    }
+    .hero-aside .cta-note {
+      text-align: center;
     }
 
     .email-capture { display: flex; flex-direction: column; gap: 12px; }
@@ -270,25 +279,35 @@
       color: var(--cyan);
     }
 
-    .guide-credentials-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      opacity: 0.75;
-      margin: 24px 0 12px;
+    .guide-signature {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
     }
-    .guide-credentials {
-      list-style: none;
-      margin: 0 auto 24px;
-      max-width: 360px;
+    .guide-signature img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 2px solid rgba(0,200,232,0.22);
+      margin-bottom: 16px;
     }
-    .guide-credentials li {
-      font-size: 16px;
-      line-height: 1.5;
+    .guide-signature-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
       color: var(--text);
-      padding: 6px 0;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+    .guide-signature-credential {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     .archive-section .newsletter-archive,
@@ -355,7 +374,7 @@
         padding: 96px 20px 64px;
         gap: 32px;
       }
-      .hero-archive { order: -1; }
+      .hero-aside { order: -1; }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
     }
   </style>
@@ -366,15 +385,24 @@
   <script src="scripts/site-nav.js"></script>
 
   <!-- HERO -->
-  <section class="hero" id="archive">
+  <section class="hero" id="subscribe">
     <div class="hero-main">
       <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
       <h1>Health shouldn't be this confusing.</h1>
       <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
     </div>
-    <aside class="hero-archive">
-      <p class="section-eyebrow">Previous Issues</p>
-      <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
+    <aside class="hero-aside">
+      <div id="archive">
+        <p class="section-eyebrow">Previous Issues</p>
+        <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
+      </div>
+      <div class="email-capture top-cta">
+        <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
+        <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
+        <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
+        <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
+        <p class="cta-note">Free · Unsubscribe anytime</p>
+      </div>
     </aside>
   </section>
 
@@ -401,13 +429,14 @@
       <p class="section-eyebrow">Meet Your Guide</p>
       <h2 class="section-title">I've spent years helping people make sense of nutrition, strength, and aging.</h2>
       <p class="section-copy">Created by a GLP-1 user.</p>
-      <p class="guide-credentials-label">Credentials</p>
-      <ul class="guide-credentials">
-        <li>Certified Sports Nutrition Specialist (SNS)</li>
-        <li>Certified Kettlebell Coach (KBC)</li>
-      </ul>
       <p class="section-copy">My job isn't to give you more information.</p>
       <p class="section-copy">It's to help you understand what matters.</p>
+      <div class="guide-signature">
+        <img src="https://pwa-signal-plus-v2.onrender.com/images/newsletter/profiles/koryadidas.png" alt="Kory Edwards" width="88" height="88" />
+        <p class="guide-signature-name">Kory Edwards</p>
+        <p class="guide-signature-credential">Certified Sports Nutrition Specialist (SNS)</p>
+        <p class="guide-signature-credential">Certified Kettlebell Coach (KBC)</p>
+      </div>
     </div>
   </section>
 
@@ -423,22 +452,6 @@
         <li>A simple explanation you can actually use.</li>
       </ul>
       <p class="receive-tagline">No hype. No overwhelm.</p>
-    </div>
-  </section>
-
-  <!-- SUBSCRIBE -->
-  <section class="page-section alt subscribe-section" id="subscribe">
-    <div class="section-inner">
-      <p class="section-eyebrow">Subscribe</p>
-      <h2 class="section-title">Join Signal+ Weekly.</h2>
-      <p class="section-copy">One email. One idea. Every Friday.</p>
-      <div class="email-capture top-cta">
-        <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
-        <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
-        <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
-        <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
-        <p class="cta-note">Free · Unsubscribe anytime</p>
-      </div>
     </div>
   </section>
 
