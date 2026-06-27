@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Fetches GLP-1 feed and injects crawlable HTML + JSON-LD into static pages.
+ * Fetches GLP-1 feed and injects crawlable HTML + JSON-LD into glp-1-changes.html.
  * Run at deploy time: npm run build
  */
 const fs = require('fs');
@@ -17,12 +17,6 @@ function escapeHtml(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
-}
-
-function truncate(text, maxLen) {
-  const trimmed = String(text || '').trim();
-  if (trimmed.length <= maxLen) return trimmed;
-  return trimmed.slice(0, maxLen - 1).trimEnd() + '\u2026';
 }
 
 function parseIsoDate(displayDate) {
@@ -53,33 +47,6 @@ function replaceBetween(content, startMarker, endMarker, insertion) {
     '\n      ' +
     content.slice(end)
   );
-}
-
-function renderHomepageRows(items) {
-  return items
-    .map(function (item) {
-      const iso = parseIsoDate(item.date);
-      const dateHtml = item.date
-        ? '<time class="glp1-teaser-date" datetime="' +
-          escapeHtml(iso || item.date) +
-          '">' +
-          escapeHtml(item.date) +
-          '</time>'
-        : '<span class="glp1-teaser-date"></span>';
-      return (
-        '        <li class="glp1-teaser-row">\n' +
-        '          ' +
-        dateHtml +
-        '\n' +
-        '          <a class="glp1-teaser-headline" href="' +
-        escapeHtml(item.href) +
-        '" target="_blank" rel="noopener noreferrer">' +
-        escapeHtml(truncate(item.title, 120)) +
-        '</a>\n' +
-        '        </li>'
-      );
-    })
-    .join('\n');
 }
 
 function renderNewsPageRows(items) {
@@ -139,28 +106,6 @@ function buildNewsItemList(items, listName, pageUrl) {
   };
 }
 
-function buildHomepageSchema(homeItems) {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebSite',
-        name: 'Signal+',
-        url: SITE + '/',
-        description:
-          'Signal+ helps GLP-1 users protect muscle with mTOR timing, reminders, and coaching.',
-      },
-      {
-        '@type': 'Organization',
-        name: 'Signal+',
-        url: SITE + '/',
-        logo: SITE + '/Images/cyansignal%2Blogotransparent.png',
-      },
-      buildNewsItemList(homeItems, 'GLP-1 in the News', SITE + '/'),
-    ],
-  };
-}
-
 function buildNewsPageSchema(items, searchTerms) {
   return {
     '@context': 'https://schema.org',
@@ -206,42 +151,14 @@ async function fetchFeed(limitPerTerm) {
 }
 
 async function main() {
-  const [homeFeed, newsFeed] = await Promise.all([fetchFeed(1), fetchFeed(3)]);
-
-  if (!homeFeed.items || homeFeed.items.length === 0) {
-    console.warn('No homepage feed items returned; skipping prerender.');
-    return;
-  }
+  const newsFeed = await fetchFeed(3);
 
   if (!newsFeed.items || newsFeed.items.length === 0) {
     console.warn('No news page feed items returned; skipping prerender.');
     return;
   }
 
-  const homeItems = sortNewsItems(homeFeed.items).slice(0, 3);
   const sortedNewsItems = sortNewsItems(newsFeed.items);
-
-  let indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  indexHtml = replaceBetween(
-    indexHtml,
-    '<!-- GLP1_HOMEPAGE_NEWS_START -->',
-    '<!-- GLP1_HOMEPAGE_NEWS_END -->',
-    renderHomepageRows(homeItems)
-  );
-  indexHtml = replaceBetween(
-    indexHtml,
-    '<!-- GLP1_HOMEPAGE_JSONLD_START -->',
-    '<!-- GLP1_HOMEPAGE_JSONLD_END -->',
-    '  <script type="application/ld+json">' +
-      JSON.stringify(buildHomepageSchema(homeItems)) +
-      '</script>'
-  );
-  indexHtml = indexHtml.replace(
-    'class="glp1-teaser" id="glp1-teaser" aria-hidden="true"',
-    'class="glp1-teaser visible" id="glp1-teaser"'
-  );
-  fs.writeFileSync(path.join(ROOT, 'index.html'), indexHtml);
-  console.log('Updated index.html with ' + homeItems.length + ' news rows.');
 
   let newsHtml = fs.readFileSync(path.join(ROOT, 'glp-1-changes.html'), 'utf8');
   newsHtml = replaceBetween(
