@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Signal+ App — Coming Soon</title>
+  <meta name="description" content="The Signal+ app is coming soon. Protein timing reminders to help you preserve muscle.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cyan: #00C8E8;
+      --dark: #080C12;
+      --dark2: #0B0F18;
+      --text: #F0EDE8;
+      --muted: #8A97A8;
+      --border: rgba(0,200,232,0.10);
+    }
+    body { background: var(--dark); color: var(--text); font-family: 'Open Sans', sans-serif; min-height: 100vh; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 56px;
+      background: rgba(8,12,18,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.1em; color: var(--cyan); text-decoration: none; text-transform: uppercase; }
+    .nav-brand sup { font-size: 11px; vertical-align: super; opacity: 0.8; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #6A7A8A; text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: #6A7A8A; border-radius: 2px; }
+    .hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; min-height: 100vh; padding: 96px 20px 80px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse 70% 60% at 50% 20%, rgba(0,200,232,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--cyan); opacity: 0.75; margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(36px, 6vw, 64px); line-height: 1.05;
+      position: relative; z-index: 1;
+    }
+    .hero h1 span { color: var(--cyan); }
+    .coming-soon {
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      font-size: clamp(22px, 4vw, 32px); color: var(--cyan);
+      margin-top: 24px; position: relative; z-index: 1;
+    }
+    .hero-lead {
+      font-size: 16px; color: var(--muted); line-height: 1.7;
+      max-width: 480px; margin: 20px auto 0; position: relative; z-index: 1;
+    }
+    .hero-lead a { color: var(--cyan); text-decoration: none; }
+    .hero-lead a:hover { opacity: 0.8; }
+    footer {
+      background: var(--dark2); border-top: 1px solid var(--border);
+      padding: 28px 40px; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+    .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+    .footer-links a { color: #4A5A6A; text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: var(--cyan); }
+    .footer-copy { color: #3A4A5A; font-size: 12px; max-width: 560px; line-height: 1.6; }
+    @media (max-width: 680px) {
+      nav { padding: 0 18px; position: relative; }
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: rgba(8,12,18,0.98); padding: 20px 24px; gap: 18px; border-bottom: 1px solid var(--border); z-index: 200; }
+      .nav-links.open { display: flex; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav data-site-nav data-active="app"></nav>
+  <script src="scripts/site-nav.js"></script>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Mobile App</p>
+    <h1>The Signal<span>+</span> App</h1>
+    <p class="coming-soon">Coming soon.</p>
+    <p class="hero-lead">Protein timing reminders to help you preserve muscle. In the meantime, <a href="index.html#subscribe">subscribe to Signal+ Weekly</a> for free guidance every Friday.</p>
+  </section>
+
+  <footer>
+    <a class="footer-brand" href="index.html">SIGNAL<sup>+</sup></a>
+    <ul class="footer-links">
+      <li><a href="index.html#subscribe">Subscribe</a></li>
+      <li><a href="signal-privacy.html">Privacy Policy</a></li>
+      <li><a href="signal-support.html">Contact &amp; Support</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Signal+. Signal+ is not a medical device and does not provide medical advice. Always consult your physician before making changes to your diet or health routine.</p>
+  </footer>
+
+</body>
+</html>

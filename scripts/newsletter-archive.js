@@ -37,10 +37,6 @@
     });
     html += '</ul>';
 
-    if (window.location.pathname.indexOf('newsletter.html') === -1 && window.location.pathname.indexOf('/newsletter/') === -1) {
-      html += '<a class="newsletter-archive-more" href="newsletter.html">All issues</a>';
-    }
-
     container.innerHTML = html;
   }
 
