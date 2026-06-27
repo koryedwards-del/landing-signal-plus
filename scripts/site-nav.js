@@ -9,7 +9,6 @@
   var items = [
     { id: 'home', label: 'Home', href: base + 'index.html' },
     { id: 'newsletter', label: 'Newsletter', href: base + 'newsletter.html' },
-    { id: 'archive', label: 'Archive', href: onHome ? '#archive' : base + 'index.html#archive' },
     { id: 'subscribe', label: 'Subscribe', href: onHome ? '#subscribe' : base + 'index.html#subscribe' },
     { id: 'app', label: 'App', href: base + 'signal-support.html' },
   ];
