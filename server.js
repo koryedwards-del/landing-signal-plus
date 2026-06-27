@@ -55,16 +55,25 @@ async function addResendContact(email) {
   const payload = await response.json().catch(() => ({}));
 
   if (response.ok) {
-    return {
-      ok: true,
-      id: payload.id || (payload.data && payload.data.id) || null,
-    };
+    const id = payload.id || (payload.data && payload.data.id) || null;
+    if (!id) {
+      return { ok: false, error: 'Resend did not return a contact id.' };
+    }
+    return { ok: true, id: id };
   }
 
   const message = resendErrorMessage(payload, response.status);
 
   if (/already exists|duplicate/i.test(message)) {
-    return { ok: true, existing: true };
+    const verify = await fetch('https://api.resend.com/contacts/' + encodeURIComponent(email), {
+      headers: { Authorization: 'Bearer ' + apiKey },
+    });
+    if (verify.ok) {
+      const existing = await verify.json().catch(() => ({}));
+      const existingId = existing.id || (existing.data && existing.data.id) || null;
+      return { ok: true, existing: true, id: existingId };
+    }
+    return { ok: false, error: 'Contact already exists but could not be verified.' };
   }
 
   return { ok: false, error: message };
