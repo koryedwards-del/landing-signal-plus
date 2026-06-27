@@ -9,8 +9,8 @@ alwaysApply: true
 
 | Repo | GitHub | Deploy | Notes |
 |------|--------|--------|-------|
-| **Landing** (this repo) | [signalplushealthlandingpage](https://github.com/koryedwards-del/signalplushealthlandingpage) | signalplushealth.com | Static site; push `main` deploys |
-| **App + CMS + newsletter** | [PWA-signal-plus-v2](https://github.com/koryedwards-del/PWA-signal-plus-v2) (private) | pwa-signal-plus-v2.onrender.com | Auth, CMS, weekly email compose, newsletter API |
+| **Landing** (this repo) | [signalplushealthlandingpage](https://github.com/koryedwards-del/signalplushealthlandingpage) | signalplushealth.com | Node server + static pages; push `main` deploys |
+| **App + CMS + newsletter** | [PWA-signal-plus-v2](https://github.com/koryedwards-del/PWA-signal-plus-v2) (private) | pwa-signal-plus-v2.onrender.com | Same repo, same deploy — app, admin, CMS, weekly email |
 | **Ops docs** | [operatingmanual](https://github.com/koryedwards-del/operatingmanual) (private) | — | Full project map: `PROJECTS.md` |
 
 ## Retired
