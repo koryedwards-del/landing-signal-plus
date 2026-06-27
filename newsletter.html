@@ -71,19 +71,8 @@
 </head>
 <body>
 
-  <nav>
-    <a class="nav-brand" href="index.html">SIGNAL<sup>+</sup></a>
-    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="newsletter.html" class="active">Newsletter</a></li>
-      <li><a href="index.html#archive">Archive</a></li>
-      <li><a href="index.html#subscribe">Subscribe</a></li>
-      <li><a href="signal-support.html">Support</a></li>
-    </ul>
-  </nav>
+  <nav data-site-nav data-active="newsletter"></nav>
+  <script src="scripts/site-nav.js"></script>
 
   <section class="newsletter-page-hero">
     <p class="newsletter-issue-meta">Every Friday · 11 AM</p>
@@ -122,12 +111,5 @@
 
   <script src="scripts/newsletter-subscribe.js"></script>
   <script src="scripts/newsletter-archive.js"></script>
-  <script>
-    document.querySelectorAll('.nav-links a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        document.querySelector('.nav-links').classList.remove('open');
-      });
-    });
-  </script>
 </body>
 </html>
