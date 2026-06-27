@@ -44,9 +44,21 @@
     container.innerHTML = html;
   }
 
+  function renderLatest(container, data) {
+    if (!container || !data || !data.issues || !data.issues.length) return;
+
+    var latest = data.issues[0];
+    var href = resolveUrl(latest.url);
+    container.innerHTML =
+      'Latest issue: <a href="' + href + '">' + latest.title + '</a>' +
+      '<span>' + formatDate(latest.date) + '</span>';
+    container.hidden = false;
+  }
+
   function init() {
     var containers = document.querySelectorAll('[data-newsletter-archive]');
-    if (!containers.length) return;
+    var latestContainers = document.querySelectorAll('[data-newsletter-latest]');
+    if (!containers.length && !latestContainers.length) return;
 
     fetch(ARCHIVE_PATH)
       .then(function (res) {
@@ -56,6 +68,9 @@
       .then(function (data) {
         containers.forEach(function (container) {
           renderArchive(container, data, container.getAttribute('data-current') || '');
+        });
+        latestContainers.forEach(function (container) {
+          renderLatest(container, data);
         });
       })
       .catch(function () {

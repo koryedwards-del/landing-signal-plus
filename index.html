@@ -211,6 +211,27 @@
       font-size: 13px;
       line-height: 1.5;
     }
+    .hero-latest {
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-latest a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .hero-latest a:hover { text-decoration: underline; }
+    .hero-latest span {
+      display: block;
+      margin-top: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
 
     .story {
       background: var(--dark);
@@ -367,25 +388,26 @@
       <li><a href="#story">Story</a></li>
       <li><a href="newsletter.html">Newsletter</a></li>
       <li><a href="glp-1-changes.html">GLP-1 News</a></li>
-      <li><a href="#newsletter">Subscribe</a></li>
+      <li><a href="#subscribe">Subscribe</a></li>
       <li><a href="signal-support.html">Support</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow">Created by a GLP-1 user</p>
+  <section class="hero" id="subscribe">
+    <p class="hero-eyebrow">Signal+ Weekly · Every Friday</p>
     <h1>
-      <span class="line1">The scale is going down.</span>
-      <span class="line2">That feels amazing.</span>
+      <span class="line1">Keep your muscle</span>
+      <span class="line2">while you lose weight.</span>
     </h1>
-    <p class="hero-need">But it can come with a <span>price.</span></p>
+    <p class="hero-need">Short, practical GLP-1 notes from someone who's <span>been there.</span></p>
+    <p class="hero-latest" data-newsletter-latest hidden></p>
     <div class="email-capture top-cta">
       <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
       <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">SUBSCRIBE</button>
       <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
       <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
-      <p class="cta-note">Free weekly newsletter · Every Friday</p>
+      <p class="cta-note">Free · Unsubscribe anytime</p>
     </div>
   </section>
 
@@ -394,6 +416,7 @@
     <div class="story-inner">
 
       <div class="story-block story-opening reveal">
+        <p class="section-eyebrow" style="margin-bottom: 20px;">Created by a GLP-1 user</p>
         <p>You're losing weight. You should feel great.</p>
         <p>But you're tired. Softer than you expected. Everyday things are harder than they should be.</p>
         <p class="short">That was me.</p>
@@ -457,8 +480,8 @@
       <div class="final-cta-grid">
         <div>
           <p class="section-eyebrow">Signal+ Weekly</p>
-          <h2>Get muscle and GLP-1 tips in your inbox.</h2>
-          <p>Short, practical notes from a GLP-1 user.</p>
+          <h2>Missed the signup above?</h2>
+          <p>Get Signal+ Weekly — muscle, GLP-1, and Ozempic-butt notes in your inbox.</p>
           <p class="newsletter-tag">Free · Every Friday · Unsubscribe anytime</p>
           <div class="email-capture">
             <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
