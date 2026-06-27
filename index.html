@@ -294,33 +294,68 @@
 
     .guide-signature {
       margin-top: 48px;
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
       align-items: center;
-      gap: 0;
+      gap: 24px;
+      text-align: left;
     }
     .guide-signature img {
-      width: 88px;
-      height: 88px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center 20%;
       border: 2px solid rgba(0,200,232,0.22);
-      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .guide-signature-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 0;
     }
     .guide-signature-name {
       font-family: 'Oswald', sans-serif;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
       color: var(--text);
       letter-spacing: 0.02em;
-      margin-bottom: 10px;
+      line-height: 1.2;
     }
-    .guide-signature-credential {
+    .guide-signature-rule {
+      width: 100%;
+      min-width: 200px;
+      height: 1px;
+      border: none;
+      background: rgba(0,200,232,0.35);
+      margin: 10px 0 12px;
+    }
+    .guide-signature-credentials {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .guide-signature-credentials li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.45;
       color: var(--muted);
-      margin-top: 4px;
+      padding: 5px 0;
+    }
+    .guide-signature-credentials li::before {
+      content: '✓';
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,200,232,0.45);
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 16px;
+      text-align: center;
     }
 
     .archive-section .newsletter-archive,
