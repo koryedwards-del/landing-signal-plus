@@ -3,29 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signal+ | Protect Your Strength on GLP-1</title>
+  <title>Signal+ Weekly | Health guidance without the noise</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Losing weight on GLP-1 but still tired and soft? Signal+ helps you trigger mTOR throughout the day — reminders, timing, and coaching. Free weekly newsletter.">
-  <meta name="keywords" content="GLP-1 news, GLP-1 muscle loss, Ozempic muscle loss, Mounjaro muscle loss, Ozempic fatigue, Mounjaro fatigue, lost weight still soft, GLP-1 tired, protein timing app, mTOR activation, sarcopenia prevention">
+  <meta name="description" content="Signal+ Weekly — simple, practical guidance to build and preserve muscle. One clear idea every Friday. No hype. No overwhelm.">
   <meta name="robots" content="index, follow">
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Signal+","url":"https://www.signalplushealth.com/","description":"Signal+ helps GLP-1 users protect muscle with mTOR timing, reminders, and coaching."},{"@type":"Organization","name":"Signal+","url":"https://www.signalplushealth.com/","logo":"https://www.signalplushealth.com/Images/cyansignal%2Blogotransparent.png"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Signal+ Weekly","url":"https://www.signalplushealth.com/","description":"Simple, practical health guidance to help you build and preserve muscle."},{"@type":"Organization","name":"Signal+","url":"https://www.signalplushealth.com/","logo":"https://www.signalplushealth.com/Images/cyansignal%2Blogotransparent.png"}]}</script>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Signal+ | Protect Your Strength on GLP-1">
-  <meta property="og:description" content="The scale is going down. That feels amazing. But you're tired, softer than expected, and everyday things are harder. Signal+ was built for that journey.">
+  <meta property="og:title" content="Signal+ Weekly | Health shouldn't be this confusing">
+  <meta property="og:description" content="Simple, practical guidance to help you build and preserve muscle. One email. One idea. Every Friday.">
   <meta property="og:image" content="https://www.signalplushealth.com/Images/cyansignal+logotransparent.png">
   <meta property="og:url" content="https://www.signalplushealth.com">
   <meta property="og:type" content="website">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Signal+ | Protect Your Strength on GLP-1">
-  <meta name="twitter:description" content="Protect your strength while losing weight on GLP-1. Built by a GLP-1 user who needed it himself.">
+  <meta name="twitter:title" content="Signal+ Weekly">
+  <meta name="twitter:description" content="Simple, practical guidance to build and preserve muscle — one clear idea every Friday.">
   <meta name="twitter:image" content="https://www.signalplushealth.com/Images/cyansignal+logotransparent.png">
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://www.signalplushealth.com">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
@@ -36,7 +31,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="newsletter.css">
-
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,7 +52,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -82,11 +75,10 @@
       text-transform: uppercase;
     }
     .nav-brand sup { font-size: 11px; letter-spacing: 0.05em; vertical-align: super; opacity: 0.8; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
       color: #6A7A8A;
       text-decoration: none;
-      font-family: 'Open Sans', sans-serif;
       font-size: 14px;
       font-weight: 600;
       transition: color 0.2s;
@@ -101,58 +93,8 @@
       border: none;
       padding: 4px;
     }
-    .nav-toggle span { display: block; width: 24px; height: 2px; background: #6A7A8A; border-radius: 2px; transition: background 0.2s; }
-    .nav-toggle:hover span { background: #fff; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: #6A7A8A; border-radius: 2px; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 72px 20px 16px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 400px;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,200,232,0.09) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      opacity: 0.75;
-      margin-bottom: 24px;
-      position: relative; z-index: 1;
-    }
-    .hero h1 {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(30px, 5.5vw, 60px);
-      line-height: 1.05;
-      position: relative; z-index: 1;
-    }
-    .hero h1 .line1 { color: var(--text); display: block; }
-    .hero h1 .line2 { color: var(--cyan); display: block; }
-    .hero-need {
-      margin-top: 24px;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(22px, 3vw, 32px);
-      color: var(--text);
-      position: relative; z-index: 1;
-    }
-    .hero-need span { color: var(--cyan); }
-    /* ── SECTION SHARED ── */
     .section-eyebrow {
       font-family: 'Space Mono', monospace;
       font-size: 11px;
@@ -163,7 +105,53 @@
       margin-bottom: 16px;
     }
 
-    /* ── EMAIL CAPTURE ── */
+    .page-section {
+      padding: 72px 20px;
+    }
+    .page-section.alt { background: var(--dark2); }
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-inner.wide { max-width: 820px; }
+    .section-inner.left { text-align: left; }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 96px 20px 64px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,200,232,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.05;
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-lead {
+      margin-top: 24px;
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
+    }
+
     .email-capture { display: flex; flex-direction: column; gap: 12px; }
     .email-capture input {
       width: 100%;
@@ -175,166 +163,125 @@
       font-size: 15px;
       font-family: 'Open Sans', sans-serif;
       outline: none;
-      transition: border-color 0.2s;
     }
     .email-capture input:focus { border-color: rgba(0,200,232,0.5); }
     .btn-notify {
       width: 100%;
-      padding: 15px;
+      padding: 15px 18px;
       background: transparent;
       border: 1px solid var(--cyan);
       border-radius: 8px;
       color: var(--cyan);
       font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 0.12em;
+      font-size: 12px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s;
     }
     .btn-notify:hover { background: rgba(0,200,232,0.08); }
     .btn-notify:disabled { opacity: 0.5; cursor: not-allowed; }
     .email-confirm { display: none; font-size: 14px; color: #00ff3b; margin-top: 4px; }
     .email-error { display: none; font-size: 14px; color: #ff6b6b; margin-top: 4px; }
-
-    /* ── STORY LANDING ── */
+    .cta-note { margin-top: 10px; color: var(--muted); font-size: 13px; }
     .top-cta {
       width: 100%;
       max-width: 440px;
-      margin-top: 28px;
+      margin-top: 32px;
       position: relative;
       z-index: 1;
     }
-    .cta-note {
-      margin-top: 10px;
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-copy {
+      font-size: 18px;
+      line-height: 1.65;
       color: var(--muted);
-      font-size: 13px;
+    }
+    .section-copy + .section-copy { margin-top: 14px; }
+
+    .problem-stack {
+      list-style: none;
+      margin: 28px auto 24px;
+      max-width: 320px;
+    }
+    .problem-stack li {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 600;
+      line-height: 1.3;
+      padding: 8px 0;
+      color: var(--text);
+    }
+    .problem-closer {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700;
+      color: var(--cyan);
+      margin-top: 8px;
+    }
+
+    .receive-list {
+      list-style: none;
+      margin: 24px auto;
+      max-width: 360px;
+      text-align: left;
+    }
+    .receive-list li {
+      position: relative;
+      padding: 10px 0 10px 28px;
+      font-size: 17px;
       line-height: 1.5;
+      color: var(--text);
     }
-    .hero-latest {
-      margin-top: 18px;
-      font-size: 14px;
-      color: var(--muted);
-      position: relative;
-      z-index: 1;
+    .receive-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-family: 'Space Mono', monospace;
     }
-    .hero-latest a {
+    .receive-tagline {
+      margin-top: 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .archive-section .newsletter-archive {
+      max-width: 360px;
+      margin: 24px auto 0;
+      text-align: left;
+    }
+    .archive-link {
+      display: inline-block;
+      margin-top: 16px;
       color: var(--cyan);
       text-decoration: none;
       font-weight: 600;
+      font-size: 15px;
     }
-    .hero-latest a:hover { text-decoration: underline; }
-    .hero-latest span {
-      display: block;
-      margin-top: 4px;
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-    }
+    .archive-link:hover { text-decoration: underline; }
 
-    .story {
-      background: var(--dark);
-      font-family: Georgia, 'Times New Roman', serif;
-      padding: 72px 20px 36px;
+    .final-lines {
+      margin: 20px auto;
+      max-width: 420px;
     }
-    .story-inner {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-    .story-block {
-      margin: 0 auto 36px;
-    }
-    .story-block p {
-      font-size: clamp(18px, 2.3vw, 22px);
-      line-height: 1.45;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-    .story-block p.short {
+    .final-lines p {
       font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(24px, 3.4vw, 36px);
-      line-height: 1.25;
-      color: var(--cyan);
-      margin: 32px 0;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.35;
+      margin-bottom: 8px;
     }
-    .story-opening p:first-child::first-letter {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 2.2em;
-      line-height: 0;
-      color: var(--cyan);
-      padding-right: 2px;
-    }
-    .story-shot {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-      margin: 54px auto;
-      padding: 28px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: 0 0 34px var(--glow);
-    }
-    .story-shot img {
-      width: 100%;
-      max-width: 260px;
-      border: 1px solid rgba(0,200,232,0.3);
-      border-radius: 28px;
-      box-shadow: 0 0 24px rgba(0,200,232,0.12);
-    }
-    .story-shot-copy {
-      width: 100%;
-    }
-    .story-shot-copy p {
-      font-size: 17px;
-      line-height: 1.45;
-      color: var(--muted);
-      margin-bottom: 11px;
-    }
-    .story-shot-copy strong {
-      display: block;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      color: var(--cyan);
-      font-size: 21px;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-    .final-cta {
-      padding: 64px 20px;
-      background: var(--dark2);
-      text-align: center;
-    }
-    .final-cta-inner {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-    .final-cta h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(28px, 4.4vw, 48px);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-    .final-cta p {
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-    .final-cta .newsletter-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      opacity: 0.7;
-      margin-bottom: 24px;
-    }
+    .final-lines .accent { color: var(--cyan); }
 
-    /* ── FOOTER ── */
     footer {
       display: flex;
       align-items: center;
@@ -355,38 +302,37 @@
       text-transform: uppercase;
     }
     .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; }
     .footer-links a:hover { color: var(--text); }
     .footer-copy { font-size: 12px; color: var(--muted); opacity: 0.6; max-width: 400px; line-height: 1.5; }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-toggle { display: flex; }
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: rgba(8,12,18,0.98); padding: 20px 24px; gap: 18px; border-bottom: 1px solid var(--border); z-index: 200; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 56px; left: 0; right: 0;
+        background: rgba(8,12,18,0.98);
+        padding: 20px 24px;
+        gap: 18px;
+        border-bottom: 1px solid var(--border);
+      }
       .nav-links.open { display: flex; }
-      .nav-links li { list-style: none; }
-      .story-shot { padding: 22px; }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
-      .footer-links { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a class="nav-brand" href="index.html">SIGNAL<sup>+</sup></a>
     <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="#story">Story</a></li>
-      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="#archive">Archive</a></li>
       <li><a href="glp-1-changes.html">GLP-1 News</a></li>
       <li><a href="#subscribe">Subscribe</a></li>
       <li><a href="signal-support.html">Support</a></li>
@@ -395,110 +341,100 @@
 
   <!-- HERO -->
   <section class="hero" id="subscribe">
-    <p class="hero-eyebrow">Signal+ Weekly · Every Friday</p>
-    <h1>
-      <span class="line1">Keep your muscle</span>
-      <span class="line2">while you lose weight.</span>
-    </h1>
-    <p class="hero-need">Short, practical GLP-1 notes from someone who's <span>been there.</span></p>
-    <p class="hero-latest" data-newsletter-latest hidden></p>
+    <p class="section-eyebrow">Signal+ Weekly · Every Friday</p>
+    <h1>Health shouldn't be this confusing.</h1>
+    <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
     <div class="email-capture top-cta">
       <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
-      <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">SUBSCRIBE</button>
+      <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
       <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
       <p class="email-error" id="heroError">Something went wrong. Please try again.</p>
       <p class="cta-note">Free · Unsubscribe anytime</p>
     </div>
   </section>
 
-  <!-- STORY -->
-  <section class="story" id="story">
-    <div class="story-inner">
-
-      <div class="story-block story-opening reveal">
-        <p class="section-eyebrow" style="margin-bottom: 20px;">Created by a GLP-1 user</p>
-        <p>You're losing weight. You should feel great.</p>
-        <p>But you're tired. Softer than you expected. Everyday things are harder than they should be.</p>
-        <p class="short">That was me.</p>
-      </div>
-
-      <div class="story-block reveal">
-        <p>I had a cross-country flight coming up and a blood test that said my resting glucose was 350.</p>
-        <p>I was close to needing a seatbelt extender. That mortified me.</p>
-        <p>I asked my doctor about GLP-1 medication. He prescribed Ozempic.</p>
-        <p>Over six months I lost 70 pounds. The scale dropped like a rock. My sugar cravings disappeared.</p>
-        <p>I fit in the airplane seat. I could barely walk through the airport.</p>
-        <p>I had lost muscle — not just fat. That was the price.</p>
-      </div>
-
-      <div class="story-block reveal">
-        <p>If the scale is going down but your strength isn't coming with it, you're not alone.</p>
-        <p>You're not doing anything wrong. Your body is changing faster than your habits can keep up.</p>
-      </div>
-
-      <div class="story-block reveal">
-        <p>I dug into how the body keeps muscle. There's a pathway called mTOR — your body's signal to rebuild.</p>
-        <p>The hard part isn't knowing about it. It's triggering it throughout the day. Wait. Trigger again. Stay consistent.</p>
-        <p>I couldn't remember when. So I built Signal+.</p>
-      </div>
-
-      <div class="story-shot reveal">
-        <div class="story-shot-copy">
-          <strong>One screen. Know what to do next.</strong>
-          <p>Protein, hydration, timing — without a complicated program or another food lecture.</p>
-        </div>
-        <img src="Images/signal-home-current.png" alt="Signal+ Home Screen" />
-      </div>
-
-      <div class="story-shot reveal">
-        <div class="story-shot-copy">
-          <strong>The right signal at the right time.</strong>
-          <p>The timer tells you when to trigger mTOR again — so you're not guessing all day.</p>
-        </div>
-        <img src="Images/signal-timer-current.png" alt="Signal+ mTOR Timer" />
-      </div>
-
-      <div class="story-shot reveal">
-        <div class="story-shot-copy">
-          <strong>Help, not judgment.</strong>
-          <p>A coach that nudges you forward. No yelling. No food police.</p>
-        </div>
-        <img src="Images/signal-coach-current.png" alt="Signal+ Success Coach" />
-      </div>
-
-      <div class="story-block reveal">
-        <p class="short">If this feels familiar, Signal+ was built for you.</p>
-        <p>I am not a pitch man. I built this because I needed it.</p>
-      </div>
-
+  <!-- THE PROBLEM -->
+  <section class="page-section" id="problem">
+    <div class="section-inner">
+      <p class="section-eyebrow">The Problem</p>
+      <h2 class="section-title">Every week there's a new headline.</h2>
+      <ul class="problem-stack">
+        <li>More protein.</li>
+        <li>Less protein.</li>
+        <li>GLP-1s.</li>
+        <li>Supplements.</li>
+        <li>Fasting.</li>
+        <li>Calories.</li>
+      </ul>
+      <p class="problem-closer">Who do you believe?</p>
     </div>
   </section>
 
-  <!-- NEWSLETTER CTA -->
-  <section class="final-cta" id="newsletter">
-    <div class="final-cta-inner">
-      <div class="final-cta-grid">
-        <div>
-          <p class="section-eyebrow">Signal+ Weekly</p>
-          <h2>Missed the signup above?</h2>
-          <p>Get Signal+ Weekly — muscle, GLP-1, and Ozempic-butt notes in your inbox.</p>
-          <p class="newsletter-tag">Free · Every Friday · Unsubscribe anytime</p>
-          <div class="email-capture">
-            <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
-            <button class="btn-notify" id="notifyBtn" onclick="handleNewsletterSubscribe('notify')">SUBSCRIBE</button>
-            <p class="email-confirm" id="emailConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
-            <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
-          </div>
-        </div>
-        <aside>
-          <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
-        </aside>
+  <!-- MEET YOUR GUIDE -->
+  <section class="page-section alt" id="guide">
+    <div class="section-inner">
+      <p class="section-eyebrow">Meet Your Guide</p>
+      <h2 class="section-title">I've spent years helping people make sense of nutrition, strength, and aging.</h2>
+      <p class="section-copy">My job isn't to give you more information.</p>
+      <p class="section-copy">It's to help you understand what matters.</p>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL RECEIVE -->
+  <section class="page-section" id="receive">
+    <div class="section-inner">
+      <p class="section-eyebrow">What You'll Receive</p>
+      <h2 class="section-title">Each Friday you'll get:</h2>
+      <ul class="receive-list">
+        <li>One clear idea.</li>
+        <li>One practical action.</li>
+        <li>One strength movement.</li>
+        <li>A simple explanation you can actually use.</li>
+      </ul>
+      <p class="receive-tagline">No hype. No overwhelm.</p>
+    </div>
+  </section>
+
+  <!-- READ PREVIOUS ISSUES -->
+  <section class="page-section alt archive-section" id="archive">
+    <div class="section-inner wide">
+      <p class="section-eyebrow">Read Previous Issues</p>
+      <h2 class="section-title">Not ready to subscribe?</h2>
+      <p class="section-copy">Start with a few previous newsletters and see if Signal+ is right for you.</p>
+      <div class="newsletter-archive" data-newsletter-archive data-current=""></div>
+      <a class="archive-link" href="newsletter.html">View all issues →</a>
+    </div>
+  </section>
+
+  <!-- WHY SIGNAL+ -->
+  <section class="page-section" id="why">
+    <div class="section-inner">
+      <p class="section-eyebrow">Why Signal+?</p>
+      <h2 class="section-title">Signal+ exists to help you cut through the noise.</h2>
+      <p class="section-copy">Because better decisions lead to better outcomes.</p>
+    </div>
+  </section>
+
+  <!-- FINAL INVITATION -->
+  <section class="page-section alt" id="join">
+    <div class="section-inner">
+      <p class="section-eyebrow">Final Invitation</p>
+      <div class="final-lines">
+        <p>If you're tired of conflicting health advice…</p>
+        <p>If you want someone to help you make sense of it…</p>
+        <p class="accent">Join Signal+ Weekly.</p>
+      </div>
+      <p class="section-copy">One email.<br>One idea.<br>Every Friday.</p>
+      <div class="email-capture top-cta">
+        <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
+        <button class="btn-notify" id="notifyBtn" onclick="handleNewsletterSubscribe('notify')">Subscribe</button>
+        <p class="email-confirm" id="emailConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
+        <p class="email-error" id="emailError">Something went wrong. Please try again.</p>
+        <p class="cta-note">Free · Unsubscribe anytime</p>
       </div>
     </div>
   </section>
 
-
-  <!-- FOOTER -->
   <footer>
     <a class="footer-brand" href="index.html">SIGNAL<sup>+</sup></a>
     <ul class="footer-links">
@@ -513,22 +449,11 @@
   <script src="scripts/newsletter-subscribe.js"></script>
   <script src="scripts/newsletter-archive.js"></script>
   <script>
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
         document.querySelector('.nav-links').classList.remove('open');
       });
     });
-
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), 60);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
   </script>
 
 </body>
