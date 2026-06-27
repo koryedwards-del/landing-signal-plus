@@ -226,6 +226,9 @@
       position: relative;
       z-index: 1;
     }
+    #subscribe {
+      scroll-margin-top: 72px;
+    }
 
     .section-title {
       font-family: 'Oswald', sans-serif;
@@ -445,7 +448,7 @@
         <h1>Health shouldn't be this confusing.</h1>
         <p class="hero-lead">Simple, practical guidance to help you build and preserve muscle so you can keep doing the things you love.</p>
       </div>
-      <div class="email-capture top-cta" id="subscribe">
+      <div class="email-capture top-cta">
         <input type="email" id="heroEmail" name="email" autocomplete="email" placeholder="Your email address" />
         <button class="btn-notify" id="heroBtn" onclick="handleNewsletterSubscribe('hero')">Subscribe to Signal+ Weekly</button>
         <p class="email-confirm" id="heroConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
@@ -533,7 +536,7 @@
         <p class="accent">Join Signal+ Weekly.</p>
       </div>
       <p class="section-copy">One email.<br>One idea.<br>Every Friday.</p>
-      <div class="email-capture top-cta">
+      <div class="email-capture top-cta" id="subscribe">
         <input type="email" id="notifyEmail" name="email" autocomplete="email" placeholder="Your email address" />
         <button class="btn-notify" id="notifyBtn" onclick="handleNewsletterSubscribe('notify')">Subscribe to Signal+ Weekly</button>
         <p class="email-confirm" id="emailConfirm">You're subscribed — watch for Signal+ Weekly in your inbox.</p>
