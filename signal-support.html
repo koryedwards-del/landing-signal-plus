@@ -45,7 +45,7 @@
     .nav-brand sup { font-size: 11px; letter-spacing: 0.05em; vertical-align: super; opacity: 0.8; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { color: #6A7A8A; text-decoration: none; font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 600; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: #6A7A8A; border-radius: 2px; transition: background 0.2s; }
     .nav-toggle:hover span { background: #fff; }
@@ -143,10 +143,9 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="newsletter.html">Newsletter</a></li>
-      <li><a href="index.html#story">Story</a></li>
+      <li><a href="index.html#archive">Archive</a></li>
       <li><a href="index.html#subscribe">Subscribe</a></li>
-      <li><a href="signal-privacy.html">Privacy Policy</a></li>
-      <li><a href="signal-support.html">Support</a></li>
+      <li><a href="signal-support.html" class="active">Support</a></li>
     </ul>
   </nav>
 
