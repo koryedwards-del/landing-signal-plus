@@ -10,6 +10,7 @@ alwaysApply: true
 - App backend: `~/code/PWA-signal-plus-v2` → pwa-signal-plus-v2.onrender.com
 - Admin, CMS, and newsletter: **PWA-signal-plus-v2** only (`/cms`, `/cms/emails/weekly`)
 - Retired: `signalplus-admin` — do not use; delete the GitHub repo if it still exists
-- Signup form posts to `/api/auth/request` on the Render app
+- Newsletter signup posts to `/api/newsletter/subscribe` on the Render app
+- App signup (separate) posts to `/api/auth/request` on the Render app
 
 Push to `main` deploys live.

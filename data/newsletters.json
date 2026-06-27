@@ -1,0 +1,12 @@
+{
+  "name": "Signal+ Weekly",
+  "schedule": "Every Friday at 11 AM",
+  "issues": [
+    {
+      "slug": "alot-has-changed",
+      "title": "A lot has changed",
+      "date": "2026-06-20",
+      "url": "newsletter/alot-has-changed.html"
+    }
+  ]
+}

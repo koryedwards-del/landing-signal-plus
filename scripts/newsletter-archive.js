@@ -1,0 +1,73 @@
+(function () {
+  var ARCHIVE_PATH = (function () {
+    var path = window.location.pathname.replace(/\\/g, '/');
+    if (path.includes('/newsletter/')) return '../data/newsletters.json';
+    return 'data/newsletters.json';
+  })();
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    var parts = iso.split('-');
+    if (parts.length !== 3) return iso;
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[Number(parts[1]) - 1] + ' ' + Number(parts[2]) + ', ' + parts[0];
+  }
+
+  function resolveUrl(url) {
+    if (!url || /^https?:\/\//.test(url)) return url;
+    if (window.location.pathname.includes('/newsletter/')) {
+      if (url.indexOf('newsletter/') === 0) return url.slice('newsletter/'.length);
+      if (url.indexOf('../') === 0) return url;
+      return '../' + url;
+    }
+    return url;
+  }
+
+  function renderArchive(container, data, currentSlug) {
+    if (!container || !data || !data.issues || !data.issues.length) return;
+
+    var label = data.name || 'Newsletter';
+    var html = '<p class="newsletter-archive-label">' + label + '</p><ul class="newsletter-archive-list">';
+    data.issues.forEach(function (issue) {
+      var active = issue.slug === currentSlug ? ' class="active"' : '';
+      html +=
+        '<li' + active + '><a href="' + resolveUrl(issue.url) + '">' +
+        issue.title +
+        '<span class="newsletter-archive-date">' + formatDate(issue.date) + '</span></a></li>';
+    });
+    html += '</ul>';
+
+    if (window.location.pathname.indexOf('newsletter.html') === -1 && window.location.pathname.indexOf('/newsletter/') === -1) {
+      html += '<a class="newsletter-archive-more" href="newsletter.html">All issues</a>';
+    }
+
+    container.innerHTML = html;
+  }
+
+  function init() {
+    var containers = document.querySelectorAll('[data-newsletter-archive]');
+    if (!containers.length) return;
+
+    fetch(ARCHIVE_PATH)
+      .then(function (res) {
+        if (!res.ok) throw new Error('Could not load newsletter archive.');
+        return res.json();
+      })
+      .then(function (data) {
+        containers.forEach(function (container) {
+          renderArchive(container, data, container.getAttribute('data-current') || '');
+        });
+      })
+      .catch(function () {
+        containers.forEach(function (container) {
+          container.innerHTML = '<p class="newsletter-archive-label">Signal+ Weekly</p><p class="newsletter-archive-date">Archive loading…</p>';
+        });
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
