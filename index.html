@@ -270,25 +270,33 @@
       color: var(--cyan);
     }
 
-    .guide-credentials-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      opacity: 0.75;
-      margin: 24px 0 12px;
+    .guide-signature {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
     }
-    .guide-credentials {
-      list-style: none;
-      margin: 0 auto 24px;
-      max-width: 360px;
+    .guide-signature img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid rgba(0,200,232,0.22);
+      margin-bottom: 8px;
     }
-    .guide-credentials li {
-      font-size: 16px;
-      line-height: 1.5;
+    .guide-signature-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
       color: var(--text);
-      padding: 6px 0;
+      letter-spacing: 0.02em;
+    }
+    .guide-signature-credential {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
     }
 
     .archive-section .newsletter-archive,
