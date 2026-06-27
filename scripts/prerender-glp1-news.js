@@ -151,7 +151,13 @@ async function fetchFeed(limitPerTerm) {
 }
 
 async function main() {
-  const newsFeed = await fetchFeed(3);
+  let newsFeed;
+  try {
+    newsFeed = await fetchFeed(3);
+  } catch (err) {
+    console.warn('GLP-1 feed unavailable at build time; skipping prerender:', err.message);
+    return;
+  }
 
   if (!newsFeed.items || newsFeed.items.length === 0) {
     console.warn('No news page feed items returned; skipping prerender.');
