@@ -32,7 +32,6 @@ alwaysApply: true
 
 - Newsletter signup: `POST /api/newsletter/subscribe` on this site → **Resend Contacts** (resend.com dashboard → Contacts). Not the PWA `/cms` contact list unless synced separately.
 - App login link: `POST /api/auth/request` on PWA — works
-- GLP-1 news feed: `GET /api/glp1-feed` on PWA — used by landing build
 
 ## CMS (PWA — same repo, same deploy)
 
