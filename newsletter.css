@@ -1,12 +1,9 @@
 .newsletter-archive {
   border: 2px solid rgba(0, 200, 232, 0.14);
   border-radius: 12px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   background: #111822;
   text-align: left;
-  width: fit-content;
-  max-width: 100%;
-  margin-inline: auto;
 }
 .newsletter-archive-label {
   font-family: 'Space Mono', monospace;
@@ -15,30 +12,20 @@
   text-transform: uppercase;
   color: #00C8E8;
   opacity: 0.85;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .newsletter-archive-list {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 180px));
-  gap: 8px;
-  max-width: calc(180px * 3 + 16px);
 }
-.newsletter-archive-list li {
-  border: 1px solid rgba(0, 200, 232, 0.12);
-  border-radius: 8px;
-  background: rgba(0, 200, 232, 0.03);
-}
-.newsletter-archive-list li.active {
-  border-color: rgba(0, 200, 232, 0.35);
-  background: rgba(0, 200, 232, 0.06);
+.newsletter-archive-list li + li {
+  border-top: 2px solid rgba(0, 200, 232, 0.10);
 }
 .newsletter-archive-list a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
-  padding: 8px 10px;
+  gap: 6px;
+  padding: 12px 0;
   color: #F0EDE8;
   text-decoration: none;
   transition: color 0.2s;
