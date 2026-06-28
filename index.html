@@ -296,89 +296,6 @@
       color: var(--cyan);
     }
 
-    .glp1-teaser {
-      padding: 48px 20px;
-      background: var(--dark2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .glp1-teaser-inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .glp1-teaser-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
-    }
-    .glp1-teaser-title {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      font-size: clamp(18px, 3vw, 28px);
-      line-height: 1.1;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-    .glp1-teaser-title span { color: var(--cyan); }
-    .glp1-teaser-intro {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 12px;
-    }
-    .glp1-teaser-more {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .glp1-teaser-more:hover { color: var(--cyan); }
-    .glp1-news-list { list-style: none; border-top: 1px solid var(--border); }
-    .glp1-news-row {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 4px 20px;
-      padding: 12px 0 12px 10px;
-      border-bottom: 1px solid var(--border);
-      border-left: 2px solid transparent;
-      transition: border-left-color 0.2s;
-    }
-    .glp1-news-row:hover { border-left-color: var(--cyan); }
-    .glp1-news-date {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-    }
-    .glp1-news-headline {
-      grid-column: 2;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.4;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .glp1-news-headline:hover { color: var(--cyan); }
-    .glp1-news-source { grid-column: 2; font-size: 12px; color: var(--muted); }
-    .glp1-news-empty { font-size: 14px; color: var(--muted); padding: 12px 0; }
-    .glp1-teaser-foot {
-      margin-top: 10px;
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0.7;
-    }
-
     .guide-signature {
       margin-top: 48px;
       display: inline-flex;
@@ -612,19 +529,6 @@
     </div>
   </section>
 
-  <!-- GLP-1 NEWS (website only) -->
-  <section class="glp1-teaser" id="glp1-news" aria-label="GLP-1 in the News">
-    <div class="glp1-teaser-inner" data-glp1-news data-limit="3">
-      <div class="glp1-teaser-head">
-        <h2 class="glp1-teaser-title">GLP-1 in the <span>News</span></h2>
-        <a class="glp1-teaser-more" href="glp-1-changes.html">View all</a>
-      </div>
-      <p class="glp1-teaser-intro">Headlines from top GLP-1 searches — stay current without leaving the site.</p>
-      <ul class="glp1-news-list" data-glp1-news-list></ul>
-      <p class="glp1-teaser-foot">Links open the original publisher in a new tab</p>
-    </div>
-  </section>
-
   <!-- FINAL INVITATION -->
   <section class="page-section alt" id="join">
     <div class="section-inner">
@@ -658,8 +562,6 @@
 
   <script src="scripts/newsletter-subscribe.js"></script>
   <script src="scripts/newsletter-archive.js"></script>
-  <script src="scripts/external-news-link.js"></script>
-  <script src="scripts/glp1-news.js"></script>
 
 </body>
 </html>
