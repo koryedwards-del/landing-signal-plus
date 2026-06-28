@@ -57,8 +57,8 @@
 
     var updated = formatFetchedAt(feed && feed.fetchedAt);
     status.textContent = updated
-      ? 'Updated ' + updated + '. Free-to-read sources only. Refreshes once a day — or use Refresh now.'
-      : 'Free-to-read sources only. Refreshes once a day — or use Refresh now.';
+      ? 'Updated ' + updated + '. FDA, manufacturers, and insurance — primary sources. Refreshes once a day — or use Refresh now.'
+      : 'FDA, manufacturers, and insurance — primary sources. Refreshes once a day — or use Refresh now.';
   }
 
   function setRefreshBusy(block, busy) {
