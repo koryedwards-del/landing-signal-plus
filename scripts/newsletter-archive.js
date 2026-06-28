@@ -13,6 +13,13 @@
     return months[Number(parts[1]) - 1] + ' ' + Number(parts[2]) + ', ' + parts[0];
   }
 
+  function headlineTitle(str) {
+    if (!str) return '';
+    return str.replace(/\S+/g, function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+  }
+
   function resolveUrl(url) {
     if (!url || /^https?:\/\//.test(url)) return url;
     if (window.location.pathname.includes('/newsletter/')) {
@@ -33,7 +40,7 @@
       html +=
         '<li' + active + '><a href="' + resolveUrl(issue.url) + '">' +
         '<span class="newsletter-archive-date">' + formatDate(issue.date) + '</span>' +
-        '<span class="newsletter-archive-title">' + issue.title + '</span></a></li>';
+        '<span class="newsletter-archive-title">' + headlineTitle(issue.title) + '</span></a></li>';
     });
     html += '</ul>';
 
@@ -46,7 +53,7 @@
     var latest = data.issues[0];
     var href = resolveUrl(latest.url);
     container.innerHTML =
-      'Latest issue: <a href="' + href + '">' + latest.title + '</a>' +
+      'Latest issue: <a href="' + href + '">' + headlineTitle(latest.title) + '</a>' +
       '<span>' + formatDate(latest.date) + '</span>';
     container.hidden = false;
   }

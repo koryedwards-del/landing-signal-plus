@@ -22,9 +22,10 @@
 }
 .newsletter-archive-list a {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
   padding: 12px 0;
   color: #F0EDE8;
   text-decoration: none;
@@ -37,16 +38,22 @@
   color: #00C8E8;
 }
 .newsletter-archive-date {
+  flex-shrink: 0;
   font-family: 'Space Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.06em;
   color: #8A97A8;
   font-weight: 400;
+  white-space: nowrap;
 }
 .newsletter-archive-title {
+  flex: 1;
+  text-align: right;
+  font-family: 'Oswald', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.35;
+  letter-spacing: 0.02em;
 }
 .newsletter-archive-more {
   display: inline-block;
