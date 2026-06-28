@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { getGlp1Feed } = require('./lib/glp1Feed');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -19,7 +20,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
   }
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
@@ -85,6 +86,18 @@ app.get('/api/health', (req, res) => {
     service: 'signalplushealthlandingpage',
     resendConfigured: !!process.env.RESEND_API_KEY,
   });
+});
+
+app.get('/api/glp1-feed', async (req, res) => {
+  const limitPerTerm = Math.max(1, Math.min(parseInt(req.query.limitPerTerm, 10) || 1, 5));
+
+  try {
+    const feed = await getGlp1Feed({ limitPerTerm });
+    res.json(feed);
+  } catch (err) {
+    console.error('GLP-1 feed error:', err);
+    res.status(502).json({ ok: false, error: 'Could not load GLP-1 news.' });
+  }
 });
 
 app.post('/api/newsletter/subscribe', async (req, res) => {
