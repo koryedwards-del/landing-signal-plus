@@ -42,11 +42,14 @@
 .newsletter-archive-date {
   flex-shrink: 0;
   font-family: 'Space Mono', monospace;
-  font-size: 10px;
+  font-size: 20px;
   letter-spacing: 0.04em;
   color: #8A97A8;
   font-weight: 400;
   white-space: nowrap;
+}
+.newsletter-archive-title {
+  text-align: right;
 }
 .newsletter-archive-more {
   display: inline-block;

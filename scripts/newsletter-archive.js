@@ -32,8 +32,8 @@
       var active = issue.slug === currentSlug ? ' class="active"' : '';
       html +=
         '<li' + active + '><a href="' + resolveUrl(issue.url) + '">' +
-        issue.title +
-        '<span class="newsletter-archive-date">' + formatDate(issue.date) + '</span></a></li>';
+        '<span class="newsletter-archive-date">' + formatDate(issue.date) + '</span>' +
+        '<span class="newsletter-archive-title">' + issue.title + '</span></a></li>';
     });
     html += '</ul>';
 
