@@ -86,6 +86,7 @@ app.get('/api/health', (req, res) => {
     service: 'signalplushealthlandingpage',
     resendConfigured: !!process.env.RESEND_API_KEY,
     glp1NewsFeed: 'website',
+    glp1FeedConfigured: !!process.env.OPENAI_API_KEY,
   });
 });
 
