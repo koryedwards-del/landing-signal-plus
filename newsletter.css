@@ -1,5 +1,5 @@
 .newsletter-archive {
-  border: 1px solid rgba(0, 200, 232, 0.14);
+  border: 2px solid rgba(0, 200, 232, 0.14);
   border-radius: 12px;
   padding: 16px 18px;
   background: #111822;
@@ -18,19 +18,16 @@
   list-style: none;
 }
 .newsletter-archive-list li + li {
-  border-top: 1px solid rgba(0, 200, 232, 0.10);
+  border-top: 2px solid rgba(0, 200, 232, 0.10);
 }
 .newsletter-archive-list a {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px 0;
   color: #F0EDE8;
   text-decoration: none;
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 2.7;
   transition: color 0.2s;
 }
 .newsletter-archive-list a:hover {
@@ -40,16 +37,16 @@
   color: #00C8E8;
 }
 .newsletter-archive-date {
-  flex-shrink: 0;
   font-family: 'Space Mono', monospace;
-  font-size: 20px;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  letter-spacing: 0.06em;
   color: #8A97A8;
   font-weight: 400;
-  white-space: nowrap;
 }
 .newsletter-archive-title {
-  text-align: right;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
 }
 .newsletter-archive-more {
   display: inline-block;
