@@ -45,8 +45,10 @@
     .glp1-news-list { list-style: none; }
     .glp1-news-row {
       display: grid; grid-template-columns: 96px 1fr; gap: 4px 20px;
-      padding: 16px 0; border-bottom: 1px solid var(--border);
+      padding: 16px 0 16px 10px; border-bottom: 1px solid var(--border);
+      border-left: 2px solid transparent; transition: border-left-color 0.2s;
     }
+    .glp1-news-row:hover { border-left-color: var(--cyan); }
     .glp1-news-date { grid-column: 1; grid-row: 1 / span 2; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); }
     .glp1-news-headline { grid-column: 2; font-size: 15px; font-weight: 600; line-height: 1.45; text-decoration: none; }
     .glp1-news-row:nth-child(odd) .glp1-news-headline { color: var(--text); }
