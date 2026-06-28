@@ -92,9 +92,10 @@ app.get('/api/health', (req, res) => {
 
 app.get('/api/glp1-feed', async (req, res) => {
   const limitPerTerm = Math.max(1, Math.min(parseInt(req.query.limitPerTerm, 10) || 1, 5));
+  const refresh = req.query.mode === 'demand' || req.query.refresh === '1';
 
   try {
-    const feed = await getGlp1Feed({ limitPerTerm });
+    const feed = await getGlp1Feed({ limitPerTerm, refresh });
     res.json(feed);
   } catch (err) {
     console.error('GLP-1 feed error:', err);

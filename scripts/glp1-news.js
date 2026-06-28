@@ -1,13 +1,22 @@
 (function () {
-  // Website-only GLP-1 headlines (signalplushealth.com — not the mobile app).
-  var FEED_API = '/api/glp1-feed?mode=demand&limitPerTerm=1';
-
   function escapeHtml(value) {
     return String(value)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
+  }
+
+  function formatFetchedAt(iso) {
+    if (!iso) return '';
+    var parsed = new Date(iso);
+    if (Number.isNaN(parsed.getTime())) return '';
+    return parsed.toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+    });
   }
 
   function renderItems(list, items) {
@@ -37,13 +46,39 @@
       .join('');
   }
 
-  async function loadGlp1News() {
+  function setFeedStatus(block, feed, refreshing) {
+    var status = block.querySelector('[data-glp1-feed-status]');
+    if (!status) return;
+
+    if (refreshing) {
+      status.textContent = 'Checking sources for new headlines…';
+      return;
+    }
+
+    var updated = formatFetchedAt(feed && feed.fetchedAt);
+    status.textContent = updated
+      ? 'Updated ' + updated + '. Refreshes automatically once a day — or use Refresh now.'
+      : 'Refreshes automatically once a day — or use Refresh now.';
+  }
+
+  function setRefreshBusy(block, busy) {
+    var btn = block.querySelector('[data-glp1-refresh]');
+    if (!btn) return;
+    btn.disabled = busy;
+    btn.textContent = busy ? 'Refreshing…' : 'Refresh news';
+  }
+
+  async function loadGlp1News(refresh) {
     var blocks = document.querySelectorAll('[data-glp1-news]');
     if (!blocks.length) return;
 
     blocks.forEach(function (block) {
       var list = block.querySelector('[data-glp1-news-list]');
-      if (list) list.innerHTML = '<li class="glp1-news-empty">Loading headlines…</li>';
+      if (list && refresh) {
+        list.innerHTML = '<li class="glp1-news-empty">Loading headlines…</li>';
+      }
+      setFeedStatus(block, null, refresh);
+      if (refresh) setRefreshBusy(block, true);
     });
 
     try {
@@ -53,7 +88,10 @@
         if (limit > maxLimit) maxLimit = limit;
       });
       var limitPerTerm = Math.min(Math.max(Math.ceil(maxLimit / 3), 1), 5);
-      var response = await fetch('/api/glp1-feed?mode=demand&limitPerTerm=' + limitPerTerm);
+      var url = '/api/glp1-feed?limitPerTerm=' + limitPerTerm;
+      if (refresh) url += '&mode=demand';
+
+      var response = await fetch(url);
       if (!response.ok) throw new Error('Feed unavailable');
       var feed = await response.json();
 
@@ -63,6 +101,8 @@
         var limit = parseInt(block.getAttribute('data-limit') || '3', 10);
         renderItems(list, (feed.items || []).slice(0, limit));
         if (window.initExternalNewsLinks) window.initExternalNewsLinks(list);
+        setFeedStatus(block, feed, false);
+        setRefreshBusy(block, false);
       });
     } catch (err) {
       blocks.forEach(function (block) {
@@ -70,13 +110,28 @@
         if (!list || !list.querySelector('.glp1-news-row')) {
           list.innerHTML = '<li class="glp1-news-empty">Headlines unavailable right now. Check back soon.</li>';
         }
+        setFeedStatus(block, null, false);
+        setRefreshBusy(block, false);
       });
     }
   }
 
+  function bindRefreshButtons() {
+    document.querySelectorAll('[data-glp1-refresh]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        loadGlp1News(true);
+      });
+    });
+  }
+
+  function init() {
+    bindRefreshButtons();
+    loadGlp1News(false);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadGlp1News);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    loadGlp1News();
+    init();
   }
 })();
