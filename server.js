@@ -85,6 +85,7 @@ app.get('/api/health', (req, res) => {
     ok: true,
     service: 'signalplushealthlandingpage',
     resendConfigured: !!process.env.RESEND_API_KEY,
+    glp1FeedUrl: process.env.GLP1_FEED_URL || 'https://pwa-signal-plus-v2.onrender.com/api/glp1-feed',
   });
 });
 
