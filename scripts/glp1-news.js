@@ -87,7 +87,7 @@
         var limit = parseInt(block.getAttribute('data-limit') || '3', 10);
         if (limit > maxLimit) maxLimit = limit;
       });
-      var limitPerTerm = Math.min(Math.max(Math.ceil(maxLimit / 3), 1), 5);
+      var limitPerTerm = Math.min(Math.max(Math.ceil(maxLimit / 4), 1), 5);
       var url = '/api/glp1-feed?limitPerTerm=' + limitPerTerm;
       if (refresh) url += '&mode=demand';
 
