@@ -7,3 +7,5 @@ services:
     envVars:
       - key: RESEND_API_KEY
         sync: false
+      - key: SERPAPI_KEY
+        sync: false
