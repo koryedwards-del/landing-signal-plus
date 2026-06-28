@@ -12,6 +12,16 @@
     { id: 'app', label: 'Signal+ App', href: function (ctx) { return ctx.base + 'signal-app.html'; } },
   ];
 
+  var FOOTER_ITEMS = NAV_ITEMS.concat([
+    {
+      id: 'legal',
+      label: 'Privacy & Support',
+      href: function (ctx) {
+        return ctx.base + 'signal-privacy.html';
+      },
+    },
+  ]);
+
   function buildContext(el) {
     var active = el.getAttribute('data-active') || '';
     var base = el.getAttribute('data-base') || '';
@@ -50,7 +60,7 @@
   function initFooterNav() {
     document.querySelectorAll('[data-site-footer-nav]').forEach(function (footerNav) {
       var ctx = buildContext(footerNav);
-      footerNav.innerHTML = renderLinks(NAV_ITEMS, ctx, 'active');
+      footerNav.innerHTML = renderLinks(FOOTER_ITEMS, ctx, 'active');
     });
   }
 
