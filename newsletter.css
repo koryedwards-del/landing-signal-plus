@@ -21,7 +21,10 @@
   border-top: 1px solid rgba(0, 200, 232, 0.10);
 }
 .newsletter-archive-list a {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
   padding: 10px 0;
   color: #F0EDE8;
   text-decoration: none;
@@ -37,13 +40,13 @@
   color: #00C8E8;
 }
 .newsletter-archive-date {
-  display: block;
-  margin-top: 3px;
+  flex-shrink: 0;
   font-family: 'Space Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.04em;
   color: #8A97A8;
   font-weight: 400;
+  white-space: nowrap;
 }
 .newsletter-archive-more {
   display: inline-block;
