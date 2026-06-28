@@ -71,7 +71,7 @@
       })
       .catch(function () {
         containers.forEach(function (container) {
-          container.innerHTML = '<p class="newsletter-archive-label">Signal+ Weekly</p><p class="newsletter-archive-date">Archive loading…</p>';
+          container.innerHTML = '<p class="newsletter-archive-label">Signal+ Weekly Newsletters</p><p class="newsletter-archive-date">Archive loading…</p>';
         });
       });
   }
