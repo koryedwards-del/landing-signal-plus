@@ -10,6 +10,7 @@
     { id: 'home', label: 'Home', href: base + 'index.html' },
     { id: 'subscribe', label: 'Subscribe', href: onHome ? '#subscribe' : base + 'index.html#subscribe' },
     { id: 'app', label: 'The Signal+ App', href: base + 'signal-app.html' },
+    { id: 'news', label: 'GLP-1 News', href: base + 'glp-1-changes.html' },
   ];
 
   var links = items.map(function (item) {

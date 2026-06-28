@@ -133,53 +133,6 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.45), 0 0 32px rgba(0,200,232,0.08);
     }
 
-    .glp1-news-list {
-      list-style: none;
-      margin-top: 8px;
-    }
-    .glp1-news-row {
-      display: grid;
-      grid-template-columns: 88px 1fr;
-      gap: 4px 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(0,200,232,0.08);
-    }
-    .glp1-news-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .glp1-news-date {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      align-self: start;
-      padding-top: 2px;
-    }
-    .glp1-news-headline {
-      grid-column: 2;
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .glp1-news-headline:hover { color: var(--cyan); }
-    .glp1-news-source {
-      grid-column: 2;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .glp1-news-empty {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      padding: 8px 0;
-    }
-    .glp1-news-foot {
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
     .contact-section {
       background: var(--surface);
       border: 1px solid var(--cyan);
@@ -214,8 +167,6 @@
       footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 20px; }
       .footer-links { justify-content: center; }
       .app-screenshot { max-width: 240px; }
-      .glp1-news-row { grid-template-columns: 1fr; gap: 6px; }
-      .glp1-news-date { grid-row: auto; }
     }
   </style>
 </head>
@@ -292,13 +243,6 @@
       <p>Subscription management is also available in Settings.</p>
     </div>
 
-    <div class="support-section" data-glp1-news data-limit="3">
-      <p class="support-label">GLP-1 in the News</p>
-      <p>Headlines from top GLP-1 searches — a quick way to stay current.</p>
-      <ul class="glp1-news-list" data-glp1-news-list></ul>
-      <p class="glp1-news-foot">Links open the original publisher in a new tab.</p>
-    </div>
-
     <div class="contact-section">
       <p class="support-label">Contact</p>
       <p>Need help?</p>
@@ -317,7 +261,5 @@
     <p class="footer-copy">© 2026 Signal+. Signal+ is not a medical device and does not provide medical advice. Always consult your physician before making changes to your diet or health routine.</p>
   </footer>
 
-  <script src="scripts/external-news-link.js"></script>
-  <script src="scripts/glp1-news.js"></script>
 </body>
 </html>

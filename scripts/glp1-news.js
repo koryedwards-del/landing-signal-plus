@@ -1,4 +1,5 @@
 (function () {
+  // Website-only GLP-1 headlines (signalplushealth.com — not the mobile app).
   var FEED_API = '/api/glp1-feed?mode=demand&limitPerTerm=1';
 
   function escapeHtml(value) {
@@ -46,7 +47,13 @@
     });
 
     try {
-      var response = await fetch(FEED_API);
+      var maxLimit = 3;
+      blocks.forEach(function (block) {
+        var limit = parseInt(block.getAttribute('data-limit') || '3', 10);
+        if (limit > maxLimit) maxLimit = limit;
+      });
+      var limitPerTerm = Math.min(Math.max(Math.ceil(maxLimit / 3), 1), 5);
+      var response = await fetch('/api/glp1-feed?mode=demand&limitPerTerm=' + limitPerTerm);
       if (!response.ok) throw new Error('Feed unavailable');
       var feed = await response.json();
 
