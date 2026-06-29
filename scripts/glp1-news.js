@@ -57,8 +57,8 @@
 
     var updated = formatFetchedAt(feed && feed.fetchedAt);
     status.textContent = updated
-      ? 'Updated ' + updated + '. Refreshes every 6 hours — or use Refresh now.'
-      : 'Refreshes every 6 hours — or use Refresh now.';
+      ? 'Updated ' + updated + '.'
+      : 'Tap Refresh the news to load headlines.';
   }
 
   function setRefreshBusy(block, busy) {

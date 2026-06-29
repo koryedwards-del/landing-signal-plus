@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLP-1 in the News — Signal+</title>
-  <meta name="description" content="GLP-1 news: research, regulatory, access, industry, and safety. Updated every 6 hours.">
+  <meta name="description" content="GLP-1 news: research, regulatory, access, industry, and safety.">
   <link rel="canonical" href="https://www.signalplushealth.com/glp-1-changes.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,6 @@
     .hero {
       padding: 96px 20px 32px; text-align: center; position: relative;
     }
-    .hero-eyebrow { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); opacity: 0.75; margin-bottom: 16px; }
     .hero h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(32px, 5vw, 52px); line-height: 1.08; }
     .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 560px; margin: 16px auto 0; }
     .content { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
@@ -57,10 +56,10 @@
     .glp1-news-empty { font-size: 14px; color: var(--muted); padding: 16px 0; line-height: 1.7; }
     .feed-toolbar {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      text-align: center;
+      gap: 12px;
       margin-bottom: 20px;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--border);
@@ -69,8 +68,7 @@
       font-size: 13px;
       color: var(--muted);
       line-height: 1.5;
-      flex: 1;
-      min-width: 200px;
+      margin: 0;
     }
     .btn-refresh {
       padding: 10px 16px;
@@ -110,15 +108,14 @@
   <script src="scripts/site-nav.js"></script>
 
   <section class="hero">
-    <p class="hero-eyebrow">Updated every 6 hours</p>
     <h1>GLP-1 in the News</h1>
     <p class="hero-sub">Research, regulatory, access, industry, and safety.</p>
   </section>
 
   <div class="content" data-glp1-news data-limit="20">
     <div class="feed-toolbar">
-      <p class="feed-status" data-glp1-feed-status>Loading headlines…</p>
       <button type="button" class="btn-refresh" data-glp1-refresh>Refresh the news</button>
+      <p class="feed-status" data-glp1-feed-status>Loading headlines…</p>
     </div>
     <ul class="glp1-news-list" data-glp1-news-list></ul>
   </div>
