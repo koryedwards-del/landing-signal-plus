@@ -10,6 +10,9 @@ const ALLOWED_ORIGINS = new Set([
   'https://signalplushealth.com',
   'http://localhost:10000',
   'http://127.0.0.1:10000',
+  'https://pwa-signal-plus-v2.onrender.com',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
 ]);
 
 app.use(express.json({ limit: '16kb' }));
