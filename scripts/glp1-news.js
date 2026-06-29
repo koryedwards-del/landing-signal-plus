@@ -57,15 +57,15 @@
 
     var updated = formatFetchedAt(feed && feed.fetchedAt);
     status.textContent = updated
-      ? 'Updated ' + updated + '. Factual GLP-1 headlines. Refreshes every 6 hours — or use Refresh now.'
-      : 'Factual GLP-1 headlines. Refreshes every 6 hours — or use Refresh now.';
+      ? 'Updated ' + updated + '. Refreshes every 6 hours — or use Refresh now.'
+      : 'Refreshes every 6 hours — or use Refresh now.';
   }
 
   function setRefreshBusy(block, busy) {
     var btn = block.querySelector('[data-glp1-refresh]');
     if (!btn) return;
     btn.disabled = busy;
-    btn.textContent = busy ? 'Refreshing…' : 'Refresh news';
+    btn.textContent = busy ? 'Refreshing…' : 'Refresh the news';
   }
 
   async function loadGlp1News(refresh) {
