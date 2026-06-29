@@ -30,16 +30,22 @@
         var dateHtml = item.date
           ? '<time class="glp1-news-date">' + escapeHtml(item.date) + '</time>'
           : '';
+        var tagHtml = item.tagLabel
+          ? '<span class="glp1-tag glp1-tag-' + escapeHtml(item.tag || 'industry') + '">' + escapeHtml(item.tagLabel) + '</span>'
+          : '';
         var sourceHtml = item.source
           ? '<span class="glp1-news-source">' + escapeHtml(item.source) + '</span>'
           : '';
         return (
           '<li class="glp1-news-row">' +
             dateHtml +
-            '<a class="glp1-news-headline" href="' + escapeHtml(item.href) + '" target="_blank" rel="noopener noreferrer">' +
-              escapeHtml(item.title) +
-            '</a>' +
-            sourceHtml +
+            '<div class="glp1-news-body">' +
+              tagHtml +
+              '<a class="glp1-news-headline" href="' + escapeHtml(item.href) + '" target="_blank" rel="noopener noreferrer">' +
+                escapeHtml(item.title) +
+              '</a>' +
+              sourceHtml +
+            '</div>' +
           '</li>'
         );
       })
@@ -57,8 +63,8 @@
 
     var updated = formatFetchedAt(feed && feed.fetchedAt);
     status.textContent = updated
-      ? 'Updated ' + updated + '. Curated GLP-1 access, science, and muscle news. Refreshes every 6 hours — or use Refresh now.'
-      : 'Curated GLP-1 access, science, and muscle news. Refreshes every 6 hours — or use Refresh now.';
+      ? 'Updated ' + updated + '. Research, regulatory, access, industry, and safety. Refreshes every 6 hours — or use Refresh now.'
+      : 'Research, regulatory, access, industry, and safety. Refreshes every 6 hours — or use Refresh now.';
   }
 
   function setRefreshBusy(block, busy) {
