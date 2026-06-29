@@ -57,8 +57,8 @@
 
     var updated = formatFetchedAt(feed && feed.fetchedAt);
     status.textContent = updated
-      ? 'Updated ' + updated + '. FDA, manufacturers, and insurance — including Medicare. Refreshes once a day — or use Refresh now.'
-      : 'FDA, manufacturers, and insurance — including Medicare. Refreshes once a day — or use Refresh now.';
+      ? 'Updated ' + updated + '. Curated GLP-1 access, science, and muscle news. Refreshes every 6 hours — or use Refresh now.'
+      : 'Curated GLP-1 access, science, and muscle news. Refreshes every 6 hours — or use Refresh now.';
   }
 
   function setRefreshBusy(block, busy) {
@@ -82,14 +82,8 @@
     });
 
     try {
-      var maxLimit = 3;
-      blocks.forEach(function (block) {
-        var limit = parseInt(block.getAttribute('data-limit') || '3', 10);
-        if (limit > maxLimit) maxLimit = limit;
-      });
-      var limitPerTerm = Math.min(Math.max(Math.ceil(maxLimit / 4), 1), 5);
-      var url = '/api/glp1-feed?limitPerTerm=' + limitPerTerm;
-      if (refresh) url += '&mode=demand';
+      var url = '/api/glp1-feed';
+      if (refresh) url += '?refresh=1';
 
       var response = await fetch(url);
       if (!response.ok) throw new Error('Feed unavailable');

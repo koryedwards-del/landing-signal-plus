@@ -85,17 +85,17 @@ app.get('/api/health', (req, res) => {
     ok: true,
     service: 'signalplushealthlandingpage',
     resendConfigured: !!process.env.RESEND_API_KEY,
-    glp1NewsFeed: 'website',
+    glp1NewsFeed: 'blended',
     glp1FeedConfigured: true,
   });
 });
 
 app.get('/api/glp1-feed', async (req, res) => {
-  const limitPerTerm = Math.max(1, Math.min(parseInt(req.query.limitPerTerm, 10) || 1, 5));
-  const refresh = req.query.mode === 'demand' || req.query.refresh === '1';
+  const refresh = req.query.refresh === '1' || req.query.mode === 'demand';
 
   try {
-    const feed = await getGlp1Feed({ limitPerTerm, refresh });
+    const feed = await getGlp1Feed({ refresh });
+    res.setHeader('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=3600');
     res.json(feed);
   } catch (err) {
     console.error('GLP-1 feed error:', err);
