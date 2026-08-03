@@ -9,54 +9,33 @@ alwaysApply: true
 
 | Repo | GitHub | Deploy | Notes |
 |------|--------|--------|-------|
-| **Landing** (this repo) | [signalplushealthlandingpage](https://github.com/koryedwards-del/signalplushealthlandingpage) | signalplushealth.com | **Web Service** (Node), not Static — verify `/api/health` returns JSON |
-| **App + CMS + newsletter** | [PWA-signal-plus-v2](https://github.com/koryedwards-del/PWA-signal-plus-v2) (private) | pwa-signal-plus-v2.onrender.com | Same repo, same deploy — app, admin, CMS, weekly email |
+| **Landing** (this repo) | [landing-signal-plus](https://github.com/koryedwards-del/landing-signal-plus) | signalplushealth.com | **Web Service** (Node) — `/api/health`, `/api/app/request`, GLP-1 feed |
+| **App (PWA)** | [PWA-signal-plus-v2](https://github.com/koryedwards-del/PWA-signal-plus-v2) (private) | pwa-signal-plus-v2.onrender.com | Protein timing app — magic-link auth, Postgres on Render |
 | **Ops docs** | [operatingmanual](https://github.com/koryedwards-del/operatingmanual) (private) | — | Full project map: `PROJECTS.md` |
 
-## Retired
+## Product model (current)
 
-| Repo | Status |
-|------|--------|
-| **signalplus-admin** | Deleted from GitHub — admin/CMS lives in PWA only |
-
-## Other projects (separate products)
-
-| Repo | Purpose |
-|------|---------|
-| pwa-burn-and-build | Burn & Build diet PWA |
-| burnandbuildlandingpage | Burn & Build landing |
-| pwa-30ft | 30 For Time kettlebell PWA |
-| hardkordietlandingpage | Hardkor Diet landing |
+- **Free VIP lifetime access** for everyone — no whitelist, no trial, no paywall
+- **No referral system**
+- **No Stripe** on the app
+- **No newsletter** on the landing site (Resend used only for app sign-in links in the PWA)
+- **Landing**: app signup + GLP-1 news page + app guide (`signal-app.html`)
 
 ## API wiring
 
-- App signup: `POST /api/app/request` on this site → proxies to `POST /api/auth/request` on the PWA (magic link email).
-- App login link: `POST /api/auth/request` on PWA — works
+- App signup: `POST /api/app/request` on landing → proxies to `POST /api/auth/request` on the PWA
 
-## Access model (PWA — required follow-up)
+## PWA cleanup (private repo — open Cloud Agent there)
 
-Landing is open signup. **PWA-signal-plus-v2** must match:
+Strip dead code from **PWA-signal-plus-v2**:
 
-1. **Remove whitelist gate** — do not block login/signup based on `/admin` whitelist.
-2. **Auto VIP lifetime** — on `POST /api/auth/request`, create/update user with `lifetime: true` (same fix applied manually for Kim and the second VIP user).
-3. **Backfill existing users** — SQL or script: set `lifetime = true` for all users (health endpoint showed ~8 users).
-4. **Remove referral UI** from app settings/onboarding; stop requiring `referredByCode`.
-5. **Retire `/api/admin/whitelist`** and admin whitelist page (or leave read-only for audit only).
-6. **Settings** — hide “Manage subscription” unless `has_stripe_subscription && !lifetime` (already how production bundle behaves).
-
-Open **PWA-signal-plus-v2** in a Cloud Agent to implement — this landing repo cannot push there.
-
-## CMS (PWA — same repo, same deploy)
-
-| Path | Purpose |
-|------|---------|
-| `/cms/newsletter/login` | CMS login |
-| `/cms` | Contacts |
-| `/cms/emails/weekly` | Weekly newsletter compose |
-| `/cms/emails/one-to-one` | 1:1 email |
-| `/admin` | Whitelist |
-
-PWA docs: `NEWSLETTER.md`, `STATE.md`, `chat-automator/`. Open **PWA-signal-plus-v2** in Cursor — not the retired admin repo.
+1. Remove whitelist gate and `/admin` whitelist UI + `/api/admin/whitelist`
+2. On auth signup: always set `lifetime: true`; backfill existing users
+3. Remove referral UI and `referredByCode` handling
+4. Remove Stripe SDK, webhooks, `/api/stripe/*`, billing portal, subscription checks
+5. Remove CMS newsletter paths (`/cms`, weekly email compose) if unused
+6. Remove trial/pricing onboarding copy
+7. Drop unused env vars (`STRIPE_*`, newsletter keys) from Render
 
 ## Cloud agent access
 

@@ -97,6 +97,10 @@ app.use('/newsletter', (req, res) => {
   res.redirect(301, '/#get-app');
 });
 
+app.get('/signal-support.html', (req, res) => {
+  res.redirect(301, '/signal-app.html');
+});
+
 app.use(express.static(path.join(__dirname), { index: 'index.html' }));
 
 app.listen(PORT, () => {
