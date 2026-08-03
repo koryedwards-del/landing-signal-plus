@@ -10,7 +10,7 @@ alwaysApply: true
 | Repo | GitHub | Deploy | Notes |
 |------|--------|--------|-------|
 | **Landing** (this repo) | [landing-signal-plus](https://github.com/koryedwards-del/landing-signal-plus) | signalplushealth.com | **Web Service** (Node) — `/api/health`, `/api/app/request`, GLP-1 feed |
-| **App (PWA)** | [PWA-signal-plus-v2](https://github.com/koryedwards-del/PWA-signal-plus-v2) (private) | pwa-signal-plus-v2.onrender.com | Protein timing app — magic-link auth, Postgres on Render |
+| **App (PWA)** | [pwa-signal-plus](https://github.com/koryedwards-del/pwa-signal-plus) (private) | pwa-signal-plus-v2.onrender.com | Protein timing app — magic-link auth, Postgres on Render |
 | **Ops docs** | [operatingmanual](https://github.com/koryedwards-del/operatingmanual) (private) | — | Full project map: `PROJECTS.md` |
 
 ## Product model (current)
@@ -27,7 +27,7 @@ alwaysApply: true
 
 ## PWA cleanup (private repo — open Cloud Agent there)
 
-Strip dead code from **PWA-signal-plus-v2**:
+Strip dead code from **pwa-signal-plus**:
 
 1. Remove whitelist gate and `/admin` whitelist UI + `/api/admin/whitelist`
 2. On auth signup: always set `lifetime: true`; backfill existing users
@@ -40,4 +40,4 @@ Strip dead code from **PWA-signal-plus-v2**:
 ## Cloud agent access
 
 - Public repos (e.g. this landing repo): agent can push directly.
-- Private repos (`PWA-signal-plus-v2`, `operatingmanual`): open a Cloud Agent task from that repo or grant the Cursor GitHub App access to it.
+- Private repos (`pwa-signal-plus`, `operatingmanual`): open a Cloud Agent task from that repo or grant the Cursor GitHub App access to it.
