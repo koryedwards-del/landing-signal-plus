@@ -33,6 +33,19 @@ alwaysApply: true
 - App signup: `POST /api/app/request` on this site → proxies to `POST /api/auth/request` on the PWA (magic link email).
 - App login link: `POST /api/auth/request` on PWA — works
 
+## Access model (PWA — required follow-up)
+
+Landing is open signup. **PWA-signal-plus-v2** must match:
+
+1. **Remove whitelist gate** — do not block login/signup based on `/admin` whitelist.
+2. **Auto VIP lifetime** — on `POST /api/auth/request`, create/update user with `lifetime: true` (same fix applied manually for Kim and the second VIP user).
+3. **Backfill existing users** — SQL or script: set `lifetime = true` for all users (health endpoint showed ~8 users).
+4. **Remove referral UI** from app settings/onboarding; stop requiring `referredByCode`.
+5. **Retire `/api/admin/whitelist`** and admin whitelist page (or leave read-only for audit only).
+6. **Settings** — hide “Manage subscription” unless `has_stripe_subscription && !lifetime` (already how production bundle behaves).
+
+Open **PWA-signal-plus-v2** in a Cloud Agent to implement — this landing repo cannot push there.
+
 ## CMS (PWA — same repo, same deploy)
 
 | Path | Purpose |
