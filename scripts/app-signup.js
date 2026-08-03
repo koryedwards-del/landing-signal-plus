@@ -1,7 +1,7 @@
-var NEWSLETTER_SUBSCRIBE_API = '/api/newsletter/subscribe';
-var NEWSLETTER_BUTTON_LABEL = 'SUBSCRIBE';
+var APP_REQUEST_API = '/api/app/request';
+var APP_BUTTON_LABEL = 'GET SIGNAL+ FREE';
 
-async function handleNewsletterSubscribe(formId) {
+async function handleAppSignup(formId) {
   var ids = formId === 'hero'
     ? { email: 'heroEmail', btn: 'heroBtn', confirm: 'heroConfirm', error: 'heroError' }
     : { email: 'notifyEmail', btn: 'notifyBtn', confirm: 'emailConfirm', error: 'emailError' };
@@ -21,15 +21,15 @@ async function handleNewsletterSubscribe(formId) {
   }
 
   btn.disabled = true;
-  btn.textContent = 'SUBSCRIBING...';
+  btn.textContent = 'SENDING...';
   confirmEl.style.display = 'none';
   errorEl.style.display = 'none';
 
   try {
-    var res = await fetch(NEWSLETTER_SUBSCRIBE_API, {
+    var res = await fetch(APP_REQUEST_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, source: 'landing' }),
+      body: JSON.stringify({ email: email }),
     });
 
     var payload = null;
@@ -40,14 +40,14 @@ async function handleNewsletterSubscribe(formId) {
     }
 
     if (!res.ok || !payload || payload.ok !== true) {
-      errorEl.textContent = (payload && payload.error) || ('Could not subscribe (server returned ' + res.status + '). Try again.');
+      errorEl.textContent = (payload && payload.error) || ('Could not send your link (server returned ' + res.status + '). Try again.');
       errorEl.style.display = 'block';
       btn.disabled = false;
-      btn.textContent = NEWSLETTER_BUTTON_LABEL;
+      btn.textContent = APP_BUTTON_LABEL;
       return;
     }
 
-    confirmEl.textContent = "You're subscribed — watch for Signal+ Weekly in your inbox.";
+    confirmEl.textContent = 'Check your email for your Signal+ app link.';
     confirmEl.style.display = 'block';
     emailInput.style.display = 'none';
     btn.style.display = 'none';
@@ -55,6 +55,6 @@ async function handleNewsletterSubscribe(formId) {
     errorEl.textContent = 'Network error: ' + err.message;
     errorEl.style.display = 'block';
     btn.disabled = false;
-    btn.textContent = NEWSLETTER_BUTTON_LABEL;
+    btn.textContent = APP_BUTTON_LABEL;
   }
 }

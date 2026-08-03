@@ -30,7 +30,7 @@ alwaysApply: true
 
 ## API wiring
 
-- Newsletter signup: `POST /api/newsletter/subscribe` on this site → **Resend Contacts** (resend.com dashboard → Contacts). Not the PWA `/cms` contact list unless synced separately.
+- App signup: `POST /api/app/request` on this site → proxies to `POST /api/auth/request` on the PWA (magic link email).
 - App login link: `POST /api/auth/request` on PWA — works
 
 ## CMS (PWA — same repo, same deploy)

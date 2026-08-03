@@ -3,10 +3,10 @@
     { id: 'home', label: 'Home', href: function (ctx) { return ctx.base + 'index.html'; } },
     { id: 'news', label: 'GLP-1 News', href: function (ctx) { return ctx.base + 'glp-1-changes.html'; } },
     {
-      id: 'subscribe',
-      label: 'Subscribe',
+      id: 'get-app',
+      label: 'Get the App',
       href: function (ctx) {
-        return ctx.onHome ? '#subscribe' : ctx.base + 'index.html#subscribe';
+        return ctx.onHome ? '#get-app' : ctx.base + 'index.html#get-app';
       },
     },
     { id: 'app', label: 'Signal+ App', href: function (ctx) { return ctx.base + 'signal-app.html'; } },

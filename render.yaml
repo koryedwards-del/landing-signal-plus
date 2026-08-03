@@ -5,7 +5,7 @@ services:
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
-      - key: RESEND_API_KEY
-        sync: false
       - key: OPENAI_API_KEY
+        sync: false
+      - key: PWA_ORIGIN
         sync: false

@@ -6,11 +6,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.signalplushealth.com/newsletter/alot-has-changed.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.signalplushealth.com/signal-privacy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

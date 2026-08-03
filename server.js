@@ -4,6 +4,7 @@ const { getGlp1Feed } = require('./lib/glp1Feed');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
+const PWA_ORIGIN = process.env.PWA_ORIGIN || 'https://pwa-signal-plus-v2.onrender.com';
 
 const ALLOWED_ORIGINS = new Set([
   'https://www.signalplushealth.com',
@@ -33,61 +34,12 @@ function isValidEmail(email) {
   return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function resendErrorMessage(payload, status) {
-  if (!payload || typeof payload !== 'object') return 'Resend returned ' + status;
-  if (typeof payload.message === 'string') return payload.message;
-  if (payload.error && typeof payload.error.message === 'string') return payload.error.message;
-  if (typeof payload.error === 'string') return payload.error;
-  return 'Resend returned ' + status;
-}
-
-async function addResendContact(email) {
-  const apiKey = process.env.RESEND_API_KEY;
-
-  const response = await fetch('https://api.resend.com/contacts', {
-    method: 'POST',
-    headers: {
-      Authorization: 'Bearer ' + apiKey,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      unsubscribed: false,
-    }),
-  });
-
-  const payload = await response.json().catch(() => ({}));
-
-  if (response.ok) {
-    const id = payload.id || (payload.data && payload.data.id) || null;
-    if (!id) {
-      return { ok: false, error: 'Resend did not return a contact id.' };
-    }
-    return { ok: true, id: id };
-  }
-
-  const message = resendErrorMessage(payload, response.status);
-
-  if (/already exists|duplicate/i.test(message)) {
-    const verify = await fetch('https://api.resend.com/contacts/' + encodeURIComponent(email), {
-      headers: { Authorization: 'Bearer ' + apiKey },
-    });
-    if (verify.ok) {
-      const existing = await verify.json().catch(() => ({}));
-      const existingId = existing.id || (existing.data && existing.data.id) || null;
-      return { ok: true, existing: true, id: existingId };
-    }
-    return { ok: false, error: 'Contact already exists but could not be verified.' };
-  }
-
-  return { ok: false, error: message };
-}
-
 app.get('/api/health', (req, res) => {
   res.json({
     ok: true,
     service: 'signalplushealthlandingpage',
-    resendConfigured: !!process.env.RESEND_API_KEY,
+    appSignup: true,
+    pwaOrigin: PWA_ORIGIN,
     glp1NewsFeed: 'blended',
     glp1FeedConfigured: true,
   });
@@ -106,40 +58,43 @@ app.get('/api/glp1-feed', async (req, res) => {
   }
 });
 
-app.post('/api/newsletter/subscribe', async (req, res) => {
+app.post('/api/app/request', async (req, res) => {
   const email = String(req.body?.email || '').trim().toLowerCase();
 
   if (!isValidEmail(email)) {
     return res.status(400).json({ ok: false, error: 'Invalid email address.' });
   }
 
-  if (!process.env.RESEND_API_KEY) {
-    console.error('RESEND_API_KEY is not configured');
-    return res.status(503).json({
-      ok: false,
-      error: 'Newsletter signup is not configured yet. Email support@signalplushealth.com to subscribe.',
-    });
-  }
-
   try {
-    const result = await addResendContact(email);
-    if (!result.ok) {
-      console.error('Resend error:', result.error);
-      return res.status(502).json({ ok: false, error: 'Could not subscribe. Please try again.' });
-    }
-    return res.status(200).json({
-      ok: true,
-      id: result.id || null,
-      existing: !!result.existing,
+    const response = await fetch(PWA_ORIGIN + '/api/auth/request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
     });
+
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const message =
+        (payload && (payload.error || payload.message)) ||
+        'Could not send app link. Please try again.';
+      console.error('PWA auth/request error:', response.status, message);
+      return res.status(response.status >= 500 ? 502 : response.status).json({ ok: false, error: message });
+    }
+
+    return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('Newsletter subscribe error:', err);
+    console.error('App signup proxy error:', err);
     return res.status(500).json({ ok: false, error: 'Server error. Please try again.' });
   }
 });
 
 app.get('/newsletter.html', (req, res) => {
-  res.redirect(301, '/#archive');
+  res.redirect(301, '/#get-app');
+});
+
+app.use('/newsletter', (req, res) => {
+  res.redirect(301, '/#get-app');
 });
 
 app.use(express.static(path.join(__dirname), { index: 'index.html' }));
